@@ -41,13 +41,10 @@ hr {
   margin: get-size(900) auto;
 }
 
-// For when metric attributes are added to img elements
 img {
+  display: block;
   height: auto;
-}
-
-p > img {
-  margin-top: 0.8em;
+  max-width: 100%;
 }
 
 :focus {
