@@ -1,14 +1,14 @@
-{% set pageTitle = title + ' - ' + site.name %}
-{% set pageDesc = '' %}
 {% set siteTitle = site.name %}
 {% set currentUrl = site.url + page.url %}
 
-{% if metaTitle %}
-  {% set pageTitle = metaTitle %}
+{% set pageTitle = site.name %}
+{% if title %}
+  {% set pageTitle = title + ' - ' + site.name %}
 {% endif %}
 
-{% if metaDesc %}
-  {% set pageDesc = metaDesc %}
+{% set pageDesc = site.description %}
+{% if description %}
+  {% set pageDesc = description %}
 {% endif %}
 
 <title>{{ pageTitle }}</title>
@@ -34,8 +34,4 @@
   <meta name="twitter:image" content="{{ socialImage }}" />
   <meta property="og:image:alt" content="Page image for {{ site.name }}" />
   <meta name="twitter:image:alt" content="Page image for {{ site.name }}" />
-{% endif %}
-
-{% if site.paymentPointer %}
-  <meta name="monetization" content="{{ site.paymentPointer }}" />
 {% endif %}

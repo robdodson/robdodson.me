@@ -1,7 +1,7 @@
 {
   "showThemeCredit": true,
   "name": "Rob Dodson",
-  "shortDesc": "Hylia is a lightweight Eleventy starter kit to help you to create your own blog or personal website.",
+  "description": "Hi, I'm Rob. I write about front-end development and work on the Chrome team.",
   "url": "https://robdodson.me",
   "authorHandle": "@rob_dodson",
   "authorName": "Rob Dodson",
