@@ -1,6 +1,7 @@
 ---
 title: A post with figures and video
 date: '2019-06-18'
+draft: true
 tags:
   - demo-content
   - blog

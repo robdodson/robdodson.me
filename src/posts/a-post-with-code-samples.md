@@ -1,6 +1,7 @@
 ---
 title: A post with code samples
 date: '2019-06-18'
+draft: true
 tags:
   - demo-content
   - code
