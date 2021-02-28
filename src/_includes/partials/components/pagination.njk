@@ -3,8 +3,8 @@
 {% if paginationNextUrl or paginationPrevUrl %}
   <hr />
   <div class="inner-wrapper">
-    <footer class="[ pagination ] [ pad-bottom-900 ]">
-      <nav class="[ pagination__nav ] [ box-flex space-between align-center ]">
+    <footer class="pagination pad-bottom-900">
+      <nav class="pagination__nav box-flex space-between align-center">
         {% if paginationPrevUrl %}
           <a href="{{ paginationPrevUrl }}" class="{{ paginationLinkTokens }}" data-direction="backwards">
             <span>{{ paginationPrevText if paginationPrevText else 'Previous' }}</span>
