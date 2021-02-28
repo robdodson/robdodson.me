@@ -46,6 +46,10 @@ img {
   height: auto;
 }
 
+p > img {
+  margin-top: 0.8em;
+}
+
 :focus {
   outline: 1px solid var(--color-theme-primary-glare);
   outline-offset: 0.25rem;

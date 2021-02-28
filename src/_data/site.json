@@ -1,13 +1,11 @@
 {
   "showThemeCredit": true,
-  "name": "Hylia Starter Kit",
+  "name": "Rob Dodson",
   "shortDesc": "Hylia is a lightweight Eleventy starter kit to help you to create your own blog or personal website.",
-  "url": "https://hylia.website",
-  "authorEmail": "me@andy-bell.design",
-  "authorHandle": "@hankchizljaw",
-  "authorName": "Andy Bell",
+  "url": "https://robdodson.me",
+  "authorHandle": "@rob_dodson",
+  "authorName": "Rob Dodson",
   "enableThirdPartyComments": false,
   "maxPostsPerPage": 5,
-  "paymentPointer": "$ilp.uphold.com/MggmnFEyQqhk",
   "faviconPath": "/images/favicon.png"
 }

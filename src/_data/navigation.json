@@ -6,14 +6,14 @@
       "external": false
     },
     {
-      "text": "GitHub",
-      "url": "https://github.com/hankchizljaw/hylia",
+      "text": "Twitter",
+      "url": "https://twitter.com/rob_dodson",
       "external": true
     },
     {
-      "text": "Example Contact Page",
-      "url": "/contact",
-      "external": false
+      "text": "GitHub",
+      "url": "https://github.com/robdodson",
+      "external": true
     }
   ]
 }
