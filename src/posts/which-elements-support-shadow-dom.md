@@ -18,6 +18,8 @@ As it turns out, there is! (Big thanks to [Anne van Kesteren](https://annevankes
 
 Here's a quick example using `div`:
 
+<!-- glitch embed -->
+
 ## Exceptions
 
 It's worth calling out that `button`, `input`, `select`, `img`, and `a` are not on this list and will throw an error if you try to attach a shadow root to them. If you need to use them you'll probably need to look into either wrapping these elements or using [a type extension](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#High-level_view).

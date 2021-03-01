@@ -23,22 +23,24 @@ _update: All versions of Chrome now fully support style scoping with Shadow DOM_
 
 A simple workaround is to pull your `@font-face` rules out of the stylesheet for your element, and move them to the top of your import, like so:
 
-    <style>
-      @font-face {
-        font-family: 'FontAwesome';
-        src: url('../fonts/fontawesome-webfont.eot?v=4.0.3');
-        src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
-        font-weight: normal;
-        font-style: normal;
-      }
-    </style>
+```html
+<style>
+  @font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/fontawesome-webfont.eot?v=4.0.3');
+    src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+</style>
 
-    <polymer-element name="semantic-ui-icon" noscript>
-      <template>
-        <link rel="stylesheet" href="./icon.css">
-        <content></content>
-      </template>
-    </polymer-element>
+<polymer-element name="semantic-ui-icon" noscript>
+  <template>
+    <link rel="stylesheet" href="./icon.css">
+    <content></content>
+  </template>
+</polymer-element>
+```
 
 I found this approach [in the Polymer documentation](http://www.polymer-project.org/docs/polymer/styling.html#making-styles-global), so I'm hoping it's considered a best practice. **You'll also need to do this if you're using `@-webkit-keyframes` rules**.
 

@@ -50,20 +50,25 @@ At the end of all this we should end up with a `bundle.js` with all of our eleme
 
 To get started with the loader, install it from npm.
 
-`npm install --save-dev polymer-webpack-loader`
+```bash
+npm install --save-dev polymer-webpack-loader
+```
 
-Or if you’re using the demo project, `cd` into the demo directory and run `npm i` and `bower i`.
+Or if you’re using the demo project, `cd` into the demo directory and run `npm i` and <br>`bower i`.
 
 Next, drop the loader into your `webpack.config.js`, here's the full config file from the demo. I've done my best to comment each section so if you're new to Webpack you can grok what's going on.
+
+<!-- gist embed -->
 
 The key thing to note is the `module` section where we define the `rules` array. The first rule tests to see if a file ends in `.html`, if so, it gets sent to a set of chained loaders. Loaders transform a file in some way, similar to "tasks" in other build tools. Here we're saying "run everything through polymer-webpack-loader, take the output from that and give it to babel-loader."
 
 Next we'll need to give our app a starting point, so create an `index.js` file and include an `import` statement to pull in an HTML Import.
 
-    /* src/index.js */
-    
-    import './my-element.html';
-    
+```js
+/* src/index.js */
+
+import './my-element.html';
+```
 
 And here’s the actual definition for `my-element.html`.
 
@@ -79,7 +84,7 @@ Note the line that says `<%= htmlWebpackPlugin.files.js[0] %>`, as this is where
 
 Finally, in the terminal run `npm start` to kickoff the Webpack dev server which will open a browser window for you. You should see something like this:
 
-![](/images/2017/07/Screen-Shot-2017-07-13-at-4.38.28-PM.png)
+![A new browser window which says Hello, World and today's date](/images/2017/07/Screen-Shot-2017-07-13-at-4.38.28-PM.png)
 
 Success! You’ve now got Polymer bundling with Webpack and leveraging imports from your `node_modules` directory.
 

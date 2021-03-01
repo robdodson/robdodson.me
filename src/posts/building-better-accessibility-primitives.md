@@ -36,13 +36,14 @@ Rather than contort `<dialog>` to do our bidding, why not expose a JavaScript AP
 
 The proposed API could look something like this:
 
-    // put element at the top of the blocking elements stack
-    document.blockingElements.push(element);
-    document.blockingElements.pop();
-    // see https://github.com/whatwg/html/issues/897#issuecomment-198565716
-    document.blockingElements.remove(element);
-    document.blockingElements.top; // or .current or .peek()
-    
+```js
+// put element at the top of the blocking elements stack
+document.blockingElements.push(element);
+document.blockingElements.pop();
+// see https://github.com/whatwg/html/issues/897#issuecomment-198565716
+document.blockingElements.remove(element);
+document.blockingElements.top; // or .current or .peek()
+```
 
 Putting an element at the top of the stack effectively means everything else on the page is inert (so no risk of the keyboard or screen reader "escaping"). And when an element is popped off of the stack, focus naturally returns to the previous `activeElement`. This allows us to explain the behavior of `<dialog>` so component authors can use it to build whatever they like, which dovetails really well with the whole [extensible web movement.](https://extensiblewebmanifesto.org/) A natural side effect of doing this is we get tons of accessibility features for free. Developers wouldn't need to sprinkle the page with `aria-hidden` attributes or write keyboard traps, instead **they would use the best API for building a dialog and good accessibility would naturally come out of that**. It's a total win.
 
@@ -51,6 +52,8 @@ At the moment `blockingElements` is still a new idea, and new ideas are fragile,
 ## Problem 2: Disabling tabindex
 
 Let's go back to that offscreen drawer example for a second. In order to animate that drawer on screen, and achieve a 60fps animation, I'm going to need to promote the drawer to its own layer using something like `will-change: transform`. Now I can `transform` the drawer on screen and I shouldn't trigger unnecessary paints or layouts. This technique is explained really well by [Paul Lewis in his I/O presentation.](https://youtu.be/thNyy5eYfbc?t=7m55s)
+
+<!-- youtube embed -->
 
 One problem: to do this we must leave the drawer in the DOM at all times. Meaning its focusable children are just sitting there offscreen, and as the user is tabbing through the page eventually their focus will just disappear into the drawer and they won't know where it went. I see this on responsive websites **all the time**. This is just one example but I've also run into the need to disable tabindex when I'm animating between elements with `opacity: 0`, or temporarily disabling large lists of custom controls, and as others have pointed out, you'd hit if you tried to build something like [coverflow](http://cdn.cultofmac.com/wp-content/uploads/2010/10/post-61758-image-221f26e399e464c71248d2528ef2eeaf.jpg) where you can see a preview of the next element but can't actually interact with it yet.
 

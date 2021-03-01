@@ -6,7 +6,7 @@ updated: 2018-01-01T20:29:49.000Z
 
 ## Goodbye, 2017
 
-![Thousands of protestors at the Women's March in Washington D.C. The capitol building is in the background.](/images/2018/01/08_07_GettyImages-632318086.jpg)
+![Thousands of protestors at the Women's March in Washington D.C. The capitol building is in the background.](/images/2018/01/08_07_GettyImages-632318086.jpg "The Women's March on Washington")
 
 ### Politics
 

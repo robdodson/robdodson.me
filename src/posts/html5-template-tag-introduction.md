@@ -11,29 +11,39 @@ updated: 2014-12-31T01:25:08.000Z
 
 There's a great [HTML5Rocks article](http://www.html5rocks.com/en/tutorials/webcomponents/template/) on the subject of the `template` tag and I'm going to steal some of their examples.
 
-Let's start by making a template for an image placeholder. We're going to use the [hhhhold](http://hhhhold.com/) image service which will load in a random image from [ffffound.com](http://ffffound.com). The markup for our template will be pretty simple:
+Let's start by making a template for an image placeholder.
 
-    <template id="hhhhold-template">
-      <img src="" alt="random hhhhold image">
-      <h3 class="title"></h3>
-    </template>
-    
-    <script>
-      var template = document.querySelector('#hhhhold-template');
-      template.content.querySelector('img').src = 'http://hhhhold.com/350x200';
-      template.content.querySelector('.title').textContent = 'Random image from hhhhold.com'
-      document.body.appendChild(document.importNode(template.content, true));
-    </script>
-    
+```html
+<template id="kitten-template">
+  <img src="" alt="random kitten image">
+  <h3 class="title"></h3>
+</template>
 
-Which would render something like this (remember to view in a browser that supports template):
+<div id="kittens"></div>
 
-  var template = document.querySelector('#hhhhold-template');
-  template.content.querySelector('img').src = 'http://hhhhold.com/350x200';
-  template.content.querySelector('.title').textContent = 'Random image from hhhhold.com'
-  document.querySelector('#hhhold-container').appendChild(
-    document.importNode(template.content, true)
-  );
+<script>
+  const template = document.querySelector('#kitten-template');
+  template.content.querySelector('img').src = 'https://placekitten.com/400/400';
+  template.content.querySelector('.title').textContent = 'Random image from placekitten.com';
+  document.querySelector('#kittens').appendChild(document.importNode(template.content, true));
+</script>
+```
+
+Which would render something like this:
+
+<template id="kitten-template">
+  <img src="" alt="random kitten image">
+  <h3 class="title"></h3>
+</template>
+
+<div id="kittens"></div>
+
+<script>
+  const template = document.querySelector('#kitten-template');
+  template.content.querySelector('img').src = 'https://placekitten.com/400/400';
+  template.content.querySelector('.title').textContent = 'Random image from placekitten.com'
+  document.querySelector('#kittens').appendChild(document.importNode(template.content, true));
+</script>
 
 If you've worked with client-side template libraries like underscore or handelbars the above should look familiar to you. Where underscore and handelbars take advantage of putting their templates inside of `<script>` tags and changing the `type` to something like `text/x-handlebars-template`, the `<template>` tag doesn't need to, because it's actually part of the HTML spec. There are pros and cons to this approach.
 
@@ -52,8 +62,6 @@ If you've worked with client-side template libraries like underscore or handelba
 
 Given that list of cons you might say "Well why would I ever bother with the `<template>` tag if something like handlebars gives me way more power?" That's a great question because by itself the `<template>` tag doesn't seem so impressive.
 
-Its saving grace lies in the fact that it is part of the DOM, whereas all other template libraries are actually just pushing around Strings. That makes them vulnerable to XSS and requires weird hacks to prevent the browser from rendering their content. While features like data interpolation are pretty crucial, they can be fixed by the next generation of template libraries, in fact [Polymer's](polymer-project.org) templating has already added this back in. Which leads to the bigger point: combining templates with Shadow DOM and Custom Elements gives us the future component model for the web, and that's why I'm truly excited to use them.
+Its saving grace lies in the fact that it is part of the DOM, whereas all other template libraries are actually just pushing around Strings. That makes them vulnerable to XSS and requires weird hacks to prevent the browser from rendering their content.
 
-Think back to the story about Bootstrap that I told at the beginning of this post. If all the markup for a Bootstrap button lived inside a template tag then we'd be one step closer to having a nice encapsulated widget. The next step would be to isolate the styles associated with the button. But I'll save that for tomorrow's post :)
-
-You should follow me on Twitter [here](http://twitter.com/rob_dodson).
+While features like data interpolation are pretty crucial, they can be fixed by the next generation of template libraries, in fact [lit-html](https://lit-html.polymer-project.org/) has already added this back in. Which leads to the bigger point: combining templates with Shadow DOM and Custom Elements gives us the future component model for the web, and that's why I'm truly excited to use them.

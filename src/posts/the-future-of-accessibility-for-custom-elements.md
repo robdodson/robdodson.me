@@ -8,8 +8,9 @@ When users of assistive technology, like a screen reader, navigate a web page, i
 
 For example, if a screen reader visits a login button:
 
-    <button>Sign in</button>
-    
+```html
+<button>Sign in</button>
+```
 
 —it  would announce, “Sign in, button”. This tells the user about the affordance available to them—whether something is a button that may be pressed, for example, or if it’s just a block of text content with no other semantics.
 
@@ -19,7 +20,7 @@ Additionally, built-in elements support keyboard-based usage, which is important
 
 When you define a new tag, the browser really has no way of knowing if you’re trying to build a button, or a slider, or just a fancy text container. Adding these features back in requires a fair bit of work on the developer’s part and it can be difficult to reach parity with the native equivalents.
 
-## <howto-component>
+## `<howto-component>`
 
 Recently we launched a project called [HowTo: Components](https://github.com/GoogleChromeLabs/howto-components) which demonstrates how to build accessible custom elements. Many folks have since asked us why we’re bothering to implement things like [checkbox](https://github.com/GoogleChromeLabs/howto-components/tree/master/elements/howto-checkbox) since there is already an accessible, native version.
 
@@ -44,7 +45,7 @@ So, why do developers keep reinventing this wheel?
 
 Not fun. I think a large reason so many sites are inaccessible is because developers run into these styling limitations and decide to just roll their own controls—without adding back in the necessary semantics and keyboard support.
 
-## So why is it so hard to style the built-in form elements? Can't browsers make this as easy as styling a `<div>` or an `<h1>`?
+> So why is it so hard to style the built-in form elements? Can't browsers make this as easy as styling a `<div>` or an `<h1>`?
 
 Not really. Elements like `<input>` and `<select>` aren’t always implemented in terms of regular DOM elements. Sometimes they are, which is why there are articles on CSS hacks for styling `<input type="range">`. Other times they are rendered directly by the operating system - this is why a standard `<select>` comes up looking like any other native drop-down list on the platform you’re using. They are specified as a kind of black box, meaning it’s up to the browser to figure out their internals, so exposing styling hooks for them is quite difficult and often very limited. It is entirely possible that **we may never be able to style these elements to the degree we want**.
 
@@ -64,63 +65,69 @@ What’s the accessibility tree you ask? Ah ha! [We have a article for you!](htt
 
 As I mentioned before, a custom element is, semantically speaking, just a `<span>`, whereas the native `<button>` element has built-in accessibility because it has an implicit role of "button". While we could have our `<custom-button>` sprout ARIA attributes to define its semantics, this can get ugly fast. To recreate a `<input type="slider">` as a custom element would end up looking like:
 
-    <custom-slider min="0" max="5" value="3" role="slider"
-                   tabindex="0" aria-valuemin="0" aria-valuemax="5"
-                   aria-valuenow="3" aria-valuetext="3"></custom-slider>
+```html
+<custom-slider min="0" max="5" value="3" role="slider"
+  tabindex="0" aria-valuemin="0" aria-valuemax="5"
+  aria-valuenow="3" aria-valuetext="3"></custom-slider>
+```
     
 
 And because ARIA is exclusively an HTML attributes API, it means we need to touch the DOM every time we want to update our semantic state. For an individual element this isn't so bad, but if you have hundreds of controls (perhaps inside of a table or list), having each of them call `setAttribute()` multiple times at startup could lead to a performance bottleneck.
 
 With AOM your element can just define its semantics in its constructor like so:
 
-    class CustomSlider extends HTMLElement {
-      constructor() {
-        super();
-        this.accessibleNode.role = 'slider';
-        this.accessibleNode.valueMin = 0;
-        this.accessibleNode.valueMax = 5;
-        this.accessibleNode.valueNow = 3;
-        this.accessibleNode.valueText = 3;
-      }
-    }
-    
+```js
+class CustomSlider extends HTMLElement {
+  constructor() {
+    super();
+    this.accessibleNode.role = 'slider';
+    this.accessibleNode.valueMin = 0;
+    this.accessibleNode.valueMax = 5;
+    this.accessibleNode.valueNow = 3;
+    this.accessibleNode.valueText = 3;
+  }
+}
+```
 
 —and the consumer of your element doesn't have to see it sprouting attributes all over the place. Effectively, `<input type="slider">` and `<custom-slider>` become indistinguishable at the semantic level.
 
 Some folks have even proposed giving custom elements access to a special "private" `accessibleNode` so the author can define immutable default semantics. This would mean that one could safely override an element's role, then delete that override, and things would safely fallback. For example:
 
-    // default role is "slider"
-    // set using private accessibleNode by the element author
-    <custom-slider id="mySlider">
-    
-    // element consumer changes role to "button"
-    mySlider.accessibleNode.role = "button"
-    
-    // element consumer nulls role
-    mySlider.accessibleNode.role = null
-    
-    // element falls back to default role
-    getComputedAccessibility(mySlider.accessibleNode).role // returns 'slider'
-    
-    // note: the ability to compute the accessibility tree is
-    // a phase 4 AOM proposal. The line above is pseudo code :)
-    
+```js
+// default role is "slider"
+// set using private accessibleNode by the element author
+<custom-slider id="mySlider">
+
+// element consumer changes role to "button"
+mySlider.accessibleNode.role = "button"
+
+// element consumer nulls role
+mySlider.accessibleNode.role = null
+
+// element falls back to default role
+getComputedAccessibility(mySlider.accessibleNode).role // returns 'slider'
+
+// note: the ability to compute the accessibility tree is
+// a phase 4 AOM proposal. The line above is pseudo code :)
+```
 
 ## But wait, there's more...
 
 Another major pain point of using ARIA is the fact that all relationships must be defined using ID references. On numerous projects I've had to auto-generate unique IDs to make this system work:
 
-    <custom-listbox role="listbox" aria-describedby="generated-id1 generated-id2" aria-activedescendant="generated-id3">
-    
+```html
+<custom-listbox role="listbox" aria-describedby="generated-id1 generated-id2" aria-activedescendant="generated-id3">
+```
 
 Furthermore, new standards like [Shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) create scoping boundaries for IDs. If you need to point `aria-labelledby` or `aria-activedescendant` at something on the other side of this shadow boundary, you're out of luck!
 
 AOM fixes this by allowing you to build relationships using object references. In the above example we could rewrite our listbox with:
 
-    el.accessibleNode.describedBy = 
-        new AccessibleNodeList([accessibleNode1, accessibleNode2]);
-    el.accessibleNode.activeDescendant = accessibleNode3;
-    
+```js
+el.accessibleNode.describedBy = 
+    new AccessibleNodeList([accessibleNode1, accessibleNode2]);
+el.accessibleNode.activeDescendant = accessibleNode3;
+```
 
 The `accessibleNodes` in the above example just come from referencing other elements on the page. No more generated IDs or cluttering up the DOM. Nice!
 

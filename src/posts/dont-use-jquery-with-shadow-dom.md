@@ -14,11 +14,12 @@ jQuery plugins work by latching on to an element, stamping a template inside of 
 
 For example, you might initialize a [WYSIWG](https://en.wikipedia.org/wiki/WYSIWYG) plugin like this:
 
-    <div class=".container"></div>
-    <script>
-      $('.container').wysiwg({ // options });
-    </script>
-    
+```html
+<div class=".container"></div>
+<script>
+  $('.container').wysiwg({ // options });
+</script>
+```
 
 At which point it will fill the `.container` element with some template markup.
 

@@ -20,17 +20,18 @@ In Polymer land, the `<template>` tag has been extended so it supports a few han
 
 Because every Polymer element starts off with a template inside of it, I figured I could write my element like this:
 
-    <polymer-element name="polymer-letters">
-      <template repeat="&#123;{ letter in letters }}">
-        &#123;{ letter }}
-      </template>
-      <script>
-        Polymer('polymer-letters', {
-          letters: ['a', 'b', 'c']
-        });
-      </script>
-    </polymer-element>
-    
+```html
+<polymer-element name="polymer-letters">
+  <template repeat="&#123;{ letter in letters }}">
+    &#123;{ letter }}
+  </template>
+  <script>
+    Polymer('polymer-letters', {
+      letters: ['a', 'b', 'c']
+    });
+  </script>
+</polymer-element>
+```
 
 But unfortunately that does not work #sadtrombone.
 
@@ -40,19 +41,20 @@ Polymer uses the first `template` element to create Shadow DOM, so if you want t
 
 Our updated example would look like this:
 
-    <polymer-element name="polymer-letters">
-      <template>
-        <template repeat="&#123;{ letter in letters }}">
-          &#123;{ letter }}
-        </template>
-      </template>
-      <script>
-        Polymer('polymer-letters', {
-          letters: ['a', 'b', 'c']
-        });
-      </script>
-    </polymer-element>
-    
+```html
+<polymer-element name="polymer-letters">
+  <template>
+    <template repeat="&#123;{ letter in letters }}">
+      &#123;{ letter }}
+    </template>
+  </template>
+  <script>
+    Polymer('polymer-letters', {
+      letters: ['a', 'b', 'c']
+    });
+  </script>
+</polymer-element>
+```
 
 And here it is running on CodePen:
 

@@ -1,0 +1,58 @@
+[build]
+  command = "npm run production"
+  publish = "dist"
+
+# Old Polycasts and YouTube videos
+[[redirects]]
+  from = "/polycasts-09-switching-up-content-with-core-pages*"
+  to = "https://www.youtube.com/watch?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN&v=6x2A9UgLqEw&feature=emb_logo&ab_channel=GoogleDevelopers"
+
+[[redirects]]
+  from = "/polycasts-08-auto-binding-templates-in-polymer*"
+  to = "https://www.youtube.com/watch?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN&v=82LfXCeuaOo&feature=emb_logo&ab_channel=GoogleDevelopers"
+
+[[redirects]]
+  from = "/yolomer*"
+  to = "https://www.youtube.com/watch?v=INH_OW4lFSs&feature=emb_logo&ab_channel=RobDodson"
+
+[[redirects]]
+  from = "/setting-up-bower-and-polymer*"
+  to = "https://www.youtube.com/watch?v=1rz334A8U7o&feature=emb_logo&ab_channel=RobDodson"
+
+# Outdated Web Components content
+[[redirects]]
+  from = "/why-web-components*"
+  to = "https://javascript.info/webcomponents-intro"
+
+[[redirects]]
+  from = "/shadow-dom-introduction*"
+  to = "https://javascript.info/shadow-dom"
+
+[[redirects]]
+  from = "/shadow-dom-the-basics*"
+  to = "https://javascript.info/shadow-dom"
+
+[[redirects]]
+  from = "/shadow-dom-javascript*"
+  to = "https://javascript.info/shadow-dom"
+
+[[redirects]]
+  from = "/shadow-dom-css-cheat-sheet*"
+  to = "https://javascript.info/shadow-dom-style"
+
+[[redirects]]
+  from = "/shadow-dom-styles-cont-dot*"
+  to = "https://javascript.info/shadow-dom-style"
+
+[[redirects]]
+  from = "/shadow-dom-styles*"
+  to = "https://javascript.info/shadow-dom-style"
+
+# Outdated posts
+[[redirects]]
+  from = "/debug-less-with-chrome-developer-tools*"
+  to = "https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps"
+
+[[redirects]]
+  from = "/*"
+  to = "/posts/:splat"

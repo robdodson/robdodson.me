@@ -2,6 +2,8 @@
 title: Why you can't test a screen reader (yet)!
 date: 2018-01-02T17:42:55.000Z
 updated: 2018-01-07T01:57:23.000Z
+tags:
+  - Accessibility
 ---
 
 When I first started to learn about accessibility I wanted to write automated tests to ensure that assistive technology devices, like screen readers, were interpreting my pages correctly. Because I'm not a daily screen reader user, I figured it would be easy for a regression to slip in unnoticed.
@@ -18,29 +20,33 @@ But what many don't know is that during this process there's a second tree creat
 
 So, given the following HTML:
 
-    <html>
-    <head>
-      <title>How old are you?</title>
-    </head>
-    <body>
-      <label for="age">Age</label>
-      <input id="age" name="age" value="42">
-      <div>
-        <button>Back</button>
-        <button>Next</button>
-      </div>
-    </body>
-    </html>
+```html
+<html>
+<head>
+  <title>How old are you?</title>
+</head>
+<body>
+  <label for="age">Age</label>
+  <input id="age" name="age" value="42">
+  <div>
+    <button>Back</button>
+    <button>Next</button>
+  </div>
+</body>
+</html>
+```
     
 
 Chrome would produce an accessibility tree that looks something like:
 
-    id=1 role=WebArea name="How old are you?"
-        id=2 role=Label name="Age"
-        id=3 role=TextField labelledByIds=[2] value="42"
-        id=4 role=Group
-            id=5 role=Button name="Back"
-            id=6 role=Button name="Next"
+```text
+id=1 role=WebArea name="How old are you?"
+    id=2 role=Label name="Age"
+    id=3 role=TextField labelledByIds=[2] value="42"
+    id=4 role=Group
+        id=5 role=Button name="Back"
+        id=6 role=Button name="Next"
+```
     
 
 Next Chrome needs to convert these nodes into something the user's operating system can understand. On Windows it will produce a tree of IAccessible objects, and on macOS it will use NSAccessibility objects. Finally, this tree of OS-specific nodes gets handed off to a screen reader, which interprets it, and chooses what to say.
@@ -55,9 +61,10 @@ Rather than test what a screen reader announces, a better place to start might b
 
 If you [follow me on twitter](https://twitter.com/rob_dodson), you've probably heard me mention a new standard we're working on called the [Accessibility Object Model](https://github.com/wicg/aom) or "AOM", for short. There are a number of features AOM seeks to achieve, but one that I'm most excited about is the ability to compute the accessibility information for a given node.
 
-    const { role } = await window.getComputedAccessibleNode(element);
-    assert(role, 'button');
-    
+```js
+const { role } = await window.getComputedAccessibleNode(element);
+assert(role, 'button');
+```
 
 *Note, this API is still being sketched out so the final version may be different from the snippet above.*
 

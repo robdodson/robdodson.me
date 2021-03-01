@@ -20,40 +20,43 @@ In Node an async operation will usually provide a callback, such is the case for
 
 Grunt, on the other hand, uses a token or a kind of promise. You grab a reference to grunt's `done` function and you wait till your node process has finished before calling it. If you take a look at `grunt-read-write-local.js` you can see that we first call the async method to let grunt know it needs to wait:
 
-    var done = this.async();
-    
+```js
+var done = this.async();
+```
 
 and as we finish writing our file we tell grunt that everything completed succesfully and it's ok to carry on:
 
-    // Write the contents of the target file to the new location
-    fs.writeFile(pathToWrite, data, function (err) {
-      if (err) throw err;
-      console.log(pathToWrite + ' saved!');
-      // Tell grunt the async task is complete
-      done();
-    });
-    
+```js
+// Write the contents of the target file to the new location
+fs.writeFile(pathToWrite, data, function (err) {
+  if (err) throw err;
+  console.log(pathToWrite + ' saved!');
+  // Tell grunt the async task is complete
+  done();
+});
+```
 
 We do something similar in our `grunt-read-write-web` task but this time we work with [Stream events.](http://nodejs.org/api/stream.html#stream_stream)
 
-    // Tell grunt this task is asynchronous.
-    var done = this.async();
-    
-    http.get(pathToRead, function(res) {
-      // Pipe the data from the response stream to
-      // a static file.
-      res.pipe(fs.createWriteStream(pathToWrite));
-      // Tell grunt the async task is complete
-      res.on('end', function() {
-        console.log(pathToWrite + ' saved!');
-        done();
-      });
-    }).on('error', function(e) {
-      console.log("Got error: " + e.message);
-      // Tell grunt the async task failed
-      done(false);
-    });
-    
+```js
+// Tell grunt this task is asynchronous.
+var done = this.async();
+
+http.get(pathToRead, function(res) {
+  // Pipe the data from the response stream to
+  // a static file.
+  res.pipe(fs.createWriteStream(pathToWrite));
+  // Tell grunt the async task is complete
+  res.on('end', function() {
+    console.log(pathToWrite + ' saved!');
+    done();
+  });
+}).on('error', function(e) {
+  console.log("Got error: " + e.message);
+  // Tell grunt the async task failed
+  done(false);
+});
+```
 
 The response returned by an http request implements the [ReadableStream](http://nodejs.org/api/stream.html#stream_readable_stream) interface so it will emit `data` and `end` events. Node Streams have a great feature called [pipes](http://nodejs.org/api/stream.html#stream_stream_pipe_destination_options) which handle the work of consuming data events and writing them to a destination. Sexy :) We still listen for the `end` event coming from our request so we can notify grunt that the process has finished and it can move on.
 
@@ -63,7 +66,3 @@ If you want to test it all out make sure you run `npm install` first to pull dow
 
 - [Node Streams: How do they work? -- Max Ogden](http://maxogden.com/node-streams.html)
 - [High Level Style in JavaScript -- Dominic Tarr](https://gist.github.com/2401787)
-
-Any questions or comments hit me up in the discussion area below.
-
-You should follow me on Twitter [here.](http://twitter.com/rob_dodson)

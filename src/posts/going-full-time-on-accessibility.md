@@ -2,6 +2,9 @@
 title: Going full-time on accessibility
 date: 2018-06-27T02:47:00.000Z
 updated: 2019-01-13T01:10:12.000Z
+tags:
+  - Accessibility
+draft: true
 ---
 
 This is a post that I should have written ages ago but better late than never :)
