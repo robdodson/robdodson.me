@@ -8,7 +8,7 @@ date: 2012-09-03T19:40:00.000Z
 updated: 2017-01-18T02:57:16.000Z
 ---
 
-**[Table of Contents](https://robdodson.me/blog/2012/08/03/javascript-design-patterns/)**
+**[Table of Contents](/javascript-design-patterns/)**
 
 Factories encapsulate and separate object creation from the rest of your code.
 In situations where the creation of an object can be complex or subject to
@@ -315,4 +315,4 @@ Related Patterns
 
 Gamma, Erich; Helm, Richard; Johnson, Ralph; Vlissides, John (1994-10-31). Design Patterns: Elements of Reusable Object-Oriented Software. Pearson Education (USA).
 
-#### [Table of Contents](https://robdodson.me/blog/2012/08/03/javascript-design-patterns/)
+#### [Table of Contents](/javascript-design-patterns/)

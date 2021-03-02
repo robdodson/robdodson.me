@@ -22,10 +22,11 @@ So I'll just say if you're considering that second example: Stop. Just don't do 
 
 Another Redditor, Draders, pointed out that the decorator objects aren't really necessary since we can just put functions directly into the decoratorsList.
 
-    // This is presuming that `add` pushes a function into the
-    // list of decorators
-    validator.add('zipcode', validateZipCodeFunction);
-    
+```js
+// This is presuming that `add` pushes a function into the
+// list of decorators
+validator.add('zipcode', validateZipCodeFunction);
+```
 
 If you want `validateZipCodeFunction` to be reusable you'll have to define it somewhere and attaching it to the Validator object is probably a fine choice. In the end it's a bit less code so definitely something to think about.
 
@@ -33,71 +34,69 @@ If you want `validateZipCodeFunction` to be reusable you'll have to define it so
 
 Finally, and this is really the reason why I wanted to write this update, Redditor emehrkay pointed out that my examples are basically ignoring the power of JS functions and closures. [In his quick and dirty example](http://www.reddit.com/r/javascript/comments/z0z2j/decorators_in_javascript_hope_you_enjoy/c60rl7x) he shows how to achieve a similar goal with much less code:
 
-    function test(arg){
-        return arg + arg;
+```js
+function test(arg){
+    return arg + arg;
+}
+
+function testDecorator(fn, args){
+    var arg = args[0] * 2;
+
+    return fn(arg);
+}
+
+function decorate(dec, fn, args){
+    return function(){
+        return dec(fn, args);
     }
-    
-    function testDecorator(fn, args){
-        var arg = args[0] * 2;
-    
-        return fn(arg);
-    }
-    
-    function decorate(dec, fn, args){
-        return function(){
-            return dec(fn, args);
-        }
-    }
-    
-    x = decorate(testDecorator, test, [2])();
-    console.log(x)
-    
+}
+
+x = decorate(testDecorator, test, [2])();
+console.log(x)
+```
 
 So here's my attempt to recreate the `Sale` example but using more of emehrkay's approach:
 
-    function Sale(price) {
-        this.price = price || 100;
-    }
-    
-    Sale.prototype.getPrice = function() {
-        return this.price;
+```js
+function Sale(price) {
+    this.price = price || 100;
+}
+
+Sale.prototype.getPrice = function() {
+    return this.price;
+};
+
+Sale.prototype.setPrice = function(price) {
+    this.price = price;
+};
+
+function usd(fn, context) {
+    var price = fn.call(context);
+    return "$" + price;
+}
+
+function decorate(dec, fn, context) {
+    return function() {
+        return dec.call(context, fn, context);
     };
-    
-    Sale.prototype.setPrice = function(price) {
-        this.price = price;
-    };
-    
-    function usd(fn, context) {
-        var price = fn.call(context);
-        return "$" + price;
-    }
-    
-    function decorate(dec, fn, context) {
-        return function() {
-            return dec.call(context, fn, context);
-        };
-    }
-    
-    // Let's run it!
-    var sale = new Sale(50);
-    
-    // Decorate our getPrice method. We'll just add
-    // some extra dollar signs to the output.
-    sale.getPrice = decorate(usd, sale.getPrice, sale);
-    sale.getPrice = decorate(usd, sale.getPrice, sale);
-    sale.getPrice = decorate(usd, sale.getPrice, sale);
-    console.log(sale.getPrice()); // output: $$$50
-    
-    // Test to make sure other methods can still
-    // access the price in the correct context
-    sale.setPrice(100);
-    console.log(sale.getPrice()); // output: $$$100
-    
+}
+
+// Let's run it!
+var sale = new Sale(50);
+
+// Decorate our getPrice method. We'll just add
+// some extra dollar signs to the output.
+sale.getPrice = decorate(usd, sale.getPrice, sale);
+sale.getPrice = decorate(usd, sale.getPrice, sale);
+sale.getPrice = decorate(usd, sale.getPrice, sale);
+console.log(sale.getPrice()); // output: $$$50
+
+// Test to make sure other methods can still
+// access the price in the correct context
+sale.setPrice(100);
+console.log(sale.getPrice()); // output: $$$100
+```
 
 Since we're kind of mixing OO and functional style here the one caveat is that you have to pass the context to your decorators so when they call `getPrice` they know which instance they're referring to. So the code is a little funky but still interesting and if anyone can think of a way to write it cleaner I'm all ears!
 
-## [Grab the Example Source](https://github.com/robdodson/JavaScript-Design-Patterns/tree/master/decorator/)
-
-Thanks for reading! If you have questions or feedback please leave a comment below. - Rob
-
-You should follow me on Twitter [here.](http://twitter.com/rob_dodson)
+**[Grab the Example Source](https://github.com/robdodson/JavaScript-Design-Patterns/tree/master/decorator/)**
