@@ -18,7 +18,7 @@ const fs = require('fs');
 /* eslint-disable node/no-unpublished-require */
 const PurgeCSS = require('purgecss').PurgeCSS;
 const csso = require('csso');
-const pathToCss = 'dist/css/main.css';
+const pathToCss = './dist/css/main.css';
 
 /**
  * Inlines all of the page's CSS into the <head>
@@ -49,7 +49,7 @@ const purifyCss = async (content, outputPath) => {
           raw: content,
           extension: 'html',
         },
-        './src/lib/**/*.js',
+        './src/js/**/*.js',
       ],
       css: [
         {
@@ -67,7 +67,7 @@ const purifyCss = async (content, outputPath) => {
     }
     content = content.replace(
       '<!-- __PURGECSS_INJECT -->',
-      `<style>${after}</style></head>`,
+      `<style>${after}</style>`,
     );
     return content;
   }

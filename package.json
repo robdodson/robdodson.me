@@ -31,12 +31,12 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "ELEVENTY_ENV=development npm-run-all clean sass:tokens gulp -p -r gulp:watch eleventy:watch",
-    "eleventy:watch": "eleventy --watch",
-    "eleventy": "eleventy",
+    "dev": "cross-env NODE_ENV=development npm-run-all clean sass:tokens gulp -p -r gulp:watch eleventy:watch",
+    "eleventy:watch": "eleventy --watch --quiet",
+    "eleventy": "eleventy --quiet",
     "gulp:watch": "gulp watch",
     "gulp": "gulp",
-    "production": "npm run clean && npm run sass && eleventy",
+    "production": "cross-env NODE_ENV=production npm-run-all clean sass:tokens gulp eleventy",
     "sass:tokens": "npx json-to-scss src/_data/tokens.json src/scss/_tokens.scss"
   },
   "repository": {

@@ -7,7 +7,12 @@
   <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
   {% include "partials/global/meta.njk" %}
   <script>document.documentElement.classList.remove('no-js');</script>
-  <link rel="stylesheet" href="/css/main.css">
+  {% if process.env.NODE_ENV === 'production' %}
+    {# CSS will be injected by purify-css transform. #}
+    <!-- __PURGECSS_INJECT -->
+  {% else %}
+    <link rel="stylesheet" href="/css/main.css">
+  {% endif %}
   {% block head %}
   {% endblock %}
 </head>
