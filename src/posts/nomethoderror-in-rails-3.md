@@ -22,10 +22,8 @@ The real reason this occurs is either because the Object itself is Nil (and you 
 
 ### Resolution
 
-1. 
-If your error says “undefined method ‘some_method_name’ for NilClass:Class” (like it does in the picture) then you’ve accidentally tried to call a method on an Object which doesn’t really exist. You probably just didn’t pass or instantiate the Object properly.
+1. If your error says “undefined method ‘some_method_name’ for NilClass:Class” (like it does in the picture) then you’ve accidentally tried to call a method on an Object which doesn’t really exist. You probably just didn’t pass or instantiate the Object properly.
 
-2. 
-If you see the correct class type in the error then you’ve just failed to declare that method or perhaps mistyped its name. Verify that the method exists in the class and that you don’t have any spelling errors :)
+2. If you see the correct class type in the error then you’ve just failed to declare that method or perhaps mistyped its name. Verify that the method exists in the class and that you don’t have any spelling errors :)
 
 You should follow me on Twitter [here](http://twitter.com/rob_dodson).

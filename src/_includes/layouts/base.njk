@@ -7,7 +7,7 @@
   <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
   {% include "partials/global/meta.njk" %}
   <script>document.documentElement.classList.remove('no-js');</script>
-  <style>{% include "assets/css/global.css" %}</style>
+  <link rel="stylesheet" href="/css/main.css">
   {% block head %}
   {% endblock %}
 </head>
@@ -19,12 +19,12 @@
   {% block foot %}
   {% endblock %}
   <script type="module" src="/js/components/theme-toggle.js" async defer></script>
-  <script>
+  {# <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js');
       });
     }
-  </script>
+  </script> #}
 </body>
 </html>
