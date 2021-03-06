@@ -5,6 +5,10 @@ const slugify = require('slugify');
 const getSize = require('image-size');
 
 module.exports = function(value, outputPath) {
+  if (!outputPath) {
+    return value;
+  }
+
   if (outputPath.endsWith('.html')) {
     const DOM = new JSDOM(value, {
       resources: 'usable'
