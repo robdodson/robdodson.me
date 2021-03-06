@@ -1,5 +1,9 @@
 ---
 title: RequireJS -- Embracing the Awesomness of AMD Modules
+description: >
+  Over the past few weeks I put together this talk for my team at GE to help get 
+  everyone on the same page with AMD modules. I figured it'd be cool if I removed
+  any GE specific stuff and open sourced the presentation, so here it is!
 tags:
   - RequireJS
   - AMD
@@ -10,9 +14,7 @@ updated: 2014-12-31T01:22:13.000Z
 
 Over the past few weeks I put together this talk for my team at GE to help get
 everyone on the same page with AMD modules. I figured it'd be cool if I removed
-any GE specific stuff and open sourced the presentation, so here it is!
-
-{% youtube id="vWGuaZOTR4U", title="RequireJS -- Embracing the Awesomeness of Asynchronous Modules" %}
+any GE specific stuff and open sourced the presentation, [so here it is](https://www.youtube.com/watch?v=vWGuaZOTR4U&ab_channel=RobDodson)!
 
 The video is around 35 minutes long and there's a slide deck available on Github
 that has clickable links and whatnot. Enjoy!

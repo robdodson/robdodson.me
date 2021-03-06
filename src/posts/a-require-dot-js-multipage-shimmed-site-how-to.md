@@ -1,5 +1,7 @@
 ---
 title: "A Require.js multi-page shimmed site: How-To"
+description: |
+  The process of setting up Require on a multi-page site can be pretty confusing, so I thought I would put together this tutorial to help out others who might be stuck.
 tags:
   - RequireJS
   - r.js
