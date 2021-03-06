@@ -2,14 +2,12 @@
 title: Command palettes for the web
 tags:
   - Accessibility
-excerpt: Can focus management lead to a better experience for all of our users?
+description: Can focus management lead to a better experience for all of our users?
 date: 2019-09-03T15:00:00.000Z
 updated: 2019-09-03T18:16:55.000Z
 ---
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@0.6.2/lite-youtube.js"></script>
-
-<lite-youtube videoid="srLRSQg6Jgg" videotitle="a11ycasts: Managing Focus"></lite-youtube>
+{% youtube id="srLRSQg6Jgg", title="a11ycasts: Managing Focus" %}
 
 A while back I was working with a fellow Googler to try and improve the accessibility for one of our apps. In the scenario, a user needed to click some UI, which then opened a panel, where the user needed to click *more* UI to perform an action.
 

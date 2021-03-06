@@ -18,23 +18,31 @@
     "stalfos": "github:hankchizljaw/stalfos#c8971d22726326cfc04089b2da4d51eeb1ebb0eb"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
     "chokidar-cli": "^2.1.0",
     "cross-env": "^5.2.1",
     "csso": "^4.2.0",
     "gulp": "^4.0.2",
+    "local-web-server": "^4.2.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "purgecss": "^4.0.2",
+    "rollup": "^2.40.0",
+    "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.32.8"
   },
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "cross-env NODE_ENV=development npm-run-all clean sass:tokens gulp -p -r gulp:watch eleventy:serve",
+    "dev": "cross-env NODE_ENV=development npm-run-all clean rollup sass:tokens gulp --parallel --race gulp:watch rollup:watch eleventy:serve",
     "eleventy:serve": "eleventy --serve --quiet",
     "eleventy": "eleventy --quiet",
     "gulp:watch": "gulp watch",
     "gulp": "gulp",
-    "production": "cross-env NODE_ENV=production npm-run-all clean sass:tokens gulp eleventy",
-    "sass:tokens": "npx json-to-scss src/_data/tokens.json src/scss/_tokens.scss"
+    "production": "cross-env NODE_ENV=production npm-run-all clean rollup sass:tokens gulp eleventy serve",
+    "rollup": "rollup -c",
+    "rollup:watch": "chokidar \"src/**/*.js\" -c \"npx rollup -c\"",
+    "sass:tokens": "npx json-to-scss src/_data/tokens.json src/scss/_tokens.scss",
+    "serve": "ws --directory dist --compress --port 8080"
   }
 }

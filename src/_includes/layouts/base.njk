@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml" />
-  <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
-  {% include "partials/global/meta.njk" %}
-  <script>document.documentElement.classList.remove('no-js');</script>
+
   {% if process.env.NODE_ENV === 'production' %}
     {# CSS will be injected by purify-css transform. #}
     <!-- __PURGECSS_INJECT -->
   {% else %}
-    <link rel="stylesheet" href="/css/main.css">
+    {# Using hashForProd here will just append a random string to cache bust #}
+    {# the CSS during dev. #}
+    <link rel="stylesheet" href="{{ helpers.hashForProd('/css/main.css') }}">
   {% endif %}
+
+  <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
+  {% include "partials/global/meta.njk" %}
+
+  {# Add a facility for pages to declare an array of script paths. #}
+  {# If no scripts are declared we will use the default page script. #}
+  {# default.js loads the basic set of custom elements that all pages need. #}
+  {% for item in pageScripts %}
+    <script type="module" src="{{ helpers.hashForProd(item) }}"></script>
+  {% else %}
+    <script type="module" src="{{ helpers.hashForProd('/js/default.js') }}"></script>
+  {% endfor %}
+
   {% block head %}
   {% endblock %}
 </head>
@@ -23,7 +36,6 @@
   {% include "partials/global/site-foot.njk" %}
   {% block foot %}
   {% endblock %}
-  <script type="module" src="/js/components/theme-toggle.js" async defer></script>
   {# <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

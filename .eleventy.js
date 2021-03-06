@@ -7,6 +7,9 @@ const dateFilter = require('./src/filters/date-filter');
 const markdownFilter = require('./src/filters/markdown-filter');
 const w3DateFilter = require('./src/filters/w3-date-filter');
 
+// Import shortcodes
+const youtube = require('./src/shortcodes/youtube');
+
 // Import transforms
 const htmlMinTransform = require('./src/transforms/html-min-transform');
 const parseTransform = require('./src/transforms/parse-transform');
@@ -15,47 +18,49 @@ const {purifyCss} = require('./src/transforms/purify-css');
 // Import data files
 const site = require('./src/_data/site.json');
 
-module.exports = function(config) {
+module.exports = function(eleventyConfig) {
   // Filters
-  config.addFilter('dateFilter', dateFilter);
-  config.addFilter('markdownFilter', markdownFilter);
-  config.addFilter('w3DateFilter', w3DateFilter);
+  eleventyConfig.addFilter('dateFilter', dateFilter);
+  eleventyConfig.addFilter('markdownFilter', markdownFilter);
+  eleventyConfig.addFilter('w3DateFilter', w3DateFilter);
+
+  // Shortcodes
+  eleventyConfig.addShortcode('youtube', youtube);
 
   // Layout aliases
-  config.addLayoutAlias('home', 'layouts/home.njk');
+  eleventyConfig.addLayoutAlias('home', 'layouts/home.njk');
 
   // Transforms
-  config.addTransform('parse', parseTransform);
+  eleventyConfig.addTransform('parse', parseTransform);
   if (process.env.NODE_ENV === 'production') {
-    config.addTransform('purifyCss', purifyCss);
-    config.addTransform('htmlmin', htmlMinTransform);
+    eleventyConfig.addTransform('purifyCss', purifyCss);
+    eleventyConfig.addTransform('htmlmin', htmlMinTransform);
   }
 
   // Passthrough copy
-  config.addPassthroughCopy('src/fonts');
-  config.addPassthroughCopy('src/images');
-  config.addPassthroughCopy('src/js');
-  config.addPassthroughCopy('src/robots.txt');
+  eleventyConfig.addPassthroughCopy('src/fonts');
+  eleventyConfig.addPassthroughCopy('src/images');
+  eleventyConfig.addPassthroughCopy('src/robots.txt');
 
   const now = new Date();
 
   // Custom collections
-  config.addCollection('posts', collection => {
+  eleventyConfig.addCollection('posts', collection => {
     return collection.getFilteredByGlob('./src/posts/*.md').reverse();
   });
 
-  config.addCollection('postFeed', collection => {
+  eleventyConfig.addCollection('postFeed', collection => {
     return collection.getFilteredByGlob('./src/posts/*.md')
       .reverse()
       .slice(0, site.maxPostsPerPage);
   });
 
   // Plugins
-  config.addPlugin(rssPlugin);
-  config.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(rssPlugin);
+  eleventyConfig.addPlugin(syntaxHighlight);
 
   // 404
-  config.setBrowserSyncConfig({
+  eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: function(err, browserSync) {
         const content_404 = fs.readFileSync('dist/404.html');
