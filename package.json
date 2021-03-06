@@ -39,7 +39,7 @@
     "eleventy": "eleventy --quiet",
     "gulp:watch": "gulp watch",
     "gulp": "gulp",
-    "production": "cross-env NODE_ENV=production npm-run-all clean rollup sass:tokens gulp eleventy serve",
+    "production": "cross-env NODE_ENV=production npm-run-all clean rollup sass:tokens gulp eleventy",
     "rollup": "rollup -c",
     "rollup:watch": "chokidar \"src/**/*.js\" -c \"npx rollup -c\"",
     "sass:tokens": "npx json-to-scss src/_data/tokens.json src/scss/_tokens.scss",
