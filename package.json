@@ -1,7 +1,7 @@
 {
-  "name": "hylia",
-  "version": "0.7.0",
-  "description": "A simple Eleventy starter kit to help you have a blog of your own",
+  "name": "robdodson",
+  "version": "1.0.0",
+  "description": "My personal blog, based on hylia",
   "dependencies": {
     "@11ty/eleventy": "^0.11.1",
     "@11ty/eleventy-plugin-rss": "^1.0.7",
@@ -18,12 +18,10 @@
     "stalfos": "github:hankchizljaw/stalfos#c8971d22726326cfc04089b2da4d51eeb1ebb0eb"
   },
   "devDependencies": {
-    "bl": "^3.0.0",
     "chokidar-cli": "^2.1.0",
     "cross-env": "^5.2.1",
     "csso": "^4.2.0",
     "gulp": "^4.0.2",
-    "make-dir-cli": "^2.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "purgecss": "^4.0.2",
@@ -31,23 +29,12 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "cross-env NODE_ENV=development npm-run-all clean sass:tokens gulp -p -r gulp:watch eleventy:watch",
-    "eleventy:watch": "eleventy --watch --quiet",
+    "dev": "cross-env NODE_ENV=development npm-run-all clean sass:tokens gulp -p -r gulp:watch eleventy:serve",
+    "eleventy:serve": "eleventy --serve --quiet",
     "eleventy": "eleventy --quiet",
     "gulp:watch": "gulp watch",
     "gulp": "gulp",
     "production": "cross-env NODE_ENV=production npm-run-all clean sass:tokens gulp eleventy",
     "sass:tokens": "npx json-to-scss src/_data/tokens.json src/scss/_tokens.scss"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hankchizljaw/hylia.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hankchizljaw/hylia/issues"
-  },
-  "homepage": "https://github.com/hankchizljaw/hylia#readme"
+  }
 }

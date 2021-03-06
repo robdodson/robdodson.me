@@ -40,15 +40,12 @@ module.exports = function(config) {
   const now = new Date();
 
   // Custom collections
-  const livePosts = post => post.date <= now && !post.data.draft;
   config.addCollection('posts', collection => {
-    return [
-      ...collection.getFilteredByGlob('./src/posts/*.md').filter(livePosts)
-    ].reverse();
+    return collection.getFilteredByGlob('./src/posts/*.md').reverse();
   });
 
   config.addCollection('postFeed', collection => {
-    return [...collection.getFilteredByGlob('./src/posts/*.md').filter(livePosts)]
+    return collection.getFilteredByGlob('./src/posts/*.md')
       .reverse()
       .slice(0, site.maxPostsPerPage);
   });
