@@ -18,7 +18,14 @@ As it turns out, there is! (Big thanks to [Anne van Kesteren](https://annevankes
 
 Here's a quick example using `div`:
 
-<!-- glitch embed -->
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <iframe
+    src="https://glitch.com/embed/#!/embed/shadow-dom-elements?path=script.js&previewSize=100"
+    title="shadow-dom-elements on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
 
 ## Exceptions
 

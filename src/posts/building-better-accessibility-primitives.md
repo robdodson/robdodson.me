@@ -53,7 +53,7 @@ At the moment `blockingElements` is still a new idea, and new ideas are fragile,
 
 Let's go back to that offscreen drawer example for a second. In order to animate that drawer on screen, and achieve a 60fps animation, I'm going to need to promote the drawer to its own layer using something like `will-change: transform`. Now I can `transform` the drawer on screen and I shouldn't trigger unnecessary paints or layouts. This technique is explained really well by [Paul Lewis in his I/O presentation.](https://youtu.be/thNyy5eYfbc?t=7m55s)
 
-<!-- youtube embed -->
+{% youtube id="thNyy5eYfbc", title="High performance web user interfaces - Google I/O 2016", time="475" %}
 
 One problem: to do this we must leave the drawer in the DOM at all times. Meaning its focusable children are just sitting there offscreen, and as the user is tabbing through the page eventually their focus will just disappear into the drawer and they won't know where it went. I see this on responsive websites **all the time**. This is just one example but I've also run into the need to disable tabindex when I'm animating between elements with `opacity: 0`, or temporarily disabling large lists of custom controls, and as others have pointed out, you'd hit if you tried to build something like [coverflow](http://cdn.cultofmac.com/wp-content/uploads/2010/10/post-61758-image-221f26e399e464c71248d2528ef2eeaf.jpg) where you can see a preview of the next element but can't actually interact with it yet.
 

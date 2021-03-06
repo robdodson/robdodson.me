@@ -58,7 +58,7 @@ Or if you’re using the demo project, `cd` into the demo directory and run `npm
 
 Next, drop the loader into your `webpack.config.js`, here's the full config file from the demo. I've done my best to comment each section so if you're new to Webpack you can grok what's going on.
 
-<!-- gist embed -->
+<script src="https://gist.github.com/robdodson/977773a05f6fad370314021a20d9da7b.js"></script>
 
 The key thing to note is the `module` section where we define the `rules` array. The first rule tests to see if a file ends in `.html`, if so, it gets sent to a set of chained loaders. Loaders transform a file in some way, similar to "tasks" in other build tools. Here we're saying "run everything through polymer-webpack-loader, take the output from that and give it to babel-loader."
 
