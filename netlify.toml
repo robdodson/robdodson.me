@@ -2,6 +2,10 @@
   command = "npm run production"
   publish = "dist"
 
+[dev]
+  command = "npm run dev"
+  publish = "dist"
+
 # Old Polycasts and YouTube videos
 [[redirects]]
   from = "/polycasts-09-switching-up-content-with-core-pages*"
@@ -52,6 +56,12 @@
 [[redirects]]
   from = "/debug-less-with-chrome-developer-tools*"
   to = "https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps"
+
+# Without this Netlify won't properly redirect to the admin page and it will
+# fall through to the catch-all posts redirect.
+[[redirects]]
+  from = "/admin*"
+  to = "/admin/:splat"
 
 [[redirects]]
   from = "/*"
