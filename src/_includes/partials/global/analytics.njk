@@ -1,0 +1,4 @@
+{% if process.env.NODE_ENV === 'production' %}
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+{% endif %}
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","{{ site.analytics }}"),ga("set","transport","beacon"),ga("set","page",window.location.pathname),ga("send","pageview");</script>
