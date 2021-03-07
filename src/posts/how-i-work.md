@@ -94,7 +94,7 @@ Sometimes you just need a big notebook to braindump ideas. In the past, I've use
 
 I've found that while Notion looks great, I don't use the majority of its features, and text selection can make the authoring process clunky.
 
-I've started looking into [Obsidian](https://obsidian.md) after seeing [Andy Bell](https://twitter.com/piccalilli_) switch it on Twitter. I like that it's just a simple markdown tool that organizes things into a kind of brain wiki similar to [Roam](https://roamresearch.com/). Importantly Obsidian is free and all of the content stays on my machine as markdown files—so I don't have to worry that I'm sending these ✨**brilliant thoughts**✨ to a third-party.
+I've started looking into [Obsidian](https://obsidian.md) after seeing [Andy Bell](https://twitter.com/piccalilli_) switch to it on Twitter. I like that it's just a simple markdown tool that organizes things into a kind of brain wiki similar to [Roam](https://roamresearch.com/). Importantly Obsidian is free and all of the content stays on my machine as markdown files—so I don't have to worry that I'm sending these ✨**brilliant thoughts**✨ to a third-party.
 
 ## Brain.fm
 
