@@ -23,6 +23,7 @@ collections:
         widget: "relation"
         collection: "globals"
         file: "tags"
+        multiple: true
         search_fields: ["tags.*.title"]
         display_fields: ["tags.*.title"]
         value_field: "tags.*.title"
