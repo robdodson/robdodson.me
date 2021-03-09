@@ -28,5 +28,9 @@ collections:
         file: "src/_data/reading.json"
         delete: false
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Author", name: "author", widget: "string"}
+          - name: "books"
+            label: "Books"
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Author", name: "author", widget: "string"}
