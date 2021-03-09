@@ -18,7 +18,14 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Social Image", name: "socialImage", widget: "image", required: false}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Tags", name: "tags", widget: "list", allow_add: true}
+      - label: "Tags"
+        name: "tags"
+        widget: "relation"
+        collection: "globals"
+        file: "tags"
+        search_fields: ["tags.*.title"]
+        display_fields: ["tags.*.title"]
+        value_field: "tags.*.title"
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "globals"
     label: "Globals"
@@ -30,7 +37,17 @@ collections:
         fields:
           - name: "books"
             label: "Books"
-            widget: list
+            widget: "list"
             fields:
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Author", name: "author", widget: "string"}
+      - name: "tags"
+        label: "Tags"
+        file: "src/_data/tags.json"
+        delete: false
+        fields:
+          - name: "tags"
+            label: "tags"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
