@@ -43,7 +43,7 @@ collections:
               - {label: "Author", name: "author", widget: "string"}
       - name: "tags"
         label: "Tags"
-        file: "src/_data/tags.json"
+        file: "src/_data/tagsData.json"
         delete: false
         fields:
           - name: "tags"
