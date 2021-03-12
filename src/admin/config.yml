@@ -30,6 +30,8 @@ collections:
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "globals"
     label: "Globals"
+    editor:
+      preview: false
     files:
       - name: "reading"
         label: "Reading"
