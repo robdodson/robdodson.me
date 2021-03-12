@@ -62,10 +62,10 @@ collections:
             widget: "list"
             fields:
               - {label: "Title", name: "title", widget: "string"}
-  - name: pages
-    label: Pages
-    label_singular: 'Page'
-    folder: content/pages
+  - name: docs
+    label: Docs
+    label_singular: Doc
+    folder: src/docs
     create: true
     # adding a nested object will show the collection folder structure
     nested:
