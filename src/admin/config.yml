@@ -2,6 +2,7 @@ backend:
   name: git-gateway
   squash_merges: true # squash all commits into a single commit if merged via the editorial workflow kanban
   branch: main
+local_backend: true # when using the default proxy server port
 publish_mode: editorial_workflow
 media_folder: "src/images"
 public_folder: "/images"
