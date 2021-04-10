@@ -1,0 +1,6 @@
+<script>
+  let currentSetting = localStorage.getItem('user-color-scheme');
+  if (currentSetting) {
+    document.documentElement.setAttribute('data-user-color-scheme', currentSetting);
+  }
+</script>

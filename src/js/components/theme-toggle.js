@@ -86,8 +86,6 @@ class ThemeToggle extends HTMLElement {
 
       this.applySetting(this.toggleSetting());
     });
-
-    this.applySetting();
   }
 }
 
