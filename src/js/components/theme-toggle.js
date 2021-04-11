@@ -6,23 +6,10 @@ class ThemeToggle extends HTMLElement {
     super();
 
     this.STORAGE_KEY = 'user-color-scheme';
-    this.COLOR_MODE_KEY = '--color-mode';
   }
 
   connectedCallback() {
     this.render();
-  }
-
-  getCSSCustomProp(propKey) {
-    let response = getComputedStyle(document.documentElement).getPropertyValue(propKey);
-
-    // Tidy up the string if there’s something to work with
-    if (response.length) {
-      response = response.replace(/\'|"/g, '').trim();
-    }
-
-    // Return the string response by default
-    return response;
   }
 
   applySetting(passedSetting) {
@@ -31,30 +18,36 @@ class ThemeToggle extends HTMLElement {
     if (currentSetting) {
       document.documentElement.setAttribute('data-user-color-scheme', currentSetting);
       this.setButtonLabelAndStatus(currentSetting);
-    } else {
-      this.setButtonLabelAndStatus(this.getCSSCustomProp(this.COLOR_MODE_KEY));
     }
   }
 
   toggleSetting() {
     let currentSetting = localStorage.getItem(this.STORAGE_KEY);
+    if (!currentSetting) {
+      return;
+    }
 
-    switch (currentSetting) {
-      case null:
-        currentSetting =
-          this.getCSSCustomProp(this.COLOR_MODE_KEY) === 'dark' ? 'light' : 'dark';
-        break;
-      case 'light':
-        currentSetting = 'dark';
-        break;
-      case 'dark':
-        currentSetting = 'light';
-        break;
+    if (currentSetting === 'light') {
+      currentSetting = 'dark';
+    } else {
+      currentSetting = 'light';
     }
 
     localStorage.setItem(this.STORAGE_KEY, currentSetting);
-
     return currentSetting;
+  }
+
+  getButtonLabel() {
+    let currentSetting = localStorage.getItem(this.STORAGE_KEY);
+    if (!currentSetting) {
+      return;
+    }
+
+    if (currentSetting === 'light') {
+      return 'Dark theme';
+    } else {
+      return 'Light theme';
+    }
   }
 
   setButtonLabelAndStatus(currentSetting) {
@@ -69,7 +62,7 @@ class ThemeToggle extends HTMLElement {
       <div class="[ theme-toggle ] [ md:ta-right gap-top-500 ]">
         <div role="status" class="[ visually-hidden ][ js-mode-status ]"></div>
         <button class="[ button ] [ font-base text-base weight-bold ] [ js-mode-toggle ]">
-          Dark theme
+          ${this.getButtonLabel()}
         </button>
       </div>
     `;
@@ -83,7 +76,6 @@ class ThemeToggle extends HTMLElement {
 
     this.modeToggleButton.addEventListener('click', evt => {
       evt.preventDefault();
-
       this.applySetting(this.toggleSetting());
     });
   }
