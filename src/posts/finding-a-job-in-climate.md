@@ -17,7 +17,7 @@ You can also go through the back catalog of the [My Climate Journey podcast](htt
 
 ## How to educate yourself
 
-The [Work on Climate](http://workonclimate.org/) group has some good [resource starter packs](http://workonclimate.org/resources/). They also have a Slack that you can joint to converse with like minded folks. Personally, I didn’t use the Slack much, but I did find the starter pack reading material interesting.
+The [Work on Climate](http://workonclimate.org/) group has some good [resource starter packs](http://workonclimate.org/resources/). They also have a Slack that you can join to converse with like minded folks. Personally, I didn’t use the Slack much, but I did find the starter pack reading material interesting.
 
 I listen to a lot of podcasts and I found the [Volts podcast/newsletter](https://www.volts.wtf/) by David Roberts to be really helpful. Go through [the archive](https://www.volts.wtf/archive?sort=new) and pick an assortment of episodes that seem interesting. Some are _incredibly dry and wonkish_ (be forewarned) but others are really good explanations of topics that I only kind-of, sort-of understood. Here’s [a great starter episode that’s all about methane](https://www.volts.wtf/p/volts-podcast-all-about-methane-with?s=r).
 
