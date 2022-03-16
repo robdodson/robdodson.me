@@ -14,6 +14,11 @@
       "text": "GitHub",
       "url": "https://github.com/robdodson",
       "external": true
+    },
+    {
+      "text": "RSS",
+      "url": "https://robdodson.me/feed.xml",
+      "external": false
     }
   ]
 }

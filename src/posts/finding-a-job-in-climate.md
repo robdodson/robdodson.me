@@ -61,6 +61,8 @@ I interviewed or had exploratory phone calls with six companies, and I’ve also
 
 Most companies seem fine with you learning React on the job, especially if you have prior experience with similar frameworks (Vue, Angular, Svelte, Lit, etc).
 
+I personally was not that experienced in React (I've mostly used [Lit](https://lit.dev/)), but the [beta React docs](https://beta.reactjs.org/) are _really_ good and do great job of explaining newer concepts like Hooks. I highly recommend reading through these.
+
 ### Most companies want senior full-stack (but don’t be discouraged!)
 
 Because many of the companies are smaller startups, and likely don’t have enough engineers to specialize in front-end or back-end, most of the roles listed are for full-stack engineers, often listed as senior level.
