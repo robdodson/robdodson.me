@@ -9,7 +9,7 @@ In October 2021, I left my job at Google where I had worked for about eight year
 
 ## Where to find jobs
 
-The best resource for job hunting is [Climatebase](https://climatebase.org/). I cannot stress this enough: **sign up for their newsletter**. It comes out weekly and gives a brief rundown of what’s new in the world of climate and then lists all of the new jobs and companies for that week. Here’s [a sample from October](https://preview.mailerlite.com/k6w5m4).
+The best resource for job hunting is [Climatebase](https://climatebase.org/). I cannot stress this enough: [**sign up for their newsletter**](https://landing.mailerlite.com/webforms/landing/r7s1y1). It comes out weekly and gives a brief rundown of what’s new in the world of climate and then lists all of the new jobs and companies for that week. Here’s [a sample from October](https://preview.mailerlite.com/k6w5m4).
 
 Take the time to fill out a profile on Climatebase and each week they will email you roles that match your skills.
 
