@@ -5,5 +5,5 @@ postsHeading: Latest posts
 archiveButtonText: See all posts
 ---
 
-I'm Rob Dodson, a Developer Advocate on the Chrome team.<br>
+I'm Rob Dodson, a Xoogler passionate about climate change.<br>
 I write about front-end development, accessibility, and web components 🐝
