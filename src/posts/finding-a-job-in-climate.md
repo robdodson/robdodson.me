@@ -57,7 +57,7 @@ This meant I was sending out a lot of resumes each week, which felt a bit weird 
 
 ### React is king
 
-I interviewed or had exploratory phone calls with six companies, and I’ve also read pretty much every Climatebase newsletter over the past four months. I can say with confidence that the two most in-demand front-end skills are React, often paired with TypeScript. Every company I interviewed with is using React, and pretty much every company on Climatebase lists it as a desired skill.
+I interviewed or had exploratory phone calls with six companies, and I’ve also read pretty much every Climatebase newsletter over the past four months. I can say with confidence that the two most in-demand front-end skills are React and TypeScript. Every company I interviewed with is using React, and pretty much every company on Climatebase lists it as a desired skill.
 
 Most companies seem fine with you learning React on the job, especially if you have prior experience with similar frameworks (Vue, Angular, Svelte, Lit, etc).
 
