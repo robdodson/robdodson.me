@@ -31,17 +31,17 @@ The most helpful book I read was [The Ends of the World](https://www.goodreads.c
 
 I realized early on that I didn’t _know_ any “climate companies”. It’s easy to name big tech companies, but there hasn’t been enough time or investment for climate companies to become household names. So most of the places I spoke to were in the range of tens of people, to maybe a couple hundred.
 
-On the one hand, this is great. I got to speak directly to the founders of some companies and the engineering teams felt tight knit and energized. Your work will almost certainly have a big impact on the organization and that can be really motivating.
+On the one hand, this is great. I got to speak directly to the founders of some companies and the engineering teams felt tight-knit and energized. Your work will almost certainly have a big impact on the organization and that can be really motivating.
 
 On the other hand, there’s a lot of career and financial uncertainty when joining a startup. If you’re coming from a big tech company, the base pay will likely be less than you currently make and the equity will be much riskier/there will be less of it to go around.
 
-I don't say these things to discourage you from working on climate—I personally think we need everyone to seriously consider making the career switch—but I understand that everyone is in a different situation with their financial responsibilities and it's important to know ahead of time what kinds of companies are out there and what the compensation will be like.
+I don't say these things to discourage you from working on climate—I personally think we all need to seriously consider making the career switch—but I understand that everyone is in a different situation with their financial responsibilities and it's important to know ahead of time what kinds of companies are out there and what the compensation will be like.
 
 ### There’s a common thread uniting folks
 
 I spoke to an engineer who said that even though their company was fully remote, they actually felt _closer_ to their peers than at their previous roles because they all shared a common interest—saving the planet.
 
-This stood out to me because I don’t think I’ve ever worked somewhere where my peers and I were **_passionate_** about the mission. I’ve been fortunate enough to work at places where the job was interesting, sure, but never on a team where every person was united by a deep sense of urgency and shared values. It seems like it would be a very motivating environment to work in.
+This stood out to me because I don’t think I’ve ever worked somewhere where my peers and I were **_passionate_** about the mission. I’ve been fortunate enough to work at places where the job was interesting, sure, but never on a team where every person was united by a deep sense of urgency and shared values.
 
 ### It may take a while for folks to respond
 
