@@ -23,7 +23,7 @@ I listen to a lot of podcasts and I found the [Volts podcast/newsletter](https:/
 
 Another really good podcast is [How We Survive](https://podcasts.apple.com/us/podcast/how-we-survive/id1586892518) by Molly Wood. It’s a nine-part series that mostly focuses on lithium batteries, but it does a good job of talking about the social justice side of climate change, as well as the tech.
 
-The most helpful book I read was [The Ends of the World](https://www.goodreads.com/book/show/32075449-the-ends-of-the-world) which is a fascinating retelling of all of the world’s mass extinction events and how essentially all of them were connected to the planet’s carbon cycle. Understanding how the carbon cycle works and what happens when there’s either too much or too little CO2 is just really interesting.
+The most helpful book I read was [The Ends of the World](https://www.goodreads.com/book/show/32075449-the-ends-of-the-world) which is a fascinating retelling of all of the world’s mass extinction events and how all of them (yes, even the dinosaurs) were connected to the planet’s carbon cycle. Understanding how the carbon cycle works and what happens when there’s too much or too little CO2 is just really interesting.
 
 ## What the employment landscape is like
 
