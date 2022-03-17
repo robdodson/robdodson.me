@@ -37,6 +37,20 @@ On the other hand, there’s a lot of career and financial uncertainty when join
 
 I don't say these things to discourage you from working on climate—I personally think we all need to seriously consider making the career switch—but I understand that everyone is in a different situation with their financial responsibilities and it's important to know ahead of time what kinds of companies are out there and what the compensation will be like.
 
+### Carbon offsets are very popular...for better or worse
+
+A significant portion of the companies I looked at deal in carbon offsets, which are a fairly controversial topic. The idea with an offset is that a big company can pay someone else to capture CO2 (i.e. plant or protect a forest), and this then "offsets" the big company's own emissions. Companies that sell offsets are market makers, they find the projects that will offset emissions, and they package them up and sell them.
+
+There are a number of problems with offsets, a few that I know of are:
+
+- It's unclear how they're regulated, or if they actually deliver the results they claim.
+- Planting a forest can take years to capture significatn CO2, but your emissions go into the air _today_.
+- The offset buyer doesn't have to change any of their behaviors.
+
+That last point is a big deal, and one of the reasons why folks say offsets are "greenwashing". Right now a lot of companies are making announcements about offseting their emissions, but imagine if they _couldn't_ buy offsets? Would they be pressured to actually operate more efficiently instead?
+
+It's hard for me to answer these questions, but my gut tells me that offsets are not a good model so I tended to steer away from companies who make them their primary business.
+
 ### There’s a common thread uniting folks
 
 I spoke to an engineer who said that even though their company was fully remote, they actually felt _closer_ to their peers than at their previous roles because they all shared a common interest—saving the planet.
