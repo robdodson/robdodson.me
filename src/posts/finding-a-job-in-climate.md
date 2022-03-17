@@ -57,16 +57,6 @@ That last point is a big deal, and one of the reasons why folks say offsets are 
 
 It's hard for me to answer these questions, but my gut tells me that offsets are not a good model so I tended to steer away from companies who make them their primary business.
 
-### There’s a common thread uniting folks
-
-I spoke to an engineer who said that even though their company was fully remote, they actually felt _closer_ to their peers than at their previous roles because they all shared a common interest—saving the planet.
-
-This stood out to me because I don’t think I’ve ever worked somewhere where my peers and I were **_passionate_** about the mission. I’ve been fortunate enough to work at places where the job was interesting, sure, but never on a team where every person was united by a deep sense of urgency and shared values.
-
-### It may take a while for folks to respond
-
-Because so many of the companies are startups, their HR processes might be new/non-existent/overloaded. I submitted resumes to a few companies, didn’t hear anything for weeks, assumed it was a “no,” only to have them reach out much later and ask to set up interviews. It’s a total mixed bag, so don't be discouraged if, after sending out a few resumes, you haven't heard anything back. Stick with it and you'll start getting responses.
-
 ### React is king
 
 I interviewed or had exploratory phone calls with six companies, and I’ve also read pretty much every Climatebase newsletter over the past four months. I can say with confidence that the two most in-demand front-end skills are React and TypeScript. Every company I interviewed with is using React, and pretty much every company on Climatebase lists it as a desired skill.
