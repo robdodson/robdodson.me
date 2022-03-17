@@ -37,7 +37,7 @@ On the other hand, there’s a lot of career and financial uncertainty when join
 
 I don't say these things to discourage you from working on climate—I personally think we all need to seriously consider making the career switch—but I understand that everyone is in a different situation with their financial responsibilities and it's important to know ahead of time what kinds of companies are out there and what the compensation will be like.
 
-### Carbon offsets are very popular...for better or worse
+### Carbon offsets are popular...for better or worse
 
 A significant portion of the companies I looked at deal in carbon offsets, which are a fairly controversial topic. The idea with an offset is that a big company can pay someone else to capture CO2 (i.e. plant or protect a forest), and this then "offsets" the big company's own emissions. Companies that sell offsets are market makers, they find the projects that will offset emissions, and they package them up and sell them.
 
