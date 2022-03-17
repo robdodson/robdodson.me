@@ -5,7 +5,7 @@ tags:
   - climate
 ---
 
-In October 2021, I left my job at Google to see if I could find a role in climate tech. When I left, I didn’t have a job lined up, nor did I know how to go about finding a job in climate, so I wanted to write this post for anyone who is thinking about making a similar career change. I’m happy to say that I have since found a new role in the climate space (something I’ll write about soon) and hopefully the information below will help you do the same.
+In October 2021, I left my job at Google to see if I could find a role in climate tech. When I left, I didn’t have a job lined up, nor did I know how to go about finding a job in climate, so I wanted to write this post to share what I learned along the way. I’m happy to say that I have since found a new role in the climate space (something I’ll write about soon) and hopefully the information below will help you do the same.
 
 ## Do climate companies even need front-end engineers?
 
