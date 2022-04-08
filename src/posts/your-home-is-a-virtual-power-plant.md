@@ -10,7 +10,7 @@ The power grid is a balancing act—there’s the amount that consumers are tryi
 
 Sometimes, like on the hottest day of the year when everyone is running their air conditioners, demand outpaces supply. During these times, the grid operator has to go to the energy market to buy more power to respond to the demand.
 
-Depending on the situation, this might mean calling up a **peaker plant**. These are fast-acting—and very dirty—fossil fuel plants that can ramp-up quickly.
+Depending on the situation, this might mean calling up a **peaker plant**. These are fast-acting—and very dirty—fossil fuel plants that can ramp up quickly.
 
 There are a number of problems with peaker plants:
 
@@ -29,7 +29,7 @@ Ironically, as we’ve moved from using fossil fuels to renewables like wind and
 
 An alternative to peaker plants is that we could all agree to use less energy when the grid is under strain. But this presents a coordination problem: consumers don’t know when the grid is under strain, so they don’t know when to use less energy, and therefore grid operators cannot rely on these energy savings.
 
-But a new group of startups are aiming to fix this coordination issue through a process called **demand response**.
+But a new group of startups is aiming to fix this coordination issue through a process called **demand response**.
 
 ## Demand response
 
@@ -57,21 +57,19 @@ Voltus mostly targets industrial customers (steel mills, factories, etc.) but th
 
 ## Changing how I think about the grid
 
-If it isn’t already obvious, I find this model really interesting. By connecting a few smart devices to OhmConnect, and turning off unused lights when I get a notification, I am both earning money _and_ reducing CO2.
+Previously, I thought of my home as being a one-way electricity consumer. Now I see it as more of a two-way relationship. We often hear about people with solar panels on their roofs being able to sell their excess power back into the grid, this is kind of like that, but for everyone, even folks who live in apartments.
 
-It has also changed the way that I think about the grid and my home. Previously, I thought of my home as being a one-way electricity consumer. Now I see it as more of a two-way relationship. We often hear about people with solar panels on their roofs being able to sell their excess power back into the grid—this is kind of like that, but for everyone, even folks who live in apartments.
-
-Essentially everything in your home that uses power is a **distributed energy resource (DER)**. The more adaptable those DERs are to grid fluctuations, the smarter and more efficient the grid can be. So if you put your refrigerator on a smart plug (as I have) and connect it to OhmConnect, then it can be turned down for an hour at a time when the grid is strained, and you can be rewarded. Let's walk through an example!
+Aggregators like OhmConnect and Voltus refer to everything in your home that uses power as a **distributed energy resource (DER)**. The more adaptable those DERs are to grid fluctuations, the smarter and more efficient the grid can be. So if you put your refrigerator on a smart plug (as I have) and connect it to OhmConnect, then it can be turned down for an hour at a time when the grid is strained, and you can be rewarded. Let's walk through an example!
 
 ## One OhmHour
 
-When OhmConnect is tapped by a utility to sell negawatts, they will send you a notification with a specific time, an **OhmHour**, during which you should ramp-down your consumption. OhmHours typically occur once per week, and they notify you a day or so in advance, and then an hour before the event begins.
+During times when the grid is under strain, OhmConnect will send you a notification with a specific time—an **OhmHour**—during which you should ramp down your consumption. OhmHours typically occur once per week, and they notify you a day or so in advance, and then an hour before the event begins.
 
 During the OhmHour you're rewarded in points—called **watts**—based on how much you reduce your consumption. Watts can be exchanged for cash (via PayPal), spent on discounted smart devices, or used for contests: free groceries for a year, an e-bike, that sort of thing. OhmConnect will also pay you cash for referring new users. It varies by state, but I earn $40 if I refer a fellow Californian, and the referee receives $10.
 
-There’s no requirement to connect devices to OhmConnect—you can walk around your house and manually turn things off during an OhmHour—but I found it easier to let them do it for me, so I connected my Nest thermostat and a smart plug powering my refrigerator to my account. You can also choose to opt-out of an OhmHour and then your devices won’t be affected.
+There’s no requirement to connect devices to OhmConnect—you can walk around your house and manually turn things off during an OhmHour—but I found it easier to let them do it for me, plus I receive bonus watts for every connected device. So I connected my Nest thermostat and a smart plug powering my refrigerator. If you choose to opt-out of an OhmHour then your devices won’t be affected.
 
-You're graded on how much energy you save compared to your previous 10-day average during that same time. For example, on March 16th from 7-8pm, I typically use 0.43kWh of energy, but during a recent OhmHour I reduced my consumption down to 0.19kWh.
+During the event you're graded on how much energy you save compared to your previous 10-day average. For example, on March 16th from 7-8pm, I reduced my consumption down to 0.19kWh from an average of 0.43kWh.
 
 ![My OhmConnect dashboard showing an bar area chart comparing my typical 10-day usage versus my usage during the OhmHour. The chart shows a 57% reduction in power.](/images/ohmhour.jpg)
 
@@ -95,7 +93,7 @@ I can totally understand being concerned about a third-party having the ability 
 
 As a Californian I’ve lived through several wildfire seasons. In the past few years, our utility, PG&E, has resorted to rolling blackouts to keep the grid from falling over. Blackouts mean people cannot use life saving medical devices or their air conditioners. This can potentially lead to deaths.
 
-The way I see it, giving OhmConnect the ability to ramp-down my power consumption acts as a kind of backpressure model for the grid, so even if I’m not at home, my devices can quickly switch off and hopefully do a bit of good. Also, I’ve learned that an unopened refrigerator has enough thermal inertia to safely be off for around four hours 😄
+The way I see it, giving OhmConnect the ability to ramp down my power consumption acts as a kind of backpressure model for the grid, so even if I’m not at home, my devices can quickly switch off and hopefully do a bit of good. Also, I’ve learned that an unopened refrigerator has enough thermal inertia to safely be off for around four hours 😄
 
 But honestly, there's no lock-in, I can always opt-out of the OhmHour or just walk over and turn my refrigerator back on (or through my phone if I'm not at home). Since you're only rewarded based on your energy savings, if you choose to completely ignore the OhmHour there's no real penalty, you just won't earn any watts.
 
