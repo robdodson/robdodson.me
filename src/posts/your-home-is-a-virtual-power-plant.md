@@ -1,11 +1,14 @@
 ---
 title: Why I'm turning my home into a virtual power plant
 date: 2022-04-08
+description: A group of startups are making it possible for consumers to pool their resources and act as nodes in virtual power plants. This makes the grid smarter and more resilient, while also rewarding the consumers with financial incentives.
+socialImage: /images/virtual-lightbulb.jpg
 tags:
   - climate
   - demand response
   - smart home
   - virtual power plant
+  - ohmconnect
 ---
 
 On September 9th 2020, I woke up to find that the sky outside of my window looked like this:
