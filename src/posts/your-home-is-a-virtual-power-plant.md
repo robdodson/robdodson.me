@@ -75,6 +75,8 @@ Voltus mostly targets industrial customers (steel mills, factories, etc.) but th
 
 While the money is a nice bonus, what most excites me about OhmConnect is feeling like I'm participating in a social experiment to improve grid intelligence and help the climate. I had wanted to add smart lights and plugs to my home for convenience, but this creates an additional incentive when I can think of my home as (part of) a virtual power plant.
 
+So how does it work?
+
 ## One OhmHour
 
 During times when the grid is under strain, OhmConnect sends me a notification with a specific time—an **OhmHour**—during which I should ramp down my power consumption. OhmHours typically occur once per week, and they notify me a day or so in advance, and then an hour before the event begins.
