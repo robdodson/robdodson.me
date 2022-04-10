@@ -49,7 +49,7 @@ Ironically, as we’ve moved from using fossil fuels to renewables like wind and
 
 An alternative to peaker plants is that we could all agree to use less energy when the grid is under strain. But this presents a coordination problem: consumers don’t know when the grid is under strain, so they don’t know when to use less energy, and therefore grid operators cannot rely on these energy savings.
 
-This is the problem that a group of startups is aiming to fix through a process called **demand response**.
+So how do we solve this coordination problem?
 
 ## Demand response
 
