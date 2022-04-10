@@ -79,7 +79,7 @@ Let me walk you through an example so you can see how it works.
 
 ## One OhmHour
 
-When it's anticipated that the grid will be under strain, OhmConnect sends me a notification with a specific time—an **OhmHour**—during which I should ramp down my power consumption. OhmHours typically occur once per week, and they notify me a day or so in advance, and then an hour before the event begins.
+When the grid is really busy, OhmConnect sends me a notification with a specific time—an **OhmHour**—during which I should ramp down my power consumption. OhmHours typically occur once per week, and they notify me a day or so in advance, and then an hour before the event begins.
 
 During the OhmHour I'm rewarded in points—called **watts**—based on how much I reduce my consumption. Watts can be exchanged for cash (via PayPal), spent on discounted smart devices, or used for contests: free groceries for a year, an e-bike, that sort of thing. OhmConnect also pays me cash for referring new users. It varies by state, but I earn $40 if I refer a fellow Californian, and the referee receives $10.
 
