@@ -15,9 +15,10 @@ Instead we're going to turn to Bundler to help us manage our files and turn our 
 
 Before I do anything with gems I want to make sure I have a cleanroom of sorts. So if anything goes horribly wrong I can just throw everything away and start over. To do this we'll use RVM to create a new gemset.
 
-    rvm gemset create zerp
-    rvm gemset use zerp
-    
+```bash
+rvm gemset create zerp
+rvm gemset use zerp
+```
 
 If you run `rvm current` you should see something like this: `ruby-1.9.3-p125@zerp`
 
@@ -33,17 +34,18 @@ With Bundler in hand we will generate the boilerplate for our new gem:
 
 This will create a new folder called `zerp/` and fill it with several files. `cd` into `zerp/` and take a look around.
 
-    drwxr-xr-x  10 Rob  staff   340B Jun 14 08:38 .
-    drwxr-xr-x  21 Rob  staff   714B Jun 14 08:38 ..
-    drwxr-xr-x  11 Rob  staff   374B Jun 14 08:38 .git
-    -rw-r--r--   1 Rob  staff   154B Jun 14 08:38 .gitignore
-    -rw-r--r--   1 Rob  staff    89B Jun 14 08:38 Gemfile
-    -rw-r--r--   1 Rob  staff   1.0K Jun 14 08:38 LICENSE
-    -rw-r--r--   1 Rob  staff   490B Jun 14 08:38 README.md
-    -rw-r--r--   1 Rob  staff    48B Jun 14 08:38 Rakefile
-    drwxr-xr-x   4 Rob  staff   136B Jun 14 08:38 lib
-    -rw-r--r--   1 Rob  staff   626B Jun 14 08:38 zerp.gemspec
-    
+```bash
+drwxr-xr-x  10 Rob  staff   340B Jun 14 08:38 .
+drwxr-xr-x  21 Rob  staff   714B Jun 14 08:38 ..
+drwxr-xr-x  11 Rob  staff   374B Jun 14 08:38 .git
+-rw-r--r--   1 Rob  staff   154B Jun 14 08:38 .gitignore
+-rw-r--r--   1 Rob  staff    89B Jun 14 08:38 Gemfile
+-rw-r--r--   1 Rob  staff   1.0K Jun 14 08:38 LICENSE
+-rw-r--r--   1 Rob  staff   490B Jun 14 08:38 README.md
+-rw-r--r--   1 Rob  staff    48B Jun 14 08:38 Rakefile
+drwxr-xr-x   4 Rob  staff   136B Jun 14 08:38 lib
+-rw-r--r--   1 Rob  staff   626B Jun 14 08:38 zerp.gemspec
+```
 
 Bundler has already setup a git project for us, as well as including a folder structure for our library. [This article from rails-bestpractices.com does a great job of explaining what everything in the boilerplate is.](http://rails-bestpractices.com/blog/posts/8-using-bundler-and-rvm-to-build-a-rubygem)
 
@@ -51,33 +53,36 @@ Bundler has already setup a git project for us, as well as including a folder st
 
 Our project contains a folder called `lib` which is where we'll store our Ruby code. Open up `lib/zerp.rb`. We'll populate it with an example class called `Chatter` which'll spit out our version of Hello World.
 
-    require "zerp/version"
-    
-    module Zerp
-      class Chatter
-        def say_hello
-          puts 'This is zerp. Coming in loud and clear. Over.'
-        end
-      end
+```ruby
+require "zerp/version"
+
+module Zerp
+  class Chatter
+    def say_hello
+      puts 'This is zerp. Coming in loud and clear. Over.'
     end
-    
+  end
+end
+```
 
 ## Executable
 
 It wouldn't be much of a CLI without an executable. For that we'll need to create a folder called `bin` in the root of our project. Next create a file called `zerp` without any kind of file extension. We're going to require our `Chatter` class and tell it to `say_hello`.
 
-    #!/usr/bin/env ruby
-    
-    require 'zerp'
-    
-    chatter = Zerp::Chatter.new
-    chatter.say_hello
-    
+```bash
+#!/usr/bin/env ruby
+
+require 'zerp'
+
+chatter = Zerp::Chatter.new
+chatter.say_hello
+```
 
 The shebang `#!/usr/bin/env ruby` tells the system that it should use Ruby to execute our code. After that we require our 'zerp' module defined previously. Finally we instantiate `Zerp::Chatter` and tell it to `say_hello`. If all goes well it should respond with
 
-    This is zerp. Coming in loud and clear. Over.
-    
+```bash
+This is zerp. Coming in loud and clear. Over.
+```
 
 Let's see if we can make that happen.
 
@@ -85,34 +90,37 @@ Let's see if we can make that happen.
 
 We're going to open the `zerp.gemspec` and make it look like so:
 
-    # -*- encoding: utf-8 -*-
-    require File.expand_path('../lib/zerp/version', __FILE__)
-    
-    Gem::Specification.new do |gem|
-      gem.authors       = ["Rob Dodson"]
-      gem.email         = ["lets.email.rob@theawesomegmails.com"]
-      gem.description   = %q{When a problem comes along..You must zerp it}
-      gem.summary       = %q{Now zerp it..Into shape}
-      gem.homepage      = "http://robdodson.me"
-    
-      gem.files         = `git ls-files`.split($\)
-      gem.executables   = ["zerp"]
-      gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-      gem.name          = "zerp"
-      gem.require_paths = ["lib"]
-      gem.version       = Zerp::VERSION
-    end
-    
+```ruby
+# -*- encoding: utf-8 -*-
+require File.expand_path('../lib/zerp/version', __FILE__)
+
+Gem::Specification.new do |gem|
+  gem.authors       = ["Rob Dodson"]
+  gem.email         = ["lets.email.rob@theawesomegmails.com"]
+  gem.description   = %q{When a problem comes along..You must zerp it}
+  gem.summary       = %q{Now zerp it..Into shape}
+  gem.homepage      = "http://robdodson.me"
+
+  gem.files         = `git ls-files`.split($\)
+  gem.executables   = ["zerp"]
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.name          = "zerp"
+  gem.require_paths = ["lib"]
+  gem.version       = Zerp::VERSION
+end
+```
 
 The main thing I did was to correct the two 'TODO' entries, and to change the `gem.executables` line from
 
-    gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-    
+```ruby
+gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+```
 
 to
 
-    gem.executables   = ["zerp"]
-    
+```ruby
+gem.executables   = ["zerp"]
+```
 
 For reaons unknown to me the previous code wasn't picking up my executable properly so I replaced it with `["zerp"]`. I got the idea from [Project Sprouts which also uses this technique and seems to work fine on my system.](https://github.com/lukebayes/project-sprouts/blob/master/sprout.gemspec)
 

@@ -13,9 +13,9 @@ I've been using Sublime Text 2 for probably two months now and in that time I've
 
 One of the first things you want to do with Sublime is to find your User key bindings. They're located under `Sublime Text 2 > Preferences > Key Bindings - User`
 
-Sublime Text is very DIY so there isn't a fancy GUI to help you change keyboard shortcuts. Instead you use the preference file to override the default shortcuts. Like a lot of things in Sublime, this can at first seem annoying and non-intuitive. That is, until you realize that by doing it this way Sublime has actually given you the power to make *extremely* awesome key bindings. Take some time to look around in this file. I still only understand a fraction of what all it does but the little bits I learn here and there give me all sorts of ideas for new shortcuts. Just remember, if you want to change a keyboard shortcut you should do it in the User's key bindings and not the Default key bindings.
+Sublime Text is very DIY so there isn't a fancy GUI to help you change keyboard shortcuts. Instead you use the preference file to override the default shortcuts. Like a lot of things in Sublime, this can at first seem annoying and non-intuitive. That is, until you realize that by doing it this way Sublime has actually given you the power to make _extremely_ awesome key bindings. Take some time to look around in this file. I still only understand a fraction of what all it does but the little bits I learn here and there give me all sorts of ideas for new shortcuts. Just remember, if you want to change a keyboard shortcut you should do it in the User's key bindings and not the Default key bindings.
 
-**Pro Tip:** If you ever want to change a keyboard shortcut but can't figure out what command is currently running open up Sublime's built in terminal with `ctrl+`` then type `sublime.log_commands(True)`. Now when you execute your command from the menu you should see its name show up in the console. Just remember to turn logging off when you're done :)
+**Pro Tip:** If you ever want to change a keyboard shortcut but can't figure out what command is currently running open up Sublime's built in terminal with ` ctrl+`` then type  `sublime.log_commands(True)`. Now when you execute your command from the menu you should see its name show up in the console. Just remember to turn logging off when you're done :)
 
 ## Sublime Package Control
 
@@ -49,7 +49,7 @@ OK this one is also important and I can't recommend it enough. **Learn to split 
 
 ![Split panes in Sublime](/images/2014/12/sublime-split-panes.png)
 
-I *live* in split panes. They've changed my workflow significantly for the better. Less time switching between files and finding your place is an incredible advantage. You can access them through `View > Layouts`. It will behoove you to learn these keyboard shortcuts. Also learn the shortcuts for `View > Focus Group` and `View > Move File to Group`.
+I _live_ in split panes. They've changed my workflow significantly for the better. Less time switching between files and finding your place is an incredible advantage. You can access them through `View > Layouts`. It will behoove you to learn these keyboard shortcuts. Also learn the shortcuts for `View > Focus Group` and `View > Move File to Group`.
 
 ## Selections
 
@@ -88,18 +88,19 @@ OK with that out of the way...
 
 Let's say you're working on some HTML and you have a block of text that you'd like to wrap in a `p` tag. No problemo! Highlight the text and hit `ctrl+shift+w` or `Edit > Tag > Wrap Selection in Tag`. There's a more advanced versions that comes with the ZenCoding plugin which lets you do really elaborate wrappings. I believe the keyboard shortcut for that is `ctrl+alt+w`. Personally I dislike using the `ctrl` key on my Mac laptop so I changed both of those keyboard shortcuts to the following:
 
-    { "keys": ["super+shift+r"], "command": "insert_snippet", "args": { "name": "Packages/XML/long-tag.sublime-snippet" } },
-    { "keys": ["alt+shift+r"], "command": "wrap_zen_as_you_type",
-    "context": [
-        {
-          "operand": "text.html, text.xml",
-          "operator": "equal",
-          "match_all": true,
-          "key": "selector"
-        }
-      ]
+```json
+{ "keys": ["super+shift+r"], "command": "insert_snippet", "args": { "name": "Packages/XML/long-tag.sublime-snippet" } },
+{ "keys": ["alt+shift+r"], "command": "wrap_zen_as_you_type",
+"context": [
+    {
+      "operand": "text.html, text.xml",
+      "operator": "equal",
+      "match_all": true,
+      "key": "selector"
     }
-    
+  ]
+}
+```
 
 You'll notice that instead of just using a `wrap_in_tag` command name the first entry actually calls another command, `insert_snippet` and passes it an argument: `Packages/XML/long-tag.sublime.snippet` which is the location of a snippet file. Pretty cool trick!
 
@@ -119,7 +120,7 @@ To hide the sidebar hit `cmd+K, cmd+B`. Since I work on a laptop I often hide th
 
 ## Turn off Minimap
 
-Do you guys use that minimap thing in the top corner of the editor windows? I find it *incredibly* distracting and it also takes up screen space. To disable it go to `View > Hide Minimap`.
+Do you guys use that minimap thing in the top corner of the editor windows? I find it _incredibly_ distracting and it also takes up screen space. To disable it go to `View > Hide Minimap`.
 
 ## Saving a project
 

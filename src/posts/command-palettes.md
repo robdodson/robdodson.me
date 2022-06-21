@@ -9,7 +9,7 @@ updated: 2019-09-03T18:16:55.000Z
 
 {% youtube id="srLRSQg6Jgg", title="a11ycasts: Managing Focus" %}
 
-A while back I was working with a fellow Googler to try and improve the accessibility for one of our apps. In the scenario, a user needed to click some UI, which then opened a panel, where the user needed to click *more* UI to perform an action.
+A while back I was working with a fellow Googler to try and improve the accessibility for one of our apps. In the scenario, a user needed to click some UI, which then opened a panel, where the user needed to click _more_ UI to perform an action.
 
 Helping a screen reader navigate these various UI states is a tricky technique known as **focus management**.Focus management is when you manually direct the user's keyboard and screen reader cursor as they use the app. For example, if clicking a piece of UI loads more content into the page, then you need to tell the screen reader that this new content is available.
 
@@ -30,7 +30,7 @@ So why don't web apps have menu bars? Especially if they could improve the acces
 There might be a few reasons for this:
 
 - The OS menu bar is presented separately from the app, which lives in a window. Web apps don't have this capability because they run inside of a browser which already has a menu bar.
-- In addition to the browser's menu bar, there's also a URL bar and associated controls. Adding *another* menu bar may feel cluttered.
+- In addition to the browser's menu bar, there's also a URL bar and associated controls. Adding _another_ menu bar may feel cluttered.
 - Every website would have to solve this for themselves. It would be hard to create the consistent experience of OS menu bars.
 
 It's worth noting that some web apps do support their own menu bar—Google Docs for example—but I think that's because they're following in the well worn footprints of their native counterparts.
@@ -89,4 +89,4 @@ It would be nice if there was a built-in, easy to style HTML element for handlin
 
 Focus management is hard and there's no agreed upon way to do it. While it is important to ensure that every UI state in your app is keyboard and screen reader accessible, it feels like command palettes could be a nice, additional UI affordance that all users would benefit from.
 
-I'm curious to know if this idea resonates with folks. [Let me know your thoughts on twitter](https://twitter.com/rob_dodson) and thanks for reading! 
+I'm curious to know if this idea resonates with folks. [Let me know your thoughts on twitter](https://twitter.com/rob_dodson) and thanks for reading!

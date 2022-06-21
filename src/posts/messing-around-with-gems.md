@@ -11,9 +11,10 @@ I want to work on a code generation tool, similar to the one offered up by Rails
 
 The first thing I'm going to do is create a new gemset with rvm. Our gem is going to be called `r2` after the much beloved R2D2 so we'll also call our gemset `r2`.
 
-    rvm gemset create r2
-    rvm use 1.9.3@r2
-    
+```bash
+rvm gemset create r2
+rvm use 1.9.3@r2
+```
 
 Ugh after spending about an 2 hours fucking around with bundler I'm getting nowhere. I'll have to pick this up tomorrow. :\ #WorstPostEver
 

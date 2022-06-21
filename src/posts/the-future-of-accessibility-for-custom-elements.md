@@ -12,7 +12,7 @@ For example, if a screen reader visits a login button:
 <button>Sign in</button>
 ```
 
-—it  would announce, “Sign in, button”. This tells the user about the affordance available to them—whether something is a button that may be pressed, for example, or if it’s just a block of text content with no other semantics.
+—it would announce, “Sign in, button”. This tells the user about the affordance available to them—whether something is a button that may be pressed, for example, or if it’s just a block of text content with no other semantics.
 
 Additionally, built-in elements support keyboard-based usage, which is important for users who can’t use a pointing device—whether they are unable to see the pointer, or don’t have the physical ability. This is why accessibility experts always urge developers to mark up their pages with the built-in elements.
 
@@ -24,7 +24,7 @@ When you define a new tag, the browser really has no way of knowing if you’re 
 
 Recently we launched a project called [HowTo: Components](https://github.com/GoogleChromeLabs/howto-components) which demonstrates how to build accessible custom elements. Many folks have since asked us why we’re bothering to implement things like [checkbox](https://github.com/GoogleChromeLabs/howto-components/tree/master/elements/howto-checkbox) since there is already an accessible, native version.
 
-Taking an even cursory look at any web framework shows that developers are going to keep building  custom checkboxes, even though it’s arguably more work than using a built-in element. We’ll get to why that is in a moment, but given that’s the case, we’d like to educate developers on the best practices for doing so. Here we take inspiration from the [ARIA Authoring Practices Guide](https://www.w3.org/TR/wai-aria-practices-1.1/), and in fact all of the HowTo: Components are based on their examples. We just want to illustrate how to do them as custom elements.
+Taking an even cursory look at any web framework shows that developers are going to keep building custom checkboxes, even though it’s arguably more work than using a built-in element. We’ll get to why that is in a moment, but given that’s the case, we’d like to educate developers on the best practices for doing so. Here we take inspiration from the [ARIA Authoring Practices Guide](https://www.w3.org/TR/wai-aria-practices-1.1/), and in fact all of the HowTo: Components are based on their examples. We just want to illustrate how to do them as custom elements.
 
 So, why do developers keep reinventing this wheel?
 
@@ -66,11 +66,18 @@ What’s the accessibility tree you ask? Ah ha! [We have a article for you!](htt
 As I mentioned before, a custom element is, semantically speaking, just a `<span>`, whereas the native `<button>` element has built-in accessibility because it has an implicit role of "button". While we could have our `<custom-button>` sprout ARIA attributes to define its semantics, this can get ugly fast. To recreate a `<input type="slider">` as a custom element would end up looking like:
 
 ```html
-<custom-slider min="0" max="5" value="3" role="slider"
-  tabindex="0" aria-valuemin="0" aria-valuemax="5"
-  aria-valuenow="3" aria-valuetext="3"></custom-slider>
+<custom-slider
+  min="0"
+  max="5"
+  value="3"
+  role="slider"
+  tabindex="0"
+  aria-valuemin="0"
+  aria-valuemax="5"
+  aria-valuenow="3"
+  aria-valuetext="3"
+></custom-slider>
 ```
-    
 
 And because ARIA is exclusively an HTML attributes API, it means we need to touch the DOM every time we want to update our semantic state. For an individual element this isn't so bad, but if you have hundreds of controls (perhaps inside of a table or list), having each of them call `setAttribute()` multiple times at startup could lead to a performance bottleneck.
 
@@ -116,7 +123,11 @@ getComputedAccessibility(mySlider.accessibleNode).role // returns 'slider'
 Another major pain point of using ARIA is the fact that all relationships must be defined using ID references. On numerous projects I've had to auto-generate unique IDs to make this system work:
 
 ```html
-<custom-listbox role="listbox" aria-describedby="generated-id1 generated-id2" aria-activedescendant="generated-id3">
+<custom-listbox
+  role="listbox"
+  aria-describedby="generated-id1 generated-id2"
+  aria-activedescendant="generated-id3"
+></custom-listbox>
 ```
 
 Furthermore, new standards like [Shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) create scoping boundaries for IDs. If you need to point `aria-labelledby` or `aria-activedescendant` at something on the other side of this shadow boundary, you're out of luck!
@@ -124,8 +135,10 @@ Furthermore, new standards like [Shadow DOM](https://developers.google.com/web/f
 AOM fixes this by allowing you to build relationships using object references. In the above example we could rewrite our listbox with:
 
 ```js
-el.accessibleNode.describedBy = 
-    new AccessibleNodeList([accessibleNode1, accessibleNode2]);
+el.accessibleNode.describedBy = new AccessibleNodeList([
+  accessibleNode1,
+  accessibleNode2,
+]);
 el.accessibleNode.activeDescendant = accessibleNode3;
 ```
 
@@ -141,8 +154,8 @@ I think in the near term, new primitives like AOM and an [as of yet unspecified 
 
 ## Wrapping up
 
-These are not entirely custom element concerns. Really, any component (React, Angular, etc) should be able to benefit from proposals like AOM. But custom elements are the only *standards-based* way to define a component that can be shared amongst frameworks, so solving things at that level seems very useful.
+These are not entirely custom element concerns. Really, any component (React, Angular, etc) should be able to benefit from proposals like AOM. But custom elements are the only _standards-based_ way to define a component that can be shared amongst frameworks, so solving things at that level seems very useful.
 
 Our plan with HowTo: Components is to continue to build custom element equivalents of the built-ins so we can educate developers, and push these standards forward. We’ll also be updating the docs to [explicitly call out the limitations](https://github.com/GoogleChromeLabs/howto-components/pull/121) custom elements currently face, and when using a built-in might make more sense. We would love help landing all of the [ARIA Authoring Practices examples](https://www.w3.org/TR/wai-aria-practices-1.1/) as custom elements and plan to push things even further in future quarters by exploring more complex widget types. If you’re interested in pitching in, please feel free to open up a pull request over at the [HowTo: Components repo](https://github.com/GoogleChromeLabs/howto-components) and if you want to learn more about AOM you can check it out in [the Web Incubation Community Group repo](https://github.com/wicg/aom).
 
-*Big thanks to [Alice Boxhall](https://twitter.com/sundress), [Matt Gaunt](https://twitter.com/gauntface), and [Surma](https://twitter.com/dassurma) for reviewing this blog post.*
+_Big thanks to [Alice Boxhall](https://twitter.com/sundress), [Matt Gaunt](https://twitter.com/gauntface), and [Surma](https://twitter.com/dassurma) for reviewing this blog post._

@@ -1,5 +1,5 @@
 ---
-title: "Backbone Events: Framework Communication"
+title: 'Backbone Events: Framework Communication'
 tags:
   - Chain
   - Backbone
@@ -12,13 +12,16 @@ I want to figure out how to communicate on a framework level within Backbone. Co
 
 Backbone works differently in that Views are often tied directly to their models like so:
 
-    var doc = Documents.first(); // <-- Model object
-    
-    new DocumentRow({ // <-- View object with model reference
-      model: doc,
-      id: "document-row-" + doc.id
-    });
-    
+```js
+// This is a Model object
+var doc = Documents.first();
+
+// This is a View object with model reference
+new DocumentRow({
+  model: doc,
+  id: 'document-row-' + doc.id,
+});
+```
 
 When you use this approach it's trivial to tell the view to listen to the model's change event and then call `view.render()`. Essentially you are munging some of a Controller's responsibilities into the View. That's all well and good but let's say we want to dispatch an event from one view which will affect other views and actors. This event has nothing to do with a model, maybe it's just an animation of some kind that others need to know about. So how do we go about this?
 
@@ -26,96 +29,98 @@ When you use this approach it's trivial to tell the view to listen to the model'
 
 To facilitate this communication we're going to use the `app` object that [Backbone Boilerplate](https://github.com/tbranyen/backbone-boilerplate) creates for us. If you look in the `namespace.js` file that comes with the boilerplate you should see a line like this way down at the bottom:
 
-    app: _.extend({}, Backbone.Events)
-    
+```js
+app: _.extend({}, Backbone.Events);
+```
 
 If you're not familiar with [Underscore.js's extend method](http://underscorejs.org/#extend) it basically takes all of the properties and functions of one object and copies them onto another. If you're coming from a language that supports classical inheritence this should feel familiar. In the above example it's creating a new empty object (app), and extending/inheriting from the Backbone.Events object. This means that the `app` property of the `namespace` module is basically one big event dispatcher.
 
 So let's create two very simple views in a module called `Chatty`. One will be `Subject` and the other `Observer`. When we click the Subject we want it to dispatch an event that any framework actor can tune into. We'll call this event `clicked:subject`. When the Observer hears the `clicked:subject` event we want it to replace its html content with whatever message is sent along.
 
-    define([
-      "namespace", // <-- see I'm bringing in the namespace module
-    
-      // Libs
-      "use!backbone"
-    
-      // Modules
-    
-      // Plugins
-      
-    ],
-    
-    function(namespace, Backbone) { // <-- make sure to pass namespace as an argument
-    
-      // Create a new module
-      var Chatty = namespace.module();
-    
-      Chatty.Views.Subject = Backbone.View.extend({
-        tagName: 'div',
-        className: 'subject',
-        events: {
-          'click': 'onClick'
-        },
-        initialize: function() {
-          this.render();
-          this.$el.html("I'm the Subject. Everyone listen up!");
-        },
-        onClick: function(e) {
-          namespace.app.trigger('clicked:subject', 'watch it, buster!'); // <-- trigger a framework event
-        }
-      });
-    
-      Chatty.Views.Observer = Backbone.View.extend({
-        tagName: 'div',
-        className: 'observer',
-        initialize: function() {
-          this.render();
-          this.$el.html("I'm the Observer. Quietly waiting...");
-    
-          namespace.app.on('clicked:subject', this.onSubjectClicked, this); <-- listen for framework events
-        },
-        onSubjectClicked: function(message) {
-          this.$el.html("I heard the Subject say... " + message);
-        }
-      });
-    
-      // Required, return the module for AMD compliance
-      return Chatty;
-    
-    });
-    
+```js
+define([
+  "namespace", // <-- see I'm bringing in the namespace module
+
+  // Libs
+  "use!backbone"
+
+  // Modules
+
+  // Plugins
+
+],
+
+function(namespace, Backbone) { // <-- make sure to pass namespace as an argument
+
+  // Create a new module
+  var Chatty = namespace.module();
+
+  Chatty.Views.Subject = Backbone.View.extend({
+    tagName: 'div',
+    className: 'subject',
+    events: {
+      'click': 'onClick'
+    },
+    initialize: function() {
+      this.render();
+      this.$el.html("I'm the Subject. Everyone listen up!");
+    },
+    onClick: function(e) {
+      namespace.app.trigger('clicked:subject', 'watch it, buster!'); // <-- trigger a framework event
+    }
+  });
+
+  Chatty.Views.Observer = Backbone.View.extend({
+    tagName: 'div',
+    className: 'observer',
+    initialize: function() {
+      this.render();
+      this.$el.html("I'm the Observer. Quietly waiting...");
+
+      namespace.app.on('clicked:subject', this.onSubjectClicked, this); <-- listen for framework events
+    },
+    onSubjectClicked: function(message) {
+      this.$el.html("I heard the Subject say... " + message);
+    }
+  });
+
+  // Required, return the module for AMD compliance
+  return Chatty;
+
+});
+```
 
 In our main.js file we're just going to append those two views to the DOM whenever someone hits our route:
 
-    require([
-      "namespace",
-    
-      // Libs
-      "jquery",
-      "use!backbone",
-    
-      // Modules
-      "modules/chatty"
-    ],
-    
-    function(namespace, $, Backbone, Chatty) {
-    
-      // Defining the application router, you can attach sub routers here.
-      var Router = Backbone.Router.extend({
-        routes: {
-          "chatty": "chatty"
-        },
-    
-        chatty: function() {
-          var subject = new Chatty.Views.Subject();
-          var observer = new Chatty.Views.Observer();
-          $("#main").append(subject.el);
-          $("#main").append(observer.el);
-        }
-      });
-    
-      ...
-    
+```js
+require([
+  "namespace",
+
+  // Libs
+  "jquery",
+  "use!backbone",
+
+  // Modules
+  "modules/chatty"
+],
+
+function(namespace, $, Backbone, Chatty) {
+  // Defining the application router, you can attach sub routers here.
+  var Router = Backbone.Router.extend({
+    routes: {
+      "chatty": "chatty"
+    },
+
+    chatty: function() {
+      var subject = new Chatty.Views.Subject();
+      var observer = new Chatty.Views.Observer();
+      $("#main").append(subject.el);
+      $("#main").append(observer.el);
+    }
+  });
+...
+}
+```
 
 And there you have it. When we click on `Subject` it should replace the content in `Observer` like so:
 ![The Observer hears the Subject](/images/2014/12/subject_observer.png)

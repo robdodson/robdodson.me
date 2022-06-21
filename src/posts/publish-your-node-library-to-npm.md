@@ -18,31 +18,37 @@ Fill in your credentials and it should be ready to go.
 
 If we have any dependencies they should be added to our `package.json` file. Our simple `compliment` program doesn't need any extra libraries but we'll add `xml2json` just to demonstrate how it's done.
 
-    {
-        "name": "compliment",
-        "version": "0.0.1",
-        "description": "Tell us how awesome we are.",
-        "preferGlobal": "true",
-        "bin": { "compliment": "compliment.js" },
-        "author": "Rob Dodson",
-        "dependencies": {
-            "xml2json": "0.2.4"
-        },
-        "engines": { "node": "*" }
-    }
-    
+```json
+{
+  "name": "compliment",
+  "version": "0.0.1",
+  "description": "Tell us how awesome we are.",
+  "preferGlobal": "true",
+  "bin": { "compliment": "compliment.js" },
+  "author": "Rob Dodson",
+  "dependencies": {
+    "xml2json": "0.2.4"
+  },
+  "engines": { "node": "*" }
+}
+```
 
 Since we've changed our `package.json` we need to run `npm link` again to install the dependency. After that you should have a `node_modules/` folder in your project root.
 
 Let's put this baby under version control!
 
-    git init
-    echo node_modules/ >> .gitignore # node_modules should be installed by npm
-    git add .
-    git commit -am 'Initial commit'
-    
+```bash
+git init
+echo node_modules/ >> .gitignore # node_modules should be installed by npm
+git add .
+git commit -am 'Initial commit'
+```
 
-Final step: `npm publish`
+Final step:
+
+```bash
+npm publish
+```
 
 # BOOMJAMS! We have us an npm module! - Rob
 

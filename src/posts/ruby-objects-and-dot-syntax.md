@@ -10,21 +10,22 @@ updated: 2014-12-30T06:25:03.000Z
 
 Coming from JavaScript I'm very accustomed to doing something like this:
 
-    var person = { name: 'Rob', city: 'San Francisco' }
-    
-    console.log( person.city );   // 'San Francisco'
-    
-    
+```js
+var person = { name: 'Rob', city: 'San Francisco' };
+
+console.log(person.city); // 'San Francisco'
+```
 
 Using dot syntax to access a `Hash` is second nature to me. That's why I was surprised when I ran into the following error yesterday while writing some Ruby.
 
-    person = {name: 'Rob', city: 'San Francisco'}
-     => {:name=>"Rob", :city=>"San Francisco"} 
-    
-    puts person.city
-    
-    NoMethodError: undefined method `city' for {:name=>"Rob", :city=>"San Francisco"}:Hash
-    
+```ruby
+person = {name: 'Rob', city: 'San Francisco'}
+=> {:name=>"Rob", :city=>"San Francisco"}
+
+puts person.city
+
+NoMethodError: undefined method `city' for {:name=>"Rob", :city=>"San Francisco"}:Hash
+```
 
 "Hmm, weird," I thought. I know I've seen dot syntax used in Ruby before..what gives?
 
@@ -32,9 +33,10 @@ Using dot syntax to access a `Hash` is second nature to me. That's why I was sur
 
 As it turns out Ruby does not support dot syntax for the `Hash` object. If I had wanted to access the `city` property from my previous example I should have done it using the symbol key like so:
 
-    person[:city]
-     => "San Francisco"
-    
+```ruby
+person[:city]
+=> "San Francisco"
+```
 
 There are a few data structures that are very similar to `Hashes` and seeing those used in the wild perhaps threw me off. So I figured I'd write a post about the do's and dont's of dot syntax and how different object types react to it.
 
@@ -42,44 +44,46 @@ There are a few data structures that are very similar to `Hashes` and seeing tho
 
 The first and most obvious one is the `Class` object. Really I'm talking about instances of a `Class` here, for example an instance of class `Person` might have a `city` attribute. Here's what that would look like.
 
-    class Person
-      def initialize(name, city)
-        @name = name
-        @city = city
-      end
-    
-      def name
-        @name
-      end
-    
-      def city
-        @city
-      end
-    end
-    
-    person = Person.new('Rob', 'San Francisco')
-     => #<Person:0x007ff15412a8c0 @name="Rob", @city="San Francisco">
-    
-    person.city
-     => "San Francisco" 
-    
+```ruby
+class Person
+  def initialize(name, city)
+    @name = name
+    @city = city
+  end
+
+  def name
+    @name
+  end
+
+  def city
+    @city
+  end
+end
+
+person = Person.new('Rob', 'San Francisco')
+=> #<Person:0x007ff15412a8c0 @name="Rob", @city="San Francisco">
+
+person.city
+=> "San Francisco"
+```
 
 Since I've defined methods for both `name` and `city`, using dot syntax to access those properties basically means we're calling those methods. The methods just return the instance variables, acting as getters. You can shorten this by using `attr_reader` or `attr_accessor`.
 
-    class Person
-      attr_accessor :name, :city
-      def initialize(name, city)
-        @name = name
-        @city = city
-      end
-    end
-    
-    person = Person.new('Rob', 'San Francisco')
-     => #<Person:0x007ff15412a8c0 @name="Rob", @city="San Francisco">
-    
-    person.city
-     => "San Francisco" 
-    
+```ruby
+class Person
+  attr_accessor :name, :city
+  def initialize(name, city)
+    @name = name
+    @city = city
+  end
+end
+
+person = Person.new('Rob', 'San Francisco')
+=> #<Person:0x007ff15412a8c0 @name="Rob", @city="San Francisco">
+
+person.city
+=> "San Francisco"
+```
 
 #### Struct
 
@@ -89,26 +93,28 @@ The `Struct` object is another commonly used element which allows dot access to 
 
 Examples speak louder than words so here's our `Person` again.
 
-    Person = Struct.new(:name, :city)
-     => Person 
-    
-    person = Person.new('Rob', 'San Francisco')
-     => #<struct Person name="Rob", city="San Francisco">
-    
-    person.city
-     => "San Francisco"
-    
+```ruby
+Person = Struct.new(:name, :city)
+=> Person
+
+person = Person.new('Rob', 'San Francisco')
+=> #<struct Person name="Rob", city="San Francisco">
+
+person.city
+=> "San Francisco"
+```
 
 As I understand it a `Struct` is basically sealed after you've given it an initial definition. This means that you can't keep tacking on properties like you can with a `Hash`
 
-    # Continuing from above...
-    
-    person.age = 28
-    NoMethodError: undefined method `age=' for #<struct Person name="Rob", city="San Francisco">
-    
-    person[:age] = 28
-    NameError: no member 'age' in struct
-    
+```ruby
+# Continuing from above...
+
+person.age = 28
+NoMethodError: undefined method `age=' for #<struct Person name="Rob", city="San Francisco">
+
+person[:age] = 28
+NameError: no member 'age' in struct
+```
 
 #### OpenStruct
 
@@ -118,40 +124,43 @@ Finally we come to the `OpenStruct` which has both dynamic attributes and dot sy
 
 And again here is our `Person` from before. Note that `OpenStruct` needs you to `require` it.
 
-    require 'ostruct'
-    
-    person = OpenStruct.new
-     => #<OpenStruct> 
-    
-    person.name = 'Rob'
-     => "Rob" 
-    
-    person.city = 'San Francisco'
-     => "San Francisco" 
-    
-    person.city
-     => "San Francisco" 
-    
+```ruby
+require 'ostruct'
+
+person = OpenStruct.new
+=> #<OpenStruct>
+
+person.name = 'Rob'
+=> "Rob"
+
+person.city = 'San Francisco'
+=> "San Francisco"
+
+person.city
+=> "San Francisco"
+```
 
 If you noticed, we didn't need to define the attributes of our `Person` before creating an instance of it. This means we could keep adding attributes indefinitely. Want your person to respond to `age`? Just tack it on.
 
-    person.age = 28
-     => 28
-    
-    person.age
-     => 28
-    
+```ruby
+person.age = 28
+=> 28
+
+person.age
+=> 28
+```
 
 For the sake of brevity you can pass in a `Hash` and `OpenStruct` will covert it for you.
 
-    require 'ostruct'
-    
-    person = OpenStruct.new(name: 'Rob', city: 'San Francisco')
-     => #<OpenStruct name="Rob", city="San Francisco"> 
-    
-    person.city
-     => "San Francisco"
-    
+```ruby
+require 'ostruct'
+
+person = OpenStruct.new(name: 'Rob', city: 'San Francisco')
+=> #<OpenStruct name="Rob", city="San Francisco">
+
+person.city
+=> "San Francisco"
+```
 
 This all seems wonderful but there's one huge caveat which comes from the way `OpenStruct` finds all of these dynamic attributes. As [the documentation describes it](http://ruby-doc.org/stdlib-1.9.3/libdoc/ostruct/rdoc/OpenStruct.html):
 

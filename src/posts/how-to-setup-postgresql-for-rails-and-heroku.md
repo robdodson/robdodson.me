@@ -19,9 +19,10 @@ There are a few different options for installing PostgreSQL. The first one, whic
 
 If you go the Homebrew route make sure you type in `initdb /usr/local/var/postgres` after the install finishes to init your first database. The installer will also mention some commands you can use to have PostgreSQL auto-start whenever you turn on your computer. I wasn't a big fan of this approach so instead I created two aliases in my .bash_profile.
 
-    alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-    alias pg-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-    
+```bash
+alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pg-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+```
 
 With these I can just type `pg-start` to fire up Postgres and `pg-stop` when I want to shut it down.
 
@@ -34,19 +35,17 @@ Creating a new rails project for Postgres is as easy as `rails new blog -d postg
 To convert an existing project you'll want to update your Gemfile to include the `pg` gem. A basic Gemfile might look something like this:
 
     source 'https://rubygems.org'
-    
+
     gem 'rails', '3.2.3'
     gem 'pg', '~>0.13.2'
-    
+
     group :assets do
       gem 'sass-rails',   '~> 3.2.3'
       gem 'coffee-rails', '~> 3.2.1'
       gem 'uglifier', '>= 1.0.3'
     end
-    
+
     gem 'jquery-rails'
-    
-    
 
 You'll also need to update your config/database.yml to look for Postgres instead of SQLite or MySQL.
 
@@ -57,7 +56,7 @@ You'll also need to update your config/database.yml to look for Postgres instead
       pool: 5
       username: [insert your user name]
       password:
-    
+
     test:
       adapter: postgresql
       encoding: unicode
@@ -65,7 +64,6 @@ You'll also need to update your config/database.yml to look for Postgres instead
       pool: 5
       username: [insert your user name]
       password:
-    
 
 Since we haven't created any Postgres user accounts both Homebrew and PostgreSQL.app will simply use our current username as the login. The password can remain blank. After this is done you'll also need to call `rake db:create:all` to create the new database.
 
@@ -76,17 +74,14 @@ If your project isn't already under version control then now would be a good tim
     git init
     git add .
     git commit -m 'Initial commit!'
-    
 
 Next we'll create a free Heroku instance
 
     heroku create --stack cedar
-    
 
 After that's done we'll simply push our project up there.
 
     git push heroku master
-    
 
 You might see some deprecation warnings about vendor plugins. For now you can (probably) safely ignore those.
 
@@ -94,6 +89,6 @@ Here's one little gotcha that I seemed to run into. If you try to access your si
 
 ### PostgreSQL GUI
 
-One last tip re: your new Postgres setup. If you're just starting out like me then your command line fu is probably not as strong as you'd like it to be. Personally I really like having a nice GUI to visualize the tables in my database. For MySQL I usually use the awesome (and free) [SequelPro](http://www.sequelpro.com/). For PostgreSQL you can use [Induction](http://inductionapp.com/). It doesn't seem like they have a downloadable binary on their website (weird?) but you can grab one out of [the Github repo's downloads page](https://github.com/Induction/Induction/downloads). Connecting to your Postgres instance can be a little tricky, you have to make sure to use the PostgreSQL adapter, localhost as the hostname, your computer's username as the user and the password can remain blank. You also *HAVE* to give it a database name (even though it says it's optional) or it will throw a `FATAL:  database [your username] does not exist`. Here's a screenshot of what mine looks like:
+One last tip re: your new Postgres setup. If you're just starting out like me then your command line fu is probably not as strong as you'd like it to be. Personally I really like having a nice GUI to visualize the tables in my database. For MySQL I usually use the awesome (and free) [SequelPro](http://www.sequelpro.com/). For PostgreSQL you can use [Induction](http://inductionapp.com/). It doesn't seem like they have a downloadable binary on their website (weird?) but you can grab one out of [the Github repo's downloads page](https://github.com/Induction/Induction/downloads). Connecting to your Postgres instance can be a little tricky, you have to make sure to use the PostgreSQL adapter, localhost as the hostname, your computer's username as the user and the password can remain blank. You also _HAVE_ to give it a database name (even though it says it's optional) or it will throw a `FATAL: database [your username] does not exist`. Here's a screenshot of what mine looks like:
 
 You should follow me on Twitter [here.](http://twitter.com/rob_dodson)

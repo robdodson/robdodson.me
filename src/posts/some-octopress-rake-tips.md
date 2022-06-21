@@ -12,36 +12,48 @@ This is a quick post just to scratch one of my own itches. I've been using Octop
 
 Turns out it's really simple. Let's say we are going through our usual steps of creating a new post:
 
-`rake new_post["Today is a Wonderful Day"]`
+```bash
+rake new_post["Today is a Wonderful Day"]
+```
 
 Now that we have our post ready we can isolate it from all the others:
 
-`rake isolate[wonderful-day]`
+```bash
+rake isolate[wonderful-day]
+```
 
 Notice I didn't pass in the entire filename? That's because the Rake task inspects each of our posts and stashes anything that doesn't include the String 'wonderful-day' in the filename.
 
-    Dir.glob("#{source_dir}/#{posts_dir}/*.*") do |post|
-        FileUtils.mv post, stash_dir unless post.include?(args.filename)
-    end
-    
+```ruby
+Dir.glob("#{source_dir}/#{posts_dir}/*.*") do |post|
+    FileUtils.mv post, stash_dir unless post.include?(args.filename)
+end
+```
 
 Now that our post is isolated we can preview it, like we always do:
 
-`rake preview`
+```bash
+rake preview
+```
 
 Write a little bit, save, and hit `localhost:4000` to see your super speedy blog post!
 
 When we're all done we integrate the post back in with the rest of our blog.
 
-`rake integrate`
+```bash
+rake integrate
+```
 
 And finally we generate and deploy it, which can be done in a single command:
 
-`rake gen_deploy`
+```bash
+rake gen_deploy
+```
 
 There are a few other useful rake tasks, you can see the whole list by running:
 
-`rake -T`
+```bash
+rake -T
 
     rake clean                     # Clean out caches: .pygments-cache, .gist-cache, .sass-cache
     rake copydot[source,dest]      # copy dot files for deployment
@@ -62,7 +74,7 @@ There are a few other useful rake tasks, you can see the whole list by running:
     rake update_source[theme]      # Move source to source.old, install source theme updates, replace source/_includes/navigation.ht...
     rake update_style[theme]       # Move sass to sass.old, install sass theme updates, replace sass/custom with sass.old/custom
     rake watch                     # Watch the site and regenerate when it changes
-    
+```
 
 I'm looking forward to trying out Octopress 2.1 as it includes [a more streamlined generate task](https://github.com/imathis/octopress/pull/207) as well as some other nifty features. - Rob
 

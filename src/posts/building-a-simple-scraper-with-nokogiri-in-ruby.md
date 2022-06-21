@@ -20,77 +20,80 @@ I decided early on that I wanted the scraper to use [Nokogiri](http://nokogiri.o
 
 Using CSS selectors means that working with Nokogiri is a lot like working with jQuery. Here's a quick demonstration:
 
-    require 'open-uri'
-    require 'nokogiri'
-    
-    doc = Nokogiri::HTML(open('https://www.google.com/search?q=unicorns'))
-    
-    doc.css('h3.r a').each do |link|
-      puts link.content
-    end
-    
+```ruby
+require 'open-uri'
+require 'nokogiri'
+
+doc = Nokogiri::HTML(open('https://www.google.com/search?q=unicorns'))
+
+doc.css('h3.r a').each do |link|
+  puts link.content
+end
+```
 
 Easy enough, right? Taking it a step further let's iterate over each element on the page and place them into a `Hash`.
 
-    require 'open-uri'
-    require 'nokogiri'
-    
-    @counts = Hash.new(0)
-    
-    def words_from_string(string)
-      string.downcase.scan(/[\w']+/)
-    end
-    
-    def count_frequency(word_list)
-      for word in word_list
-        @counts[word] += 1
-      end
-      @counts
-    end
-    
-    doc = Nokogiri::HTML(open('http://robdodson.me'))
-    
-    ####
-    # Search for nodes by css
-    entries = doc.css('div.entry-content')
-    puts "Parsing #{entries.length} entries"
-    entries.each do |entry|
-      words = words_from_string(entry.content)
-      count_frequency(words)
-    end
-    
-    sorted  = @counts.sort_by { |word, count| count }
-    puts sorted.map { |word, count| "#{word}: #{count}"}
-    
+```ruby
+require 'open-uri'
+require 'nokogiri'
+
+@counts = Hash.new(0)
+
+def words_from_string(string)
+  string.downcase.scan(/[\w']+/)
+end
+
+def count_frequency(word_list)
+  for word in word_list
+    @counts[word] += 1
+  end
+  @counts
+end
+
+doc = Nokogiri::HTML(open('http://robdodson.me'))
+
+####
+# Search for nodes by css
+entries = doc.css('div.entry-content')
+puts "Parsing #{entries.length} entries"
+entries.each do |entry|
+  words = words_from_string(entry.content)
+  count_frequency(words)
+end
+
+sorted  = @counts.sort_by { |word, count| count }
+puts sorted.map { |word, count| "#{word}: #{count}"}
+```
 
 The output from this script should look (kind of) like this:
 
-    ...
-    ruby: 66
-    rvm: 66
-    our: 68
-    can: 71
-    3: 75
-    if: 77
-    for: 82
-    your: 88
-    2: 88
-    is: 91
-    this: 91
-    s: 94
-    we: 95
-    that: 106
-    i: 118
-    in: 119
-    it: 125
-    1: 128
-    and: 149
-    of: 170
-    a: 231
-    you: 233
-    to: 342
-    the: 382
-    
+```
+...
+ruby: 66
+rvm: 66
+our: 68
+can: 71
+3: 75
+if: 77
+for: 82
+your: 88
+2: 88
+is: 91
+this: 91
+s: 94
+we: 95
+that: 106
+i: 118
+in: 119
+it: 125
+1: 128
+and: 149
+of: 170
+a: 231
+you: 233
+to: 342
+the: 382
+```
 
 It looks like our regex could use a bit of work so it doesn't grab singular letters like 's' or numbers, but it's definitely a good start. Tomorrow we'll put everything into a `Module` and back it with tests.
 

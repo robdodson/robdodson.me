@@ -22,20 +22,19 @@ So, given the following HTML:
 
 ```html
 <html>
-<head>
-  <title>How old are you?</title>
-</head>
-<body>
-  <label for="age">Age</label>
-  <input id="age" name="age" value="42">
-  <div>
-    <button>Back</button>
-    <button>Next</button>
-  </div>
-</body>
+  <head>
+    <title>How old are you?</title>
+  </head>
+  <body>
+    <label for="age">Age</label>
+    <input id="age" name="age" value="42" />
+    <div>
+      <button>Back</button>
+      <button>Next</button>
+    </div>
+  </body>
 </html>
 ```
-    
 
 Chrome would produce an accessibility tree that looks something like:
 
@@ -47,11 +46,10 @@ id=1 role=WebArea name="How old are you?"
         id=5 role=Button name="Back"
         id=6 role=Button name="Next"
 ```
-    
 
 Next Chrome needs to convert these nodes into something the user's operating system can understand. On Windows it will produce a tree of IAccessible objects, and on macOS it will use NSAccessibility objects. Finally, this tree of OS-specific nodes gets handed off to a screen reader, which interprets it, and chooses what to say.
 
-*If you're really interested, you can check out [this doc which explains a lot more about how accessibility works in Chromium](https://chromium.googlesource.com/chromium/src/+/lkgr/docs/accessibility/overview.md).*
+_If you're really interested, you can check out [this doc which explains a lot more about how accessibility works in Chromium](https://chromium.googlesource.com/chromium/src/+/lkgr/docs/accessibility/overview.md)._
 
 So it's pretty tricky to know what any specific browser + OS + screen reader combo will announce. There are differences in how each browser builds its accessibility tree, there are differences in how well each browser supports ARIA, and there are differences in how the various screen readers interpret the information browsers give to them. Oof!
 
@@ -66,7 +64,7 @@ const { role } = await window.getComputedAccessibleNode(element);
 assert(role, 'button');
 ```
 
-*Note, this API is still being sketched out so the final version may be different from the snippet above.*
+_Note, this API is still being sketched out so the final version may be different from the snippet above._
 
 When this lands (hopefully in 2018) we should be able to start writing unit and integration tests that ensure our components are properly represented in the browser's accessibility tree. That's pretty darn close to Holy Grail territory!
 

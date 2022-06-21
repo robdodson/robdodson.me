@@ -16,20 +16,21 @@ Sublime has a great plugin architecture that makes it extremely easy to add to t
 
 Here's a script I'm calling `Pathway` at the moment.
 
-    import os
-    
-    LOCAL = '/usr/local/bin:/usr/local/sbin:'
-    HOME = '/Users/Rob'  ### !!! REPLACE WITH YOUR HOME PATH !!! ###
-    RVM = HOME + '/.rvm/bin:'
-      
-    # Sublime's default path is
-    # /usr/bin:/bin:/usr/sbin:/sbin
-    os.environ['PATH'] += ':'
-    os.environ['PATH'] += LOCAL
-    os.environ['PATH'] += RVM
-    
-    print 'PATH = ' + os.environ['PATH']
-    
+```python
+import os
+
+LOCAL = '/usr/local/bin:/usr/local/sbin:'
+HOME = '/Users/Rob'  ### !!! REPLACE WITH YOUR HOME PATH !!! ###
+RVM = HOME + '/.rvm/bin:'
+
+# Sublime's default path is
+# /usr/bin:/bin:/usr/sbin:/sbin
+os.environ['PATH'] += ':'
+os.environ['PATH'] += LOCAL
+os.environ['PATH'] += RVM
+
+print 'PATH = ' + os.environ['PATH']
+```
 
 If you add this file to the Sublime user's directory outlined above you should be able to hit cmd + ` to fire up the Sublime console which will print out our new PATH variable.
 
@@ -37,7 +38,7 @@ I would also recommend adding a shell plugin to Sublime. At the moment I use [Sh
 
 Now that I have my hacked path variable and my shell plugin I can check to see if RVM works. Using Shell Turtlestein you can hit `cmd-shift-c` to open a little console prompt. Typing `rvm current` returns our ruby version number and gemset. Nice! What's even nicer is this means I can now run Rake tasks from inside of Sublime!
 
-I should point out if all you want to do is run Rake or Ant then there are already plugins for that sort of thing. My main effort in doing all this is to try to integrate the command line with Sublime a bit better. If *anyone* knows how to simply tell Sublime to use the path in my .bash_profile or .bashrc then I would gladly use that approach instead. But after crawling the forums for a while it looks like this is still a common problem with no good solution.
+I should point out if all you want to do is run Rake or Ant then there are already plugins for that sort of thing. My main effort in doing all this is to try to integrate the command line with Sublime a bit better. If _anyone_ knows how to simply tell Sublime to use the path in my .bash_profile or .bashrc then I would gladly use that approach instead. But after crawling the forums for a while it looks like this is still a common problem with no good solution.
 
 You should follow me on Twitter [here.](http://twitter.com/rob_dodson)
 

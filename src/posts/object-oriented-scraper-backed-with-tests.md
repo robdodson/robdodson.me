@@ -9,7 +9,7 @@ date: 2012-05-07T01:09:00.000Z
 updated: 2014-12-30T06:53:11.000Z
 ---
 
-*I just drank a ton of coffee and I'm blasting music in my headphones so this post my bit a bit more scatter-shot than most since I can't really focus :]*
+_I just drank a ton of coffee and I'm blasting music in my headphones so this post my bit a bit more scatter-shot than most since I can't really focus :]_
 
 Yesterday I managed to build a pretty naive scraper using Nokogiri which would count how often each word was used in the first 10 posts of this blog. Basically scraping the home URL of the site and grabbing everything inside of the `div.entry-content` selector.
 
@@ -27,6 +27,7 @@ For now I'm fine with the output being a plain text file with a few stats on it.
 
 Here's the folder structure I'm using:
 
+```
 - tentacles
 
 - bin      *<--- contains our executable program*
@@ -40,6 +41,7 @@ Here's the folder structure I'm using:
 - spec      *<--- contains our RSpec tests*
 - crawler_spec.rb
 - runner_spec.rb
+```
 
 ### Playing with IRB
 
@@ -47,20 +49,23 @@ One of the first issues I've run up against is figuring out how to play with my 
 
 Here's the `grep` from the irb man page.
 
-    -I path        Same as `ruby -I' .  Specifies $LOAD_PATH directory
-    
+```bash
+-I path        Same as `ruby -I' .  Specifies $LOAD_PATH directory
+```
 
 So we end up in `tentacles/lib` and call IRB like so:
 
-    irb -I .
-    
+```bash
+irb -I .
+```
 
 And now we can require our classes
 
-    irb -I .
-    1.9.3-p125 :001 > require 'runner'
-     => true # sweeet
-    
+```bash
+irb -I .
+1.9.3-p125 :001 > require 'runner'
+=> true # sweeet
+```
 
 ### Skeletons
 
@@ -68,33 +73,35 @@ I'm going to create a basic `Runner` class so we can verify that the stuff in IR
 
 Here's what I've thrown together:
 
-    module Tentacles
-      class Runner
-    
-        def initialize(config)
-          # Load in our config file
-        end
-    
-        def run
-          puts 'run run run!'
-        end
-    
-      end
+```ruby
+module Tentacles
+  class Runner
+
+    def initialize(config)
+      # Load in our config file
     end
-    
+
+    def run
+      puts 'run run run!'
+    end
+
+  end
+end
+```
 
 and here's how we test it in IRB.
 
-    irb -I .
-    require 'runner'
-    
-    runner = Tentacles::Runner.new('foo')
-     => #<Tentacles::Runner:0x007faeb284ec30> 
-    
-    runner.run
-    run run run!
-     => nil 
-    
+```ruby
+irb -I .
+require 'runner'
+
+runner = Tentacles::Runner.new('foo')
+  => #<Tentacles::Runner:0x007faeb284ec30>
+
+runner.run
+run run run!
+  => nil
+```
 
 Looks good so far!
 
@@ -112,96 +119,101 @@ I'm going to write tests for `Runner` first since it's already stubbed out. I wa
 
 For now that's the only public API this object has. Pretty simple but of course I'm immediately running into issues. Here's what my spec looks like:
 
-    require_relative '../lib/tentacles/runner'
-    
-    describe Tentacles::Runner do
-    
-      before do
-        @runner = Tentacles::Runner.new('config.yml')
-      end
-    
-      subject { @runner }
-    
-      it { should respond_to(:run) }
-    
-      describe "when passing the config file" do
-        it "should raise an error if the config file is missing" do
-          expect { runner = Tentacles::Runner.new('') }.to raise_error(Errno::ENOENT)
-          expect { runner = Tentacles::Runner.new(nil) }.to raise_error(TypeError)
-        end
-      end
+```ruby
+require_relative '../lib/tentacles/runner'
+
+describe Tentacles::Runner do
+
+  before do
+    @runner = Tentacles::Runner.new('config.yml')
+  end
+
+  subject { @runner }
+
+  it { should respond_to(:run) }
+
+  describe "when passing the config file" do
+    it "should raise an error if the config file is missing" do
+      expect { runner = Tentacles::Runner.new('') }.to raise_error(Errno::ENOENT)
+      expect { runner = Tentacles::Runner.new(nil) }.to raise_error(TypeError)
     end
-    
+  end
+end
+```
 
 and here's what runner.rb looks like:
 
-    require 'yaml'
-    
-    module Tentacles
-      class Runner
-    
-        def initialize(config)
-          @config = YAML.load(File.open(config))
-        end
-    
-        def run      
-          'Runner should be running'
-        end
-      end
+```ruby
+require 'yaml'
+
+module Tentacles
+  class Runner
+
+    def initialize(config)
+      @config = YAML.load(File.open(config))
     end
-    
+
+    def run
+      'Runner should be running'
+    end
+  end
+end
+```
 
 aaaaaand here's the error:
 
-    1) Tentacles::Runner 
-         Failure/Error: @runner = Tentacles::Runner.new('config.yml')
-         Errno::ENOENT:
-           No such file or directory - config.yml
-         # ./lib/tentacles/runner.rb:10:in `initialize'
-         # ./lib/tentacles/runner.rb:10:in `open'
-         # ./lib/tentacles/runner.rb:10:in `initialize'
-         # ./spec/runner_spec.rb:8:in `new'
-         # ./spec/runner_spec.rb:8:in `block (2 levels) in <top (required)>'
-    
+```
+1) Tentacles::Runner
+      Failure/Error: @runner = Tentacles::Runner.new('config.yml')
+      Errno::ENOENT:
+        No such file or directory - config.yml
+      # ./lib/tentacles/runner.rb:10:in `initialize'
+      # ./lib/tentacles/runner.rb:10:in `open'
+      # ./lib/tentacles/runner.rb:10:in `initialize'
+      # ./spec/runner_spec.rb:8:in `new'
+      # ./spec/runner_spec.rb:8:in `block (2 levels) in <top (required)>'
+```
 
 It looks like the test is bailing out on my `before` block when I try to create an instance of runner and pass it the config file. Folks on IRC are kind enough to point out that `require` and methods run in RSpec don't necessarily have the same scope so trying `../lib/tentacles/config.yml` won't work either. The solution is to use `File.dirname(__FILE__) + '/../lib/tentacles/config.yml'`. Since I don't want my line lengths to get any longer I define a helper module and give it a `relative_path` method which should spit out `File.dirname(__FILE__)`.
 
-    module Helpers
-      def relative_path
-        File.dirname(__FILE__)
-      end
-    end
-    
+```ruby
+module Helpers
+  def relative_path
+    File.dirname(__FILE__)
+  end
+end
+```
 
 After I include it my tests look like this:
 
-    require_relative '../lib/tentacles/runner'
-    require 'helpers'
-    
-    describe Tentacles::Runner do
-      include Helpers
-    
-      before do
-        @runner = Tentacles::Runner.new(relative_path + '/../lib/tentacles/config.yml')
-      end
-    
-      subject { @runner }
-    
-      it { should respond_to(:run) }
-    
-      describe "when passing the config file" do
-        it "should raise an error if the config file is missing" do
-          expect { runner = Tentacles::Runner.new('') }.to raise_error(Errno::ENOENT)
-          expect { runner = Tentacles::Runner.new(nil) }.to raise_error(TypeError)
-        end
-    
-        it "should raise an error if the config file is invalid" do
-          expect { runner = Tentacles::Runner.new(relative_path + '/mocks/invalid_yaml.yml') }.to raise_error(Psych::SyntaxError)
-        end
-      end
-    
+```ruby
+require_relative '../lib/tentacles/runner'
+require 'helpers'
+
+describe Tentacles::Runner do
+  include Helpers
+
+  before do
+    @runner = Tentacles::Runner.new(relative_path + '/../lib/tentacles/config.yml')
+  end
+
+  subject { @runner }
+
+  it { should respond_to(:run) }
+
+  describe "when passing the config file" do
+    it "should raise an error if the config file is missing" do
+      expect { runner = Tentacles::Runner.new('') }.to raise_error(Errno::ENOENT)
+      expect { runner = Tentacles::Runner.new(nil) }.to raise_error(TypeError)
     end
-    
+
+    it "should raise an error if the config file is invalid" do
+      expect { runner = Tentacles::Runner.new(relative_path + '/mocks/invalid_yaml.yml') }.to raise_error(Psych::SyntaxError)
+    end
+  end
+
+end
+```
 
 You'll also notice I added a test for an invalid yml file. Basically I created a mocks folder and tossed in a yaml file that's full of gibberish. Probably not the best way to mock stuff but whatever, i'm learning!
 

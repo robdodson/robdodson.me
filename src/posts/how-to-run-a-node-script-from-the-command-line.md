@@ -18,10 +18,11 @@ Make a new directory called `compliment` and create two files inside of it: `com
 
 In `compliment.js` we're just going to print out some kind words.
 
-    #! /usr/bin/env node
-    
-    console.log('you. are. AWESOME!');
-    
+```bash
+#! /usr/bin/env node
+
+console.log('you. are. AWESOME!');
+```
 
 Simple enough right? Just make sure you include that shebang up at the top which directs the system to use Node to execute our script.
 
@@ -29,16 +30,17 @@ Simple enough right? Just make sure you include that shebang up at the top which
 
 Ok now that we have our little script we'll give its `package.json` some love.
 
-    {
-        "name": "compliment",
-        "version": "0.0.1",
-        "description": "Tell us how awesome we are.",
-        "preferGlobal": "true",
-        "bin": { "compliment": "compliment.js" },
-        "author": "Rob Dodson",
-        "engines": { "node": "*" }
-    }
-    
+```json
+{
+  "name": "compliment",
+  "version": "0.0.1",
+  "description": "Tell us how awesome we are.",
+  "preferGlobal": "true",
+  "bin": { "compliment": "compliment.js" },
+  "author": "Rob Dodson",
+  "engines": { "node": "*" }
+}
+```
 
 Most of that should be self explanatory. The key aspect is the `bin` section where you tell it to translate `compliment` into `compliment.js`. To install it all we have to do is run `npm link`. After you've done that you should be able to type `compliment` and hear how awesome you are!
 

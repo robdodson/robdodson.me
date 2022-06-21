@@ -1,5 +1,5 @@
 ---
-title: "Backbone Boilerplate: Playing with Require.js"
+title: 'Backbone Boilerplate: Playing with Require.js'
 tags:
   - Chain
   - Backbone
@@ -13,91 +13,96 @@ I want to keep playing with require.js and AMD modules today so I can really int
 
 Here is our boilerplate HTML. It's a standard HTML5 file which just includes require.js at the bottom of the page.
 
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-    
-      <title>Require.js Sandbox</title>
-    
-      <!-- Application styles -->
-      <link rel="stylesheet" href="/assets/css/index.css">
-    </head>
-    
-    <body>
-      <!-- Main container -->
-      <div role="main" id="main"></div>
-    
-      <!-- Application source -->
-      <script src="/assets/js/libs/require.js"></script>
-    </body>
-    </html>
-    
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Require.js Sandbox</title>
+
+    <!-- Application styles -->
+    <link rel="stylesheet" href="/assets/css/index.css" />
+  </head>
+
+  <body>
+    <!-- Main container -->
+    <div role="main" id="main"></div>
+
+    <!-- Application source -->
+    <script src="/assets/js/libs/require.js"></script>
+  </body>
+</html>
+```
 
 I'm also going to define a file called foo.js which will just console log "Hello World!". To update our HTML we'll add the following script tag after the call to include require.js
 
-    <script>
-        require(["foo"]);
-    </script>
-    
+```html
+<script>
+  require(['foo']);
+</script>
+```
 
 And as expected the console outputs 'Hello World!'. Let's step it up a notch and define a module. Our first module will just return an object literal [like in this example.](http://requirejs.org/docs/api.html#defsimple) It will be a `Person` module with our name and city. We'll place it in an `app` folder in the root of our project. So our stucture looks like this:
 
-    index.html
+```
+index.html
+|
+|_ app/
+  |
+  |_ person.js
+|
+|_ assets/
+  |
+  |_ js/
     |
-    |_ app/
+    |_ libs/
       |
-      |_ person.js
-    |
-    |_ assets/
-      |
-      |_ js/
-        |
-        |_ libs/
-          |
-          |_ require.js
-    
+      |_ require.js
+```
 
 The `Person` module just needs to implement a define function which takes an object as an argument. It looks like this:
 
-    define({
-        name: "Rob Dodson",
-        city: "San Francisco"
-    });
-    
+```js
+define({
+  name: 'Rob Dodson',
+  city: 'San Francisco',
+});
+```
 
 And in our updated index.html we're going to require that module.
 
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-    
-      <title>Require.js Sandbox</title>
-    
-      <!-- Application styles -->
-      <link rel="stylesheet" href="/assets/css/index.css">
-    </head>
-    
-    <body>
-      <!-- Main container -->
-      <div role="main" id="main"></div>
-    
-      <!-- Application source -->
-      <script src="/assets/js/libs/require.js"></script>
-      <script>
-        require(["app/person"], function(person) {
-          console.log(person.name);
-          console.log(person.city);
-        });
-      </script>
-    </body>
-    </html>
-    
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Require.js Sandbox</title>
+
+    <!-- Application styles -->
+    <link rel="stylesheet" href="/assets/css/index.css" />
+  </head>
+
+  <body>
+    <!-- Main container -->
+    <div role="main" id="main"></div>
+
+    <!-- Application source -->
+    <script src="/assets/js/libs/require.js"></script>
+    <script>
+      require(['app/person'], function (person) {
+        console.log(person.name);
+        console.log(person.city);
+      });
+    </script>
+  </body>
+</html>
+```
 
 Opening up that page in the browser should give us the proper output in the console.
 
@@ -109,90 +114,94 @@ If you're coming from more of a design background and you're used to having one 
 
 Ok let's write a module that's a bit more realistic. We'll use a function to return our object so it's kind of like a constructor.
 
-    "use strict";
-    
-    define(function () {
-        var estimated_age = 99 + 1;
-        var spookySaying = 'I vant to suck your blooood!';
-    
-        return {
-            name: 'Dracula',
-            home: 'Florida',
-            age: estimated_age,
-            saySomethingSpooky: function() {
-              console.log(spookySaying);
-            }
-        };
-    });
-    
+```js
+'use strict';
 
-This is a simple monster object. Notice that we build a variable called `estimated_age` right before defining our object literal. We then return this variable. If we ask for the monster's age it will return this value. It's worth noting that this makes the `estimated_age` variable private since it only lives in the scope of the anonymous function returning our object literal. We've also got a method, `saySomethingSpooky` which will print out another private variable `spookySaying`. Wow it's *almost* the JavaScript classes I've always dreamed of! Before you go thinking that remember that modules are not instanceable, meaning, when you load in a module it works like a [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern) almost. You can't go monster.new() all over the place.. it just doesn't work that way. Don't get disouraged though, this is still pretty cool so let's continue...
+define(function () {
+  var estimated_age = 99 + 1;
+  var spookySaying = 'I vant to suck your blooood!';
+
+  return {
+    name: 'Dracula',
+    home: 'Florida',
+    age: estimated_age,
+    saySomethingSpooky: function () {
+      console.log(spookySaying);
+    },
+  };
+});
+```
+
+This is a simple monster object. Notice that we build a variable called `estimated_age` right before defining our object literal. We then return this variable. If we ask for the monster's age it will return this value. It's worth noting that this makes the `estimated_age` variable private since it only lives in the scope of the anonymous function returning our object literal. We've also got a method, `saySomethingSpooky` which will print out another private variable `spookySaying`. Wow it's _almost_ the JavaScript classes I've always dreamed of! Before you go thinking that remember that modules are not instanceable, meaning, when you load in a module it works like a [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern) almost. You can't go monster.new() all over the place.. it just doesn't work that way. Don't get disouraged though, this is still pretty cool so let's continue...
 
 Next up is a module with dependencies. We'll make the monster depend on his coffin.
 
-    "use strict";
-    
-    define(function () {
-      var color = 'Blackest black';
-    
-      return {
-        color: color,
-        open: function() {
-          console.log('*creeeeeek*');
-        }
-      };
-    });
-    
+```js
+'use strict';
 
-    "use strict";
-    
-    define(['./coffin'], function (coffin) {
-      var estimated_age = 99 + 1;
-      var spookySaying = 'I vant to suck your blooood!';
-    
-      return {
-        name: 'Dracula',
-        home: 'Florida',
-        age: estimated_age,
-        saySomethingSpooky: function() {
-          console.log(spookySaying);
-        },
-        goToSleep: function() {
-          console.log('Time for bed!');
-          coffin.open();
-        }
-      };
-    });
-    
+define(function () {
+  var color = 'Blackest black';
 
-    <script data-main="" src="/assets/js/libs/require.js"></script>
-    <script>
-      require(['app/monster'], function(monster) {
-        monster.saySomethingSpooky();
-        monster.goToSleep();
-      });
-    </script>
-    
+  return {
+    color: color,
+    open: function () {
+      console.log('*creeeeeek*');
+    },
+  };
+});
+
+('use strict');
+
+define(['./coffin'], function (coffin) {
+  var estimated_age = 99 + 1;
+  var spookySaying = 'I vant to suck your blooood!';
+
+  return {
+    name: 'Dracula',
+    home: 'Florida',
+    age: estimated_age,
+    saySomethingSpooky: function () {
+      console.log(spookySaying);
+    },
+    goToSleep: function () {
+      console.log('Time for bed!');
+      coffin.open();
+    },
+  };
+});
+```
+
+```html
+<script data-main="" src="/assets/js/libs/require.js"></script>
+<script>
+  require(['app/monster'], function (monster) {
+    monster.saySomethingSpooky();
+    monster.goToSleep();
+  });
+</script>
+```
 
 You can see that we've created a dependency for our monster, it has to load the coffin module before it's ready to be loaded itself. Otherwise it won't be able to run `goToSleep()` properly. Require.js will sort all of this out so long as we declare our dependencies as the first argument to the `define` function.
 
 We aren't limited to objects though, we can also return functions (which are objects in their own right). For instance if we wanted to define a helper module that greets people we could do something like this:
 
-    "use strict";
-    
-    define(function () {
-      return function(name) {
-        return 'Why hello, ' + name;
-      }
-    });
-    
+```js
+'use strict';
+
+define(function () {
+  return function (name) {
+    return 'Why hello, ' + name;
+  };
+});
+```
 
 then in our index we'll just use the `greet` function as if it were globally available.
 
-    require(['app/greet'], function(greet) {
-      console.log(greet('Rob'));
-    });
-    
+```js
+require(['app/greet'], function (greet) {
+  console.log(greet('Rob'));
+});
+```
 
 bear in mind that each module requires an http request to load it so you don't want to go overboard defining helper function modules. Note the extra http request in the profiler which loads greet.js.
 

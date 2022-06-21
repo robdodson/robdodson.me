@@ -54,7 +54,7 @@ To get started with the loader, install it from npm.
 npm install --save-dev polymer-webpack-loader
 ```
 
-Or if you’re using the demo project, `cd` into the demo directory and run `npm i` and <br>`bower i`.
+Or if you’re using the demo project, `cd` into the demo directory and run `npm i` and <br/>`bower i`.
 
 Next, drop the loader into your `webpack.config.js`, here's the full config file from the demo. I've done my best to comment each section so if you're new to Webpack you can grok what's going on.
 
@@ -92,11 +92,11 @@ Success! You’ve now got Polymer bundling with Webpack and leveraging imports f
 
 ### Can I publish elements I create using the loader to WebComponents.org?
 
-It depends. If you’re taking advantage of ES Module `import` syntax to pull in npm packages, then no. Otherwise anyone who wants to use your element would be required to also use Webpack. I think this tool is best used for handling code in your *own* application and for elements that you don’t intend to share.
+It depends. If you’re taking advantage of ES Module `import` syntax to pull in npm packages, then no. Otherwise anyone who wants to use your element would be required to also use Webpack. I think this tool is best used for handling code in your _own_ application and for elements that you don’t intend to share.
 
 ### Does this mean I don’t have to use bower anymore?
 
-Not really. The primary reason Polymer, and Web Components in general, rely on bower is because Custom Element tag names are global. This means you can’t have multiple conflicting versions of an element trying to be registered at once. Bower enforces deduplicating version conflicts at install time so you *always* end up with one version of a dependency. npm does not support this same feature, so for the time being it’s probably best to continue using bower to install your Web Components. If you’re curious to learn more about this [check out this clip from one of my recent I/O talks](https://www.youtube.com/watch?v=Ucq9F-7Xp8I&amp;feature=youtu.be&amp;t=31m16s).
+Not really. The primary reason Polymer, and Web Components in general, rely on bower is because Custom Element tag names are global. This means you can’t have multiple conflicting versions of an element trying to be registered at once. Bower enforces deduplicating version conflicts at install time so you _always_ end up with one version of a dependency. npm does not support this same feature, so for the time being it’s probably best to continue using bower to install your Web Components. If you’re curious to learn more about this [check out this clip from one of my recent I/O talks](https://www.youtube.com/watch?v=Ucq9F-7Xp8I&feature=youtu.be&t=31m16s).
 
 ### What about PRPL / code splitting?
 

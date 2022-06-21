@@ -14,7 +14,7 @@ As the story goes, Ulysses wanted to hear the song of the Sirens, but he knew th
 
 ## Know Your Sirens
 
-I wanted to elevate my career and push myself to be a better developer. I knew that one of the best ways to do this was to start writing. But the fact of the matter is, writing a blog post to explain a technical topic is just *not fun.***It's a struggle!** You feel like an idiot most of the time. And at the end of it all you look at your work and realize that you sound like a robot.
+I wanted to elevate my career and push myself to be a better developer. I knew that one of the best ways to do this was to start writing. But the fact of the matter is, writing a blog post to explain a technical topic is just \*not fun.**\*It's a struggle!** You feel like an idiot most of the time. And at the end of it all you look at your work and realize that you sound like a robot.
 
 **It's very easy to get bogged down and to not do it consistently. But consistency is key to forming any good habit.**
 
@@ -38,7 +38,7 @@ Making a public declaration that you're going to do something on Facebook and Tw
 
 **Don't decorate the house.**
 
-I've noticed a lot of my friends say they want to blog but first they need to "update their site." Or, if they don't have a site, then they need to get one and it needs to be really spiffy. I like to say *that's like decorating a house before you've decided to live in it*. You're going to waste a ton of effort on fixing everything up and that's time that would be better spent accomplishing your goal. My advice is to write 10 or 15 posts, then worry about how things look. Get into the habit of jogging before you spend a bunch of time picking out the most perfect shoes. You get what I'm saying :)
+I've noticed a lot of my friends say they want to blog but first they need to "update their site." Or, if they don't have a site, then they need to get one and it needs to be really spiffy. I like to say _that's like decorating a house before you've decided to live in it_. You're going to waste a ton of effort on fixing everything up and that's time that would be better spent accomplishing your goal. My advice is to write 10 or 15 posts, then worry about how things look. Get into the habit of jogging before you spend a bunch of time picking out the most perfect shoes. You get what I'm saying :)
 
 ## Whatever It Takes
 

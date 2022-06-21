@@ -17,13 +17,15 @@ updated: 2015-01-02T09:04:06.000Z
 
 First download and run the RVM installation script. Thankfully the authors have made this nice and easy for you. Just copy and paste the following into your command line:
 
-    curl -L get.rvm.io | bash -s stable
-    
+```bash
+curl -L get.rvm.io | bash -s stable
+```
 
 Next you’re going to want to make sure that RVM gets loaded into your shell sessions. The easiest way to do this is to open up your .bash_profile file located in your user's home directory (that's what the ~ stands for in your terminal) and add the following to the bottom:
 
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
-    
+```bash
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+```
 
 Then quit your terminal window and open it up again. You should be able to type: `rvm -v` to verify that RVM is loaded and ready for use. If instead it just returns the prompt then you've probably missed a step along the way. Check out the [RVM installation page](https://rvm.io/rvm/install/) and double check that you've done everything correctly.
 
@@ -31,11 +33,12 @@ Then quit your terminal window and open it up again. You should be able to type:
 
 To get us started lets look around inside the .rvm directory. Try the following:
 
-    cd ~/.rvm
-    ls
-    
+```bash
+cd ~/.rvm
+ls
+```
 
-When you list out the contents of rvm you’ll see several folders but the ones we’re most interested in are gems and rubies. The gems folder is going to hold all of our gems after we create a *gemset*. The rubies folder holds different versions of ruby for us to play with. The really cool thing about RVM is that it lets you swap versions of ruby and different gemsets around so you can test out new packages without blowing stuff up. Made a mistake and installed the wrong gems? Just blow away the gemset and start over, no need to track everything down and uninstall it. RVM also lets you ensure that you have the same gems running for your dev, test and production environments :)
+When you list out the contents of rvm you’ll see several folders but the ones we’re most interested in are gems and rubies. The gems folder is going to hold all of our gems after we create a _gemset_. The rubies folder holds different versions of ruby for us to play with. The really cool thing about RVM is that it lets you swap versions of ruby and different gemsets around so you can test out new packages without blowing stuff up. Made a mistake and installed the wrong gems? Just blow away the gemset and start over, no need to track everything down and uninstall it. RVM also lets you ensure that you have the same gems running for your dev, test and production environments :)
 
 Now that you have RVM installed, the next thing you’ll want to do is to install the latest version of Ruby. If you haven’t previously installed Ruby and you’re on OSX then typing `ruby -v` into the command line should produce something like this:
 
@@ -43,24 +46,27 @@ Now that you have RVM installed, the next thing you’ll want to do is to instal
 
 We’re going to leave the default version of Ruby installed on our machine, and instead install a new version using RVM. The current latest version of Ruby is 1.9.3, so try typing:
 
-    rvm install 1.9.3
-    
+```bash
+rvm install 1.9.3
+```
 
 It will take a little while to run but if all goes well we should have a brand new working copy of Ruby.
 
 Now try:
 
-    rvm use 1.9.3
-    ruby -v
-    # ruby 1.9.3p125 (2012-02-16 revision 34643) [x86_64-darwin11.2.0]
-    which ruby
-    # /Users/Rob/.rvm/rubies/ruby-1.9.3-p125/bin/ruby
-    
+```
+rvm use 1.9.3
+ruby -v
+# ruby 1.9.3p125 (2012-02-16 revision 34643) [x86_64-darwin11.2.0]
+which ruby
+# /Users/Rob/.rvm/rubies/ruby-1.9.3-p125/bin/ruby
+```
 
 We can see that not only are we running the latest version of ruby, but instead of being stashed in some random system folder somewhere, it’s being kept inside of a directory in RVM. To make sure that every time we open terminal we are using this new version of ruby we’ll simply say:
 
-    rvm use 1.9.3 --default
-    
+```
+rvm use 1.9.3 --default
+```
 
 That will tell RVM to use this version as its default Ruby any time we open a terminal session.
 
@@ -70,39 +76,45 @@ I have to admit that when I first started using Ruby I found the concept of gems
 
 Lets get started by typing:
 
-    rvm gemset create my-new-gemset
-    
+```bash
+rvm gemset create my-new-gemset
+```
 
 You should get a confirmation that a new gemset was created as well as a path to the new gemset. Let’s go take a look at that path.
 
-    # Make sure to use the path RVM provided you.
-    cd /Users/RobDodson/.rvm/gems/ruby-1.9.3-p125@my-new-gemset
-    ls
-    
+```bash
+# Make sure to use the path RVM provided you.
+cd /Users/RobDodson/.rvm/gems/ruby-1.9.3-p125@my-new-gemset
+ls
+```
 
 Right now the folder is empty because we haven’t told RVM to install any gems into this gemset. Let’s change that by first assigning our current instance of ruby to this set.
 
-    rvm 1.9.3@my-new-gemset --default
-    
+```bash
+rvm 1.9.3@my-new-gemset --default
+```
 
 The @ character tells RVM that we want to assign this gemset to our current ruby instance. The default flag is just there since I tend to forget to make my gemsets defaults and RVM will reset to whatever the prior default was the last time the flag was set. Let’s verify that things worked by typing:
 
-    rvm current
-    
+```bash
+rvm current
+```
 
 Which should output: `ruby-1.9.3-p125@my-new-gemset`. Similarly you could type:
 
-    rvm gemset list
-    
+```bash
+rvm gemset list
+```
 
 To see a list of all your gemsets with a hash rocket next to the one currently in use.
 
 ### How to Install Gems with RVM
 
-Ok, so lets install some gems then. We’ll start by installing the Nokogiri gem, just as a test. But before we do this let me give you a little warning. In a lot of documentation you'll see people installing gems with the `sudo` keyword at the beginning of the commmand. If you're not using RVM then doing it this way makes sense. However if you ARE using RVM then *you should never install a gem with `sudo`!* In short, RVM does command line wizardry and installing gems with `sudo` will place them outside of the .rvm directory. You'll think you've installed a gem properly but really it'll be somewhere in the system folder. To install a gem using RVM we simply leave off the `sudo` keyword. Let's try one by typing:
+Ok, so lets install some gems then. We’ll start by installing the Nokogiri gem, just as a test. But before we do this let me give you a little warning. In a lot of documentation you'll see people installing gems with the `sudo` keyword at the beginning of the commmand. If you're not using RVM then doing it this way makes sense. However if you ARE using RVM then _you should never install a gem with `sudo`!_ In short, RVM does command line wizardry and installing gems with `sudo` will place them outside of the .rvm directory. You'll think you've installed a gem properly but really it'll be somewhere in the system folder. To install a gem using RVM we simply leave off the `sudo` keyword. Let's try one by typing:
 
-    gem install nokogiri
-    
+```bash
+gem install nokogiri
+```
 
 After the installation has finished we should be able to see our new gem. If you’re still inside of the gems directory from earlier you can do a `cd gems`
 
@@ -114,19 +126,21 @@ Now if you type `ls` you should see your version of nokogiri. Let’s pause for 
 
 Lets make another gemset and this time install a new instance of Rails.
 
-    rvm create gemset my-new-rails-setup
-    rvm 1.9.3@my-new-rails-setup
-    gem install rails
-    
+```bash
+rvm create gemset my-new-rails-setup
+rvm 1.9.3@my-new-rails-setup
+gem install rails
+```
 
 Now lets go into the folder for that gemset. Again the path should look similar to this:
 
 `cd /Users/RobDodson/.rvm/gems/ruby-1.9.3-p125@my-new-rails-setup/gems`
 
-Type `ls` this time and you’ll see *WAY* more gems. Imagine that we wanted to test our application on a different version of Rails. Managing all those gems in one directory would be a huge pain but thankfully RVM is taking care of that for us. If we decide that this version of rails is not for us we can just delte the gemset with:
+Type `ls` this time and you’ll see _WAY_ more gems. Imagine that we wanted to test our application on a different version of Rails. Managing all those gems in one directory would be a huge pain but thankfully RVM is taking care of that for us. If we decide that this version of rails is not for us we can just delte the gemset with:
 
-    rvm gemset delete my-new-rails-setup
-    
+```bash
+rvm gemset delete my-new-rails-setup
+```
 
 And recreate it however we want :D
 

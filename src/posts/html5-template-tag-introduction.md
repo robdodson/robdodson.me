@@ -1,5 +1,5 @@
 ---
-title: "HTML5 Template Tag: Introduction"
+title: 'HTML5 Template Tag: Introduction'
 tags:
   - Web Components
   - Template
@@ -15,7 +15,7 @@ Let's start by making a template for an image placeholder.
 
 ```html
 <template id="kitten-template">
-  <img src="" alt="random kitten image">
+  <img src="" alt="random kitten image" />
   <h3 class="title"></h3>
 </template>
 
@@ -24,26 +24,13 @@ Let's start by making a template for an image placeholder.
 <script>
   const template = document.querySelector('#kitten-template');
   template.content.querySelector('img').src = 'https://placekitten.com/400/400';
-  template.content.querySelector('.title').textContent = 'Random image from placekitten.com';
-  document.querySelector('#kittens').appendChild(document.importNode(template.content, true));
+  template.content.querySelector('.title').textContent =
+    'Random image from placekitten.com';
+  document
+    .querySelector('#kittens')
+    .appendChild(document.importNode(template.content, true));
 </script>
 ```
-
-Which would render something like this:
-
-<template id="kitten-template">
-  <img src="" alt="random kitten image">
-  <h3 class="title"></h3>
-</template>
-
-<div id="kittens"></div>
-
-<script>
-  const template = document.querySelector('#kitten-template');
-  template.content.querySelector('img').src = 'https://placekitten.com/400/400';
-  template.content.querySelector('.title').textContent = 'Random image from placekitten.com'
-  document.querySelector('#kittens').appendChild(document.importNode(template.content, true));
-</script>
 
 If you've worked with client-side template libraries like underscore or handelbars the above should look familiar to you. Where underscore and handelbars take advantage of putting their templates inside of `<script>` tags and changing the `type` to something like `text/x-handlebars-template`, the `<template>` tag doesn't need to, because it's actually part of the HTML spec. There are pros and cons to this approach.
 

@@ -13,44 +13,47 @@ I'm a big fan of sites like [RubyQuiz](http://www.rubyquiz.com/) and [CodeEval](
 
 Here's my first attempt. Hopefully I can come back to this post in a few weeks and try it again in a bit more elegant fashion :)
 
-    File.open(ARGV[0]).each_line do |line|
-      
-      missing_letters = []
-      
-      unless line.chomp.empty?
-        line.chomp!
-        line.downcase!
-        ('a'..'z').each do |l|
-          if line.index(l).nil?
-            missing_letters << l
-          end
-        end
-      end
-      
-      if missing_letters.empty?
-        puts "NULL"
-      else
-        puts missing_letters.join('')
+```ruby
+File.open(ARGV[0]).each_line do |line|
+
+  missing_letters = []
+
+  unless line.chomp.empty?
+    line.chomp!
+    line.downcase!
+    ('a'..'z').each do |l|
+      if line.index(l).nil?
+        missing_letters << l
       end
     end
-    
+  end
+
+  if missing_letters.empty?
+    puts "NULL"
+  else
+    puts missing_letters.join('')
+  end
+end
+```
 
 And here's some input:
 
-    A quick brown fox jumps over the lazy dog
-    A slow yellow fox crawls under the proactive dog
-    AbC
-    
+```
+A quick brown fox jumps over the lazy dog
+A slow yellow fox crawls under the proactive dog
+AbC
+```
 
 To run it from the command line you'll need to pass in the path to the sentece file as an argument. Here's what it would look like if `pangrams.rb` and `sentences.txt` were in the same folder:
 
-    ruby pangrams.rb sentences.txt 
-    
-    # outputs...
-    NULL
-    bjkmqz
-    defghijklmnopqrstuvwxyz
-    
+```
+ruby pangrams.rb sentences.txt
+
+# outputs...
+NULL
+bjkmqz
+defghijklmnopqrstuvwxyz
+```
 
 Play around with this, throw some different sentence combinations at it to see what it spits out. Then try to write your own implementation. A good next step would be to modify the script so it can support empty lines in the text file.
 

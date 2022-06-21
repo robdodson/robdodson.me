@@ -19,38 +19,41 @@ Yesterday I put together a very simple Node/Socket.io application and showed how
 
 Just to get the ball rolling I'm going to write a little code in my `app.js` file right at the bottom to setup a very crude counter.
 
-    var countdown = 1000;
-    setInterval(function() {
-      countdown--;
-      io.sockets.emit('timer', { countdown: countdown });
-    }, 1000);
-    
-    io.sockets.on('connection', function (socket) {
-      socket.on('reset', function (data) {
-        countdown = 1000;
-        io.sockets.emit('timer', { countdown: countdown });
-      });
-    });
-    
+```js
+var countdown = 1000;
+setInterval(function () {
+  countdown--;
+  io.sockets.emit('timer', { countdown: countdown });
+}, 1000);
+
+io.sockets.on('connection', function (socket) {
+  socket.on('reset', function (data) {
+    countdown = 1000;
+    io.sockets.emit('timer', { countdown: countdown });
+  });
+});
+```
 
 Elsewhere in my client-side js I'm going to listen for the `timer` event and update my DOM elements.
 
-    var socket = io.connect(window.location.hostname);
-    
-    socket.on('timer', function (data) {
-        $('#counter').html(data.countdown);
-    });
-    
-    $('#reset').click(function() {
-        socket.emit('reset');
-    });
-    
+```js
+var socket = io.connect(window.location.hostname);
+
+socket.on('timer', function (data) {
+  $('#counter').html(data.countdown);
+});
+
+$('#reset').click(function () {
+  socket.emit('reset');
+});
+```
 
 You'll also need to update your index.ejs file so it reads like this:
 
-    <div id="counter"></div>
-    <button id="reset">Reset!</button>
-    
+```html
+<div id="counter"></div>
+<button id="reset">Reset!</button>
+```
 
 Every second we'll decrement our countdown variable and broadcast its new value. If a client sends us a `reset` event we'll restart the timer and immediately broadcast the update to anyone connected. I noticed that since I'm using `xhr-polling` it can sometimes take a while for the timer to show up in my browser so keep that in mind.
 

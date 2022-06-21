@@ -15,17 +15,21 @@ I have something which will hopefully be useful for some folks who are getting i
 
 Example usage looks something like this:
 
-    // After requiring the ease module and
-    // passing it into your View with the
-    // name 'Ease'
-    
-    this.$el.gfx({
-        translateY: '300px'
-    }, {
-        duration: 500,
-        easing: Ease.easeInExpo 
-    });
-    
+```js
+// After requiring the ease module and
+// passing it into your View with the
+// name 'Ease'
+
+this.$el.gfx(
+  {
+    translateY: '300px',
+  },
+  {
+    duration: 500,
+    easing: Ease.easeInExpo,
+  }
+);
+```
 
 Give it a shot and consider donating to Matthew's project or buying Robert Penner like a million beers!
 

@@ -9,28 +9,29 @@ date: 2012-06-21T08:27:00.000Z
 updated: 2014-12-31T00:08:09.000Z
 ---
 
-    require 'mechanize'
-    
-    # Create a new instance of Mechanize and grab our page
-    agent = Mechanize.new
-    page = agent.get('http://robdodson.me/blog/archives/')
-    
-    
-    
-    # Find all the links on the page that are contained within
-    # h1 tags.
-    post_links = page.links.find_all { |l| l.attributes.parent.name == 'h1' }
-    post_links.shift
-    
-    
-    
-    # Follow each link and print out its title
-    post_links.each do |link|
-        post = link.click
-        doc = post.parser
-        p doc.css('.entry-title').text
-    end
-    
+```ruby
+require 'mechanize'
+
+# Create a new instance of Mechanize and grab our page
+agent = Mechanize.new
+page = agent.get('http://robdodson.me/blog/archives/')
+
+
+
+# Find all the links on the page that are contained within
+# h1 tags.
+post_links = page.links.find_all { |l| l.attributes.parent.name == 'h1' }
+post_links.shift
+
+
+
+# Follow each link and print out its title
+post_links.each do |link|
+    post = link.click
+    doc = post.parser
+    p doc.css('.entry-title').text
+end
+```
 
 Having a horrible time getting anything to run tonight. The code from above is a continuation from yesterday's post except this time we're finding every link on the page, then following that link and spitting out its title. Using this formula you could build something entirely recursive which acts as a full blown spider.
 
