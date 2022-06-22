@@ -9,10 +9,8 @@
 {% set postListItems = collections.posts %}
 
 {% block content %}
-  <main id="main-content" tabindex="-1" class="prose md:prose-lg lg:prose-xl mx-auto py-6 px-4 sm:p-6 md:py-10 md:px-8">
-    <div>
-      {% include "partials/intro.njk" %}
-      {% include "partials/post-list.njk" %}
-    </div>
-  </main>
+  <div>
+    {% include "partials/intro.njk" %}
+    {% include "partials/post-list.njk" %}
+  </div>
 {% endblock %}

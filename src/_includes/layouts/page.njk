@@ -4,14 +4,12 @@
 {% set introHeading = title %}
 
 {% block content %}
-  <main id="main-content" tabindex="-1" class="prose md:prose-lg lg:prose-xl mx-auto py-6 px-4 sm:p-6 md:py-10 md:px-8">
-    <article>
-      {% include "partials/intro.njk" %}
-      <div>
-        {{ content | safe }}
-      </div>
-    </article>
-  </main>
+  <article>
+    {% include "partials/intro.njk" %}
+    <div>
+      {{ content | safe }}
+    </div>
+  </article>
 {% endblock %}
 
 {{ content | safe }}
