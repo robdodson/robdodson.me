@@ -13,7 +13,6 @@ const youtube = require('./src/shortcodes/youtube');
 // Import transforms
 const htmlMinTransform = require('./src/transforms/html-min-transform');
 const parseTransform = require('./src/transforms/parse-transform');
-const {purifyCss} = require('./src/transforms/purify-css');
 
 // Import data files
 const site = require('./src/_data/site.json');
@@ -33,7 +32,6 @@ module.exports = function(eleventyConfig) {
   // Transforms
   eleventyConfig.addTransform('parse', parseTransform);
   if (process.env.NODE_ENV === 'production') {
-    eleventyConfig.addTransform('purifyCss', purifyCss);
     eleventyConfig.addTransform('htmlmin', htmlMinTransform);
   }
 

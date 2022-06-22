@@ -1,7 +1,19 @@
 {
   "name": "robdodson",
-  "version": "1.0.0",
-  "description": "My personal blog, based on hylia",
+  "version": "2.0.0",
+  "description": "My personal blog at robdodson.me",
+  "scripts": {
+    "clean": "rimraf dist",
+    "dev": "cross-env NODE_ENV=development npm-run-all clean build:rollup --parallel --race dev:css dev:rollup dev:eleventy",
+    "dev:css": "npx tailwindcss -i ./src/styles/main.css -o ./dist/styles/main.css --watch",
+    "dev:eleventy": "eleventy --serve --quiet",
+    "dev:rollup": "chokidar \"src/**/*.js\" -c \"npx rollup -c\"",
+    "build": "cross-env NODE_ENV=production run-s clean build:rollup build:css build:eleventy",
+    "build:css": "npx tailwindcss -i ./src/styles/main.css -o ./dist/styles/main.css",
+    "build:eleventy": "eleventy --quiet",
+    "build:rollup": "rollup -c",
+    "start": "ws --directory dist --compress --port 8080"
+  },
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-plugin-rss": "^1.0.7",
@@ -10,11 +22,8 @@
     "@tbranyen/jsdom": "^13.0.0",
     "html-minifier": "^4.0.0",
     "image-size": "^0.8.3",
-    "json-to-scss": "^1.5.0",
     "rimraf": "^3.0.2",
-    "semver": "^6.3.0",
-    "slugify": "^1.4.0",
-    "stalfos": "github:hankchizljaw/stalfos#c8971d22726326cfc04089b2da4d51eeb1ebb0eb"
+    "slugify": "^1.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
@@ -22,29 +31,11 @@
     "@tailwindcss/typography": "^0.5.2",
     "chokidar-cli": "^2.1.0",
     "cross-env": "^5.2.1",
-    "csso": "^4.2.0",
-    "gulp": "^4.0.2",
     "local-web-server": "^4.2.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
-    "purgecss": "^4.0.2",
     "rollup": "^2.40.0",
     "rollup-plugin-terser": "^7.0.2",
-    "sass": "^1.32.8",
     "tailwindcss": "^3.1.3"
-  },
-  "scripts": {
-    "clean": "rimraf dist",
-    "dev": "cross-env NODE_ENV=development npm-run-all clean rollup --parallel --race css:dev rollup:watch eleventy:serve",
-    "eleventy:serve": "eleventy --serve --quiet",
-    "eleventy": "eleventy --quiet",
-    "gulp:watch": "gulp watch",
-    "gulp": "gulp",
-    "production": "cross-env NODE_ENV=production npm-run-all clean rollup sass:tokens gulp eleventy",
-    "rollup": "rollup -c",
-    "rollup:watch": "chokidar \"src/**/*.js\" -c \"npx rollup -c\"",
-    "sass:tokens": "npx json-to-scss src/_data/tokens.json src/scss/_tokens.scss",
-    "serve": "ws --directory dist --compress --port 8080",
-    "css:dev": "npx tailwindcss -i ./src/styles/main.css -o ./dist/styles/main.css --watch"
   }
 }

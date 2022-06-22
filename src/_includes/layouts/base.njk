@@ -5,14 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml" />
 
-  {% if process.env.NODE_ENV === 'production' %}
-    {# CSS will be injected by purify-css transform. #}
-    <!-- __PURGECSS_INJECT -->
-  {% else %}
-    {# Using hashForProd here will just append a random string to cache bust #}
-    {# the CSS during dev. #}
-    <link rel="stylesheet" href="{{ helpers.hashForProd('/styles/main.css') }}">
-  {% endif %}
+  <link rel="stylesheet" href="{{ helpers.hashForProd('/styles/main.css') }}">
 
   <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
   {% include "partials/meta.njk" %}
