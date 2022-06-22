@@ -4,10 +4,10 @@
 {% set introHeading = title %}
 
 {% block content %}
-  <main id="main-content" tabindex="-1">
-    <article class="post h-entry">
-      {% include "partials/components/intro.njk" %}
-      <div class="post__body inner-wrapper leading-loose pad-top-900 pad-bottom-900 text-500 sf-flow e-content">
+  <main id="main-content" tabindex="-1" class="prose md:prose-lg lg:prose-xl mx-auto py-6 px-4 sm:p-6 md:py-10 md:px-8">
+    <article>
+      {% include "partials/intro.njk" %}
+      <div>
         {{ content | safe }}
       </div>
     </article>

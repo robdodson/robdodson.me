@@ -1,0 +1,19 @@
+{% if postListItems.length %}
+  <section>
+    <div>
+      <h2>{{ postListHeading }}</h2>
+      <ol class="list-none p-0 md:p-0 lg:p-0 space-y-8">
+        {% for item in postListItems %}
+          {% if item.date.getTime() <= global.now %}
+            <li class="p-0 md:p-0 lg:p-0">
+              <a class="text-3xl" href="{{ item.url }}" rel="bookmark">{{ item.data.title }}</a>
+              <div class="text-base">
+                <time datetime="{{ item.date | w3DateFilter }}">{{ item.date | dateFilter }}</time>
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+{% endif %}

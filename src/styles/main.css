@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.heading-permalink {
+  font-size: 0.6em;
+  opacity: 0.4;
+  position: absolute;
+  transform: translate(calc(-100% + -0.3em), 50%);
+}
+
+figure {
+  width: 100vw;
+  max-width: 70ch;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+
+figure > img {
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+  position: relative;
+  z-index: 1;
+}
+
+figcaption {
+  font-size: 0.8em;
+  font-style: italic;
+  margin: 0.5rem auto 0;
+  max-width: 69ch;
+  padding-left: 1rem;
+}

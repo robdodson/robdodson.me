@@ -11,11 +11,11 @@
   {% else %}
     {# Using hashForProd here will just append a random string to cache bust #}
     {# the CSS during dev. #}
-    <link rel="stylesheet" href="{{ helpers.hashForProd('/css/main.css') }}">
+    <link rel="stylesheet" href="{{ helpers.hashForProd('/styles/main.css') }}">
   {% endif %}
 
   <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
-  {% include "partials/global/meta.njk" %}
+  {% include "partials/meta.njk" %}
 
   {# Add a facility for pages to declare an array of script paths. #}
   {# If no scripts are declared we will use the default page script. #}
@@ -29,15 +29,15 @@
   {% block head %}
   {% endblock %}
 
-  {% include 'partials/global/dark-mode.njk' %}
+  {% include 'partials/dark-mode.njk' %}
 </head>
 <body>
-  {% include "partials/global/site-head.njk" %}
+  {% include "partials/site-head.njk" %}
   {% block content %}
   {% endblock content %}
-  {% include "partials/global/site-foot.njk" %}
+  {% include "partials/site-foot.njk" %}
   {% block foot %}
   {% endblock %}
-  {% include 'partials/global/analytics.njk' %}
+  {% include 'partials/analytics.njk' %}
 </body>
 </html>

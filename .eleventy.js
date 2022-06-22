@@ -51,7 +51,8 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addCollection('postFeed', collection => {
-    return collection.getFilteredByGlob('./src/posts/*.md')
+    return collection
+      .getFilteredByGlob('./src/posts/*.md')
       .reverse()
       .slice(0, site.maxPostsPerPage);
   });
@@ -81,6 +82,6 @@ module.exports = function(eleventyConfig) {
       output: 'dist'
     },
     passthroughFileCopy: true,
-    markdownTemplateEngine: 'njk',
+    markdownTemplateEngine: 'njk'
   };
 };

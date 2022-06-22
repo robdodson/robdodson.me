@@ -16,9 +16,14 @@
 {% endif %}
 
 {% block content %}
-  <main id="main-content" tabindex="-1">
-    {% include "partials/components/intro.njk" %}
-    {% include "partials/components/post-list.njk" %}
-    {% include "partials/components/pagination.njk" %}
+  <main class="prose md:prose-lg lg:prose-xl mx-auto py-6 px-4 sm:p-6 md:py-10 md:px-8">
+    <article>
+      <h1>Hi there! 👋</h1>
+      <p>
+        I'm Rob Dodson, a web developer passionate about climate change.
+      </p>
+      {% include "partials/post-list.njk" %}
+      {% include "partials/pagination.njk" %}
+    </article>
   </main>
 {% endblock %}
