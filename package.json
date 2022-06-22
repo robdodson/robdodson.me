@@ -9,7 +9,7 @@
     "dev:eleventy": "eleventy --serve --quiet",
     "dev:rollup": "chokidar \"src/**/*.js\" -c \"npx rollup -c\"",
     "build": "cross-env NODE_ENV=production run-s clean build:rollup build:css build:eleventy",
-    "build:css": "npx tailwindcss -i ./src/styles/main.css -o ./dist/styles/main.css",
+    "build:css": "npx tailwindcss -i ./src/styles/main.css -o ./dist/styles/main.css --minify",
     "build:eleventy": "eleventy --quiet",
     "build:rollup": "rollup -c",
     "start": "ws --directory dist --compress --port 8080"

@@ -6,6 +6,9 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml" />
 
   <link rel="stylesheet" href="{{ helpers.hashForProd('/styles/main.css') }}">
+  {% for item in pageStyles %}
+    <link rel="stylesheet" href="{{ helpers.hashForProd(item) }}">
+  {% endfor %}
 
   <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
   {% include "partials/meta.njk" %}
