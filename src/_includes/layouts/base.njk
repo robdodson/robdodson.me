@@ -27,11 +27,11 @@
 
   {% include 'partials/dark-mode.njk' %}
 </head>
-<body class="bg-white">
-  {% include "partials/site-head.njk" %}
+<body class="bg-white dark:bg-black">
+  {% include "partials/header.njk" %}
   {% block content %}
   {% endblock content %}
-  {% include "partials/site-foot.njk" %}
+  {% include "partials/footer.njk" %}
   {% block foot %}
   {% endblock %}
   {% include 'partials/analytics.njk' %}

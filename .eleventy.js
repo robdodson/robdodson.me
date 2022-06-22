@@ -36,7 +36,6 @@ module.exports = function(eleventyConfig) {
   }
 
   // Passthrough copy
-  eleventyConfig.addPassthroughCopy('src/fonts');
   eleventyConfig.addPassthroughCopy('src/styles/dracula.css');
   eleventyConfig.addPassthroughCopy('src/images');
   eleventyConfig.addPassthroughCopy('src/robots.txt');

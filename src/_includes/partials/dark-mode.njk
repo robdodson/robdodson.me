@@ -1,8 +1,4 @@
 <script>
-  let currentSetting = localStorage.getItem('user-color-scheme');
-  {# Default to light mode. #}
-  if (!currentSetting) {
-    localStorage.setItem('user-color-scheme', 'light');
-  }
+  let currentSetting = localStorage.getItem('user-color-scheme') ?? 'light';
   document.documentElement.setAttribute('data-user-color-scheme', currentSetting);
 </script>
