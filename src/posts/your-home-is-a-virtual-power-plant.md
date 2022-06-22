@@ -14,7 +14,7 @@ tags:
 
 On September 9th 2020, I woke up to find that the sky outside of my window looked like this:
 
-![The San Francisco skyline. The entire city is dark orange, almost as if it were a photo taken on Mars.](/images/orange-sf.jpg)
+![The San Francisco skyline. The entire city is dark orange, almost as if it were a photo taken on Mars.](/images/orange-sf.jpg 'San Francisco, September 2020')
 
 Smoke from nearby wildfires was trapped over the Bay Area, making the region look like the surface of Mars. It's hard to describe the feeling of walking around my neighborhood with it looking like the set of Blade Runner, but the one thing I can say is that it made the immediacy of climate change paramount.
 
@@ -87,7 +87,7 @@ There’s no requirement to connect devices to OhmConnect—you can walk around 
 
 During the event I'm graded on how much energy I save compared to my previous 10-day average. For example, on March 16th from 7-8pm, I reduced my consumption down to 0.19kWh from an average of 0.43kWh.
 
-![My OhmConnect dashboard showing an bar area chart comparing my typical 10-day usage versus my usage during the OhmHour. The chart shows a 57% reduction in power.](/images/ohmhour.jpg)
+![My OhmConnect dashboard showing an bar area chart comparing my typical 10-day usage versus my usage during the OhmHour. The chart shows a 57% reduction in power.](/images/ohmhour.jpg 'My OhmConnect dashboard')
 
 I didn't have to radically alter my life to achieve these savings. During this specific event, I was watching TV on the couch with my wife. But prior to the OhmHour starting I turned off the unused lights in my house and put my dishwasher on a timer so it would start later in the evening. My refrigerator automatically turned off and my thermostat switched to eco mode.
 
