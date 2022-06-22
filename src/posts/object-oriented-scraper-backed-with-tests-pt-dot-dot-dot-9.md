@@ -6,6 +6,7 @@ tags:
   - RSpec
 date: 2012-06-18T05:43:00.000Z
 updated: 2015-01-02T08:54:25.000Z
+old: true
 ---
 
 I just spent a few hours talking to my friend [Derek](http://derekbradley.com/)([@derekebradley](https://twitter.com/#!/derekebradley)) about Ruby and it occured to me that I never finished this scraper project. We got awfully far with it but then it kind of died on the vine. [Thankfully,](http://robdodson.me/blog/2012/05/06/object-oriented-scraper-backed-with-tests/)[I](http://robdodson.me/blog/2012/05/07/object-oriented-scraper-backed-with-tests-pt-2/)[wrote](http://robdodson.me/blog/2012/05/08/object-oriented-scraper-backed-with-tests-pt-3/)[it](http://robdodson.me/blog/2012/05/11/object-oriented-scraper-backed-with-tests-pt-4/)[all](http://robdodson.me/blog/2012/05/12/object-oriented-scraper-backed-with-tests-pt-5/)[down.](http://robdodson.me/blog/2012/05/13/object-oriented-scraper-backed-with-tests-pt-6/)[down.](http://robdodson.me/blog/2012/05/15/object-oriented-scraper-backed-with-tests-pt-7/)[down.](http://robdodson.me/blog/2012/05/16/object-oriented-scraper-backed-with-tests-pt-8/)

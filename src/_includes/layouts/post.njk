@@ -14,6 +14,11 @@
         <span>— {{ helpers.getReadingTime(content) }} minute read</span>
       </div>
     </header>
+
+    {% if old %}
+      {% include 'partials/old-banner.njk' %}
+    {% endif %}
+
     <div class="mt-10">
       {{ content | safe }}
     </div>

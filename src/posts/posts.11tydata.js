@@ -7,7 +7,7 @@ module.exports = {
      *
      * For dev builds we will always render the page.
      */
-     permalink: data => {
+    permalink: data => {
       if (process.env.NODE_ENV === 'production' && data.draft) {
         return false;
       }
@@ -19,7 +19,11 @@ module.exports = {
         return true;
       }
 
+      if (data.old) {
+        return true;
+      }
+
       return false;
     }
   }
-}
+};
