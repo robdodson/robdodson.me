@@ -2,6 +2,7 @@
 title: How to use Polymer with Webpack
 date: 2017-07-17T18:28:54.000Z
 updated: 2017-07-17T18:30:02.000Z
+old: true
 ---
 
 ## Introduction

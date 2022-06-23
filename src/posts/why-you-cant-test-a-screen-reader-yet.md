@@ -60,7 +60,7 @@ Rather than test what a screen reader announces, a better place to start might b
 If you [follow me on twitter](https://twitter.com/rob_dodson), you've probably heard me mention a new standard we're working on called the [Accessibility Object Model](https://github.com/wicg/aom) or "AOM", for short. There are a number of features AOM seeks to achieve, but one that I'm most excited about is the ability to compute the accessibility information for a given node.
 
 ```js
-const { role } = await window.getComputedAccessibleNode(element);
+const {role} = await window.getComputedAccessibleNode(element);
 assert(role, 'button');
 ```
 

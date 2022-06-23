@@ -2,6 +2,7 @@
 title: Hello, 2018!
 date: 2018-01-01T20:29:49.000Z
 updated: 2018-01-01T20:29:49.000Z
+old: false
 ---
 
 ## Goodbye, 2017
@@ -20,7 +21,7 @@ I went to Australia, Peru, Denmark, Japan, and Rwanda. Each of these trips was a
 
 ### Work
 
-On the work front, I took on more of an ownership role for both Web Components and Accessibility. I co-presented at CSUN and worked the Google booth—which was super fun! I think the most rewarding thing this past year has been all the folks who meet me for the first time and say "I did [your accessibility course](bit.ly/web-a11y) on Udacity!" It took Alice and I about a year to put that course together. It was *so.**much.**work.* We would send each other messages like "oh god I still have 30 slides to make [cries face down on the floor]." But we toughed it out, and even though there are bits I'd like to improve upon, I'm pretty happy with the result.
+On the work front, I took on more of an ownership role for both Web Components and Accessibility. I co-presented at CSUN and worked the Google booth—which was super fun! I think the most rewarding thing this past year has been all the folks who meet me for the first time and say "I did [your accessibility course](bit.ly/web-a11y) on Udacity!" It took Alice and I about a year to put that course together. It was _so.**much.**work._ We would send each other messages like "oh god I still have 30 slides to make [cries face down on the floor]." But we toughed it out, and even though there are bits I'd like to improve upon, I'm pretty happy with the result.
 
 Speaking of [Alice](https://twitter.com/sundress), I wanted to thank her for helping me so much in 2017. Not only did she introduce me to the topic of accessibility, and basically teach me everything I know, but she also:
 
@@ -43,7 +44,7 @@ In December my wife accepted a job at Highland Hospital in Oakland, so soon we'l
 
 ### Work
 
-To start the year I'll be doing a software engineering rotation with the Chrome Accessibility team. This means I'll spend all of Q1 acting as a member of their team instead of working in developer relations. I've been picking up as much C++ as I can, and trying to wrap my head around Chromium. I'm a bit nervous because I've never worked in C++ and I really want to do a good job. I'm excited because I'll get to work directly on a few things I've been evangelizing *and* when I switch back to developer relations, later in the year, I'll have a much deeper understanding of accessibility. I'm thrilled to talk about all the things I don't even know about yet!
+To start the year I'll be doing a software engineering rotation with the Chrome Accessibility team. This means I'll spend all of Q1 acting as a member of their team instead of working in developer relations. I've been picking up as much C++ as I can, and trying to wrap my head around Chromium. I'm a bit nervous because I've never worked in C++ and I really want to do a good job. I'm excited because I'll get to work directly on a few things I've been evangelizing _and_ when I switch back to developer relations, later in the year, I'll have a much deeper understanding of accessibility. I'm thrilled to talk about all the things I don't even know about yet!
 
 ### Politics
 
@@ -65,7 +66,7 @@ It's actually really hard to find a rental in the Bay Area that will allow dogs.
 
 ### Create an Instagram account
 
-OK I realize this isn't that exciting and that I'm the last person to not have an Instagram account. Currently my phone has *a ton* of travel photos but I never share them. It seems kind of silly to take all these photos and never really look at them or share them with anyone. In 2018 I plan to change that. Get ready to be spammed.
+OK I realize this isn't that exciting and that I'm the last person to not have an Instagram account. Currently my phone has _a ton_ of travel photos but I never share them. It seems kind of silly to take all these photos and never really look at them or share them with anyone. In 2018 I plan to change that. Get ready to be spammed.
 
 ### Dress better.
 
@@ -81,7 +82,7 @@ I started bouldering a few years ago, and over the past year I've managed to get
 
 ### Write a will and document my medical directives.
 
-OK, so this is one of those very unfun adult things that nobody wants to do but both are *incredibly* important. Because my wife works inpatient medicine (meaning, inside the hospital) I've heard countless stories of families being in a situation where they have to decide whether or not to intubate someone. Thinking about this stuff is scary, but it would break my heart for my wife or family to be in a situation where they have to make a decision about me and they don't know what my wishes are. To spare my loved ones any undue anguish, I want to make sure I have all this stuff sorted out, just in case.
+OK, so this is one of those very unfun adult things that nobody wants to do but both are _incredibly_ important. Because my wife works inpatient medicine (meaning, inside the hospital) I've heard countless stories of families being in a situation where they have to decide whether or not to intubate someone. Thinking about this stuff is scary, but it would break my heart for my wife or family to be in a situation where they have to make a decision about me and they don't know what my wishes are. To spare my loved ones any undue anguish, I want to make sure I have all this stuff sorted out, just in case.
 
 ### Volunteer at organizations to promote inclusivity in tech.
 
@@ -97,4 +98,4 @@ I've always secretly dreamed of being an indie game maker. When I read [Dave Rup
 
 ## ONWARD!
 
-This post ended up being *way longer* than I originally expected. I guess that's what happens when you drink too much coffee and have the house all to yourself. I'm really looking forward to this year and hope you are too. Now it's time to go work on that half marathon. Happy new year! 👟
+This post ended up being _way longer_ than I originally expected. I guess that's what happens when you drink too much coffee and have the house all to yourself. I'm really looking forward to this year and hope you are too. Now it's time to go work on that half marathon. Happy new year! 👟

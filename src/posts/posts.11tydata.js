@@ -27,12 +27,20 @@ module.exports = {
     },
     old: data => {
       // The number of years to wait before marking a post as old.
-      const oldYears = 3;
+      const oldYears = 4;
 
-      if (data.hideOldBanner) {
+      // Allows the user to set old to either true or false.
+      // nb. Because this is a Proxy we can't just check if `old' in data
+      // because it will always be true, and we can't check typeof data.old
+      // because it throws a Reference error.
+      if (data.old === false) {
         return false;
+      } else if (data.old === true) {
+        return true;
       }
 
+      // If the post is over a certain number of years old,
+      // automatically mark it as old.
       if (new Date().getFullYear() - new Date(data.date).getFullYear() > oldYears) {
         return true;
       }
