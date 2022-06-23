@@ -5,9 +5,7 @@ tags:
   - Chain
 date: 2012-06-14T15:17:00.000Z
 updated: 2014-12-30T23:54:23.000Z
----
-
-So [yesterday we saw how to setup and run ruby scripts as executables from the command line.](http://robdodson.me/blog/2012/06/13/writing-a-command-line-tool-in-ruby/) While this is pretty rad, it definitely has its limitations. For one, it's not very portable and secondly it just isn't very flexible or powerful. If we stuck with this approach we'd need to write our own semantic versioning, we'd have to setup a way to make sure that all of our required 3rd party gems get installed properly... really it'll just be a big mess if we try to hand-roll it.
+---So [yesterday we saw how to setup and run ruby scripts as executables from the command line.](http://robdodson.me/blog/2012/06/13/writing-a-command-line-tool-in-ruby/) While this is pretty rad, it definitely has its limitations. For one, it's not very portable and secondly it just isn't very flexible or powerful. If we stuck with this approach we'd need to write our own semantic versioning, we'd have to setup a way to make sure that all of our required 3rd party gems get installed properly... really it'll just be a big mess if we try to hand-roll it.
 
 Instead we're going to turn to Bundler to help us manage our files and turn our command line tool into a ruby gem. I'm going to start fresh and create a totally new tool, called `zerp`. I don't know what `zerp`'s purpose will be in the long run, but today we're going to make it print some text to verify everything is working.
 
@@ -129,10 +127,3 @@ Alright we're done! Let's test this thing!
 ## Cross your fingers
 
 To install the Gem we'll use Rake's `install` task. Go ahead and run `rake install` from the root of the project. It should create a `pkg` directory and notify us via the terminal that our gem was installed succesfully. Moment of truth time...type `zerp` into the terminal. If you see `This is zerp. Coming in loud and clear. Over.` then you're good to go. After you've committed everything to Github and setup a RubyGems account you should be able to run `rake release` to send your gem out into the world where it can wow the jaded masses and delight with all its wonders. Good Luck! - Rob
-
-You should follow me on Twitter [here.](http://twitter.com/rob_dodson)
-
-- Mood: Awake, Antsy
-- Sleep: 6
-- Hunger: 2
-- Coffee: 0

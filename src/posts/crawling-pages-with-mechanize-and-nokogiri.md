@@ -7,6 +7,7 @@ tags:
   - Mechanize
 date: 2012-06-20T07:09:00.000Z
 updated: 2014-12-31T00:07:12.000Z
+exclude: true
 ---
 
 Short post tonight because I spent so much time figuring out the code. It's late and my brain is firing on about 1 cylinder so it took longer than I expected to get everything working.

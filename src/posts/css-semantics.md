@@ -7,9 +7,7 @@ tags:
   - SMACSS
 date: 2012-06-09T14:19:00.000Z
 updated: 2015-01-02T08:55:53.000Z
----
-
-CSS is, for me, one of the most challenging and nerve wracking aspects of my job. With most programming languages there are frameworks and guides and heuristics that all make up a suite of best practices. CSS doesn't _really_ have anything like this and as a result it's kind of a mish-mash of good rules to follow, definite don'ts, and lots and lots of grey area. Since I'm starting a new CSS heavy project, and because I want to further my own understanding in this realm, I'm going to spend a few posts exploring the topic of what makes good, maintainable CSS. Along the way I'm also going to point out a few frameworks that I've been looking at, in particular [OOCSS](http://oocss.org/) and [SMACSS.](http://smacss.com/) But lets kick things off with a discussion of what it means to write good, semantic CSS selectors and we'll follow up with frameworks in our next post.
+---CSS is, for me, one of the most challenging and nerve wracking aspects of my job. With most programming languages there are frameworks and guides and heuristics that all make up a suite of best practices. CSS doesn't _really_ have anything like this and as a result it's kind of a mish-mash of good rules to follow, definite don'ts, and lots and lots of grey area. Since I'm starting a new CSS heavy project, and because I want to further my own understanding in this realm, I'm going to spend a few posts exploring the topic of what makes good, maintainable CSS. Along the way I'm also going to point out a few frameworks that I've been looking at, in particular [OOCSS](http://oocss.org/) and [SMACSS.](http://smacss.com/) But lets kick things off with a discussion of what it means to write good, semantic CSS selectors and we'll follow up with frameworks in our next post.
 
 ## Define Semantic
 
@@ -39,7 +37,7 @@ On the far end of the spectrum, `container` is about as generic as you can get a
 
 Finally we have `newsstand` which is highly semantic and probably my favorite of the bunch. `newsstand` describes what our element _is_ but it doesn't bother delving into how our element works. As a result `newsstand` can work however we want, it can be list like, or grid like, tabular, etc and it won't matter. You might argue that this would be a good place to use an ID instead of a class but that decision should be weighed carefully. You have to make sure that 3 months or a year from now there isn't the potential of having two newsstands on the same page.
 
-### If we only worked on contived examples...
+### If we only worked on contrived examples...
 
 Of course there's a litany of cases where highly semantic naming just doesn't quite cut it. Often times we're given a layout which has a few primary areas (columns, headers, footer) and the designer is putting all sorts of content into those divisions. On one page it could be news articles, then a list of search results, then a directory of users, and so on. I would argue that for major layout elements it's ok to use less semantic names, and in fact this is probably a good idea. So things like `column_1`, `flex-box`, `constrained-container`, are all specifying, at varying degrees, what the element is doing. They are less semantically rich than, say, `rolodex` or `id-badge`, but that's because their very intention is to be generic.
 
@@ -78,10 +76,3 @@ As a bit of a homework assignment I would recommend looking into a few of the re
 [Github CSS Style Guide](https://github.com/styleguide/css)
 
 [CSS Wizardry: CSS Guidelines](https://github.com/csswizardry/CSS-Guidelines/blob/master/CSS%20Guidelines.md)
-
-You should follow me on Twitter [here.](http://twitter.com/rob_dodson)
-
-- Mood: Awake, Annoyed
-- Sleep: 7
-- Hunger: 0
-- Coffee: 0

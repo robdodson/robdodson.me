@@ -7,6 +7,7 @@ tags:
   - jQuery
 date: 2012-05-27T07:07:00.000Z
 updated: 2014-12-30T07:54:45.000Z
+exclude: true
 ---
 
 This is going to be a bit of lightning post because it's rather late and I need to get to bed. I spent most of the day either eating dim sum or hanging out at the [SF Creative Coders BBQ](http://www.meetup.com/San-Francisco-Creative-Coders/) so I've neglected my blogging duties a bit.
@@ -22,11 +23,11 @@ Example usage looks something like this:
 
 this.$el.gfx(
   {
-    translateY: '300px',
+    translateY: '300px'
   },
   {
     duration: 500,
-    easing: Ease.easeInExpo,
+    easing: Ease.easeInExpo
   }
 );
 ```

@@ -2,6 +2,7 @@
 title: Yeoman Polymer and Gulp
 date: 2015-02-13T20:28:30.000Z
 updated: 2015-02-13T20:28:30.000Z
+exclude: true
 ---
 
 Finally managed to get [v0.7 of the Polymer Yeoman generator](https://github.com/yeoman/generator-polymer/releases/tag/v0.7.0) out. This release includes Gulp support, BrowserSync, and a sweet little Material Design scaffold to get people started.

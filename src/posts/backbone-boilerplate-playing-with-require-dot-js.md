@@ -1,5 +1,5 @@
 ---
-title: 'Backbone Boilerplate: Playing with Require.js'
+title: 'Backbone Boilerplate: Playing with RequireJS'
 tags:
   - Chain
   - Backbone
@@ -68,7 +68,7 @@ The `Person` module just needs to implement a define function which takes an obj
 ```js
 define({
   name: 'Rob Dodson',
-  city: 'San Francisco',
+  city: 'San Francisco'
 });
 ```
 
@@ -95,7 +95,7 @@ And in our updated index.html we're going to require that module.
     <!-- Application source -->
     <script src="/assets/js/libs/require.js"></script>
     <script>
-      require(['app/person'], function (person) {
+      require(['app/person'], function(person) {
         console.log(person.name);
         console.log(person.city);
       });
@@ -117,7 +117,7 @@ Ok let's write a module that's a bit more realistic. We'll use a function to ret
 ```js
 'use strict';
 
-define(function () {
+define(function() {
   var estimated_age = 99 + 1;
   var spookySaying = 'I vant to suck your blooood!';
 
@@ -125,9 +125,9 @@ define(function () {
     name: 'Dracula',
     home: 'Florida',
     age: estimated_age,
-    saySomethingSpooky: function () {
+    saySomethingSpooky: function() {
       console.log(spookySaying);
-    },
+    }
   };
 });
 ```
@@ -139,20 +139,20 @@ Next up is a module with dependencies. We'll make the monster depend on his coff
 ```js
 'use strict';
 
-define(function () {
+define(function() {
   var color = 'Blackest black';
 
   return {
     color: color,
-    open: function () {
+    open: function() {
       console.log('*creeeeeek*');
-    },
+    }
   };
 });
 
 ('use strict');
 
-define(['./coffin'], function (coffin) {
+define(['./coffin'], function(coffin) {
   var estimated_age = 99 + 1;
   var spookySaying = 'I vant to suck your blooood!';
 
@@ -160,13 +160,13 @@ define(['./coffin'], function (coffin) {
     name: 'Dracula',
     home: 'Florida',
     age: estimated_age,
-    saySomethingSpooky: function () {
+    saySomethingSpooky: function() {
       console.log(spookySaying);
     },
-    goToSleep: function () {
+    goToSleep: function() {
       console.log('Time for bed!');
       coffin.open();
-    },
+    }
   };
 });
 ```
@@ -174,7 +174,7 @@ define(['./coffin'], function (coffin) {
 ```html
 <script data-main="" src="/assets/js/libs/require.js"></script>
 <script>
-  require(['app/monster'], function (monster) {
+  require(['app/monster'], function(monster) {
     monster.saySomethingSpooky();
     monster.goToSleep();
   });
@@ -188,8 +188,8 @@ We aren't limited to objects though, we can also return functions (which are obj
 ```js
 'use strict';
 
-define(function () {
-  return function (name) {
+define(function() {
+  return function(name) {
     return 'Why hello, ' + name;
   };
 });
@@ -198,7 +198,7 @@ define(function () {
 then in our index we'll just use the `greet` function as if it were globally available.
 
 ```js
-require(['app/greet'], function (greet) {
+require(['app/greet'], function(greet) {
   console.log(greet('Rob'));
 });
 ```

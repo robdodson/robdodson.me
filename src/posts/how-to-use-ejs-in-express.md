@@ -7,9 +7,7 @@ tags:
   - EJS
 date: 2012-05-31T18:34:00.000Z
 updated: 2016-05-04T02:54:30.000Z
----
-
-_Update: If you're starting a fresh project with Express it's much easier to just run `express --ejs`. That will scaffold out an Express app for you with EJS ready to go!_
+---_Update: If you're starting a fresh project with Express it's much easier to just run `express --ejs`. That will scaffold out an Express app for you with EJS ready to go!_
 
 Here's a quick explanation of how to use EJS instead of Jade in your Express projects. This is super easy and covered well in the documentation but I wanted to put it here since that's what I worked on today :)
 
@@ -83,8 +81,8 @@ By default Express' boilerplate will look for a file named layout in our views d
 This is all really straightforward with the exception of the `<%- body %>` line which basically works like a `yield` in erb. Whatever template we pass to Express' `response.render()` function will fill this dependency, here's an example:
 
 ```js
-app.get('/', function (req, res) {
-  res.render('index', { title: 'The index page!' });
+app.get('/', function(req, res) {
+  res.render('index', {title: 'The index page!'});
 });
 ```
 

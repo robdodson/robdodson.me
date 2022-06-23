@@ -6,6 +6,7 @@ tags:
   - Polymer
 date: 2013-11-12T23:14:00.000Z
 updated: 2015-01-02T05:26:38.000Z
+exclude: true
 ---
 
 I ran into a little issue this afternoon working with templates in Polymer and I wanted to quickly jot down my thoughts in case others bump up against this.
@@ -25,7 +26,7 @@ Because every Polymer element starts off with a template inside of it, I figured
   <template repeat="&#123;{ letter in letters }}"> &#123;{ letter }} </template>
   <script>
     Polymer('polymer-letters', {
-      letters: ['a', 'b', 'c'],
+      letters: ['a', 'b', 'c']
     });
   </script>
 </polymer-element>
@@ -48,7 +49,7 @@ Our updated example would look like this:
   </template>
   <script>
     Polymer('polymer-letters', {
-      letters: ['a', 'b', 'c'],
+      letters: ['a', 'b', 'c']
     });
   </script>
 </polymer-element>

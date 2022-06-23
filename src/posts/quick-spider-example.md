@@ -7,6 +7,7 @@ tags:
   - Mechanize
 date: 2012-06-21T08:27:00.000Z
 updated: 2014-12-31T00:08:09.000Z
+exclude: true
 ---
 
 ```ruby

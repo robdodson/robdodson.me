@@ -15,11 +15,25 @@ module.exports = {
       return data.permalink;
     },
     eleventyExcludeFromCollections: data => {
+      if (data.eleventyExcludeFromCollections || data.exclude) {
+        return true;
+      }
+
       if (process.env.NODE_ENV === 'production' && data.draft) {
         return true;
       }
 
-      if (data.old) {
+      return false;
+    },
+    old: data => {
+      // The number of years to wait before marking a post as old.
+      const oldYears = 3;
+
+      if (data.hideOldBanner) {
+        return false;
+      }
+
+      if (new Date().getFullYear() - new Date(data.date).getFullYear() > oldYears) {
         return true;
       }
 

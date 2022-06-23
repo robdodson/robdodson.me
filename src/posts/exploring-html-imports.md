@@ -6,22 +6,20 @@ tags:
   - Custom Elements
 date: 2013-08-20T20:07:00.000Z
 updated: 2014-12-31T02:18:59.000Z
----
-
-[Web Components](http://robdodson.me/blog/2013/03/17/why-web-components/) have come a long way in the past few months and one of the technologies that I'm most interested in is [HTML Imports](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/imports/index.html) (or "imports", for short). Imports allow you to load additional documents into your page without having to write a bunch of ajax. This is great for [Custom Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html) where you might want to import a suite of new tags. I spent the day playing with imports and thought it would be useful to write up my progress.
+---[Web Components](http://robdodson.me/blog/2013/03/17/why-web-components/) have come a long way in the past few months and one of the technologies that I'm most interested in is [HTML Imports](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/imports/index.html) (or "imports", for short). Imports allow you to load additional documents into your page without having to write a bunch of ajax. This is great for [Custom Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html) where you might want to import a suite of new tags. I spent the day playing with imports and thought it would be useful to write up my progress.
 
 ## The Lowdown
 
 Imports are a new type of `link` tag which should be familiar to you since that's also how we load our stylesheets.
 
 ```html
-<link rel="stylesheet" href="/path/to/styles.css">
+<link rel="stylesheet" href="/path/to/styles.css" />
 ```
 
 For an import we just replace the `rel` with one of type `import`.
 
 ```html
-<link rel="import" href="/path/to/some/import.html">
+<link rel="import" href="/path/to/some/import.html" />
 ```
 
 ## Support
@@ -36,10 +34,10 @@ OK so what's a very basic import look like?
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Basic HTML Imports</title>
     <!-- Pull in our blog post example -->
-    <link rel="import" href="/imports/blog-post.html">
+    <link rel="import" href="/imports/blog-post.html" />
   </head>
   <body>
     <p>Hello World!</p>
@@ -96,9 +94,9 @@ Polymer attempts to keep parity with the the evolving specifications but obvious
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Basic HTML Imports</title>
-    <link rel="import" href="/imports/blog-post.html">
+    <link rel="import" href="/imports/blog-post.html" />
   </head>
   <body>
     <p>Hello World!</p>
@@ -132,9 +130,9 @@ Let's look at using `<script>` tags inside of our import. We'll start by removin
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Basic HTML Imports</title>
-    <link rel="import" href="/imports/blog-post.html">
+    <link rel="import" href="/imports/blog-post.html" />
   </head>
   <body>
     <h1>Boring header</h1>
@@ -163,8 +161,7 @@ Then we'll transfer that script block over to our blog post in `imports/blog-pos
 
   <h1>Awesome header</h1>
   <p>
-    Here is some really interesting paragraph content.
-    It comes with its own stylesheet!
+    Here is some really interesting paragraph content. It comes with its own stylesheet!
   </p>
 </div>
 
@@ -182,11 +179,11 @@ Then we'll transfer that script block over to our blog post in `imports/blog-pos
 </script>
 ```
 
-If we run this we should get the following output *(note: I've included a style element as well)*.
+If we run this we should get the following output _(note: I've included a style element as well)_.
 
 ![Imports with Styles](/images/2014/12/imports-screen2.jpg)
 
-An important thing to take notice of is the relationship between `thisDoc` and `thatDoc`. `thisDoc` refers to the `blog-post.html` document, while `thatDoc` refers to our `index.html` file. It's useful to distinguish between the two so we can `querySelector` for `#blog-post` and not worry that we may have grabbed something out of the importing document. *Thanks to [Dominic Cooney](https://twitter.com/coonsta) for the heads up on this.*
+An important thing to take notice of is the relationship between `thisDoc` and `thatDoc`. `thisDoc` refers to the `blog-post.html` document, while `thatDoc` refers to our `index.html` file. It's useful to distinguish between the two so we can `querySelector` for `#blog-post` and not worry that we may have grabbed something out of the importing document. _Thanks to [Dominic Cooney](https://twitter.com/coonsta) for the heads up on this._
 
 You'll also notice that since the import has access to our `document` object it is able to add itself to the page. In practice you probably wouldn't want imports adding themselves wherever, but the important takeaway is that **anything imported can access the main `document`**. This means an import could register itself as a Custom Element using our `document` object and we wouldn't need to write any additional code. We're almost to that point so let's keep going...
 
@@ -200,10 +197,10 @@ I've updated the `index.html` so it imports a new `chart.html` file.
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Imports with Templates</title>
     <!-- Make sure to import chart.html -->
-    <link rel="import" href="/imports/chart.html">
+    <link rel="import" href="/imports/chart.html" />
   </head>
   <body>
     <h1>Quarterly Pokemon Sales</h1>
@@ -222,22 +219,22 @@ Here's what `imports/chart.html` looks like:
     var data = [
       {
         value: 30,
-        color:"#F38630"
+        color: '#F38630'
       },
       {
-        value : 50,
-        color : "#E0E4CC"
+        value: 50,
+        color: '#E0E4CC'
       },
       {
-        value : 100,
-        color : "#69D2E7"
+        value: 100,
+        color: '#69D2E7'
       }
     ];
 
     // Get the context of the canvas element we want to select
     // It's ok to use document here because this script block won't
     // activate till it's added to the page.
-    var ctx = document.getElementById("myChart").getContext("2d");
+    var ctx = document.getElementById('myChart').getContext('2d');
     var myNewChart = new Chart(ctx).Pie(data);
   </script>
 </template>
@@ -251,7 +248,7 @@ Here's what `imports/chart.html` looks like:
 
   // grab the contents of #chart-pie from this document
   // and append it to the importing document.
-  var template = thisDoc.querySelector("#chart-pie");
+  var template = thisDoc.querySelector('#chart-pie');
   thatDoc.body.appendChild(thatDoc.importNode(content, true));
 </script>
 ```
@@ -266,7 +263,7 @@ Well this is interesting. We're importing an entire pie chart and our index page
 
 ## Using Custom Elements in our Imports
 
-*I'll say in advance that you might need to read through this section a few times before you fully grok it. We're going to touch on a lot of new stuff so consider this the bonus round :)*
+_I'll say in advance that you might need to read through this section a few times before you fully grok it. We're going to touch on a lot of new stuff so consider this the bonus round :)_
 
 The final markup for our `index.html` file is going to look like this:
 
@@ -274,9 +271,9 @@ The final markup for our `index.html` file is going to look like this:
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Imports with Custom Elements</title>
-    <link rel="import" href="/imports/chart.html">
+    <link rel="import" href="/imports/chart.html" />
   </head>
   <body>
     <h1>Quarterly Pokemon Sales</h1>
@@ -325,15 +322,15 @@ Here's what our updated `imports/chart.html` looks like.
     var data = [
       {
         value: 30,
-        color:"#F38630"
+        color: '#F38630'
       },
       {
-        value : 50,
-        color : "#E0E4CC"
+        value: 50,
+        color: '#E0E4CC'
       },
       {
-        value : 100,
-        color : "#69D2E7"
+        value: 100,
+        color: '#69D2E7'
       }
     ];
 
@@ -398,15 +395,15 @@ On lines 22-23 we create a [Shadow DOM](http://www.html5rocks.com/en/tutorials/w
 var data = [
   {
     value: 30,
-    color:"#F38630"
+    color: '#F38630'
   },
   {
-    value : 50,
-    color : "#E0E4CC"
+    value: 50,
+    color: '#E0E4CC'
   },
   {
-    value : 100,
-    color : "#69D2E7"
+    value: 100,
+    color: '#69D2E7'
   }
 ];
 
@@ -433,9 +430,9 @@ Line 49 is where we actually register our Custom Element and assign it to the na
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Imports with Custom Elements</title>
-    <link rel="import" href="/imports/chart.html">
+    <link rel="import" href="/imports/chart.html" />
   </head>
   <body>
     <h1>Quarterly Pokemon Sales</h1>
@@ -454,7 +451,7 @@ Which produces this:
 
 If you've made it this far congrats and thanks for hanging in there! I know that last section was a little crazy but stop for a moment and think about what we just did.
 
-By using an HTML Import we were able to pull in a document which added a new tag to our application. Imagine if *all* of Chart.js was written in this manner. There would be no need for us to write any glue code to generate a chart ever again. That would allow us to focus only on the code that matters to our application, and leave all that other boilerplate tucked away inside of Custom Elements.
+By using an HTML Import we were able to pull in a document which added a new tag to our application. Imagine if _all_ of Chart.js was written in this manner. There would be no need for us to write any glue code to generate a chart ever again. That would allow us to focus only on the code that matters to our application, and leave all that other boilerplate tucked away inside of Custom Elements.
 
 Over the next few months I'll be blogging exclusively about this topic because I think it's really interesting so check back later for more!
 

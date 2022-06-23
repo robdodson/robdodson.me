@@ -7,6 +7,7 @@ tags:
   - RSpec
 date: 2012-05-08T01:48:00.000Z
 updated: 2014-12-30T06:58:01.000Z
+exclude: true
 ---
 
 I'm picking up from where I left off last night. If you look back at the [previous post](/blog/2012/05/06/object-oriented-scraper-backed-with-tests/) we ended with a spec'd out `Runner` object. Now we need to build our `Crawler` which will slurp up all the content from our posts and return them as meaningful data.

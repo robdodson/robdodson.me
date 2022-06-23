@@ -1,5 +1,5 @@
 ---
-title: "A Require.js multi-page shimmed site: How-To"
+title: 'A RequireJS multi-page shimmed site: How-To'
 description: |
   The process of setting up Require on a multi-page site can be pretty confusing, so I thought I would put together this tutorial to help out others who might be stuck.
 tags:
@@ -14,13 +14,13 @@ I've been working with RequireJS a lot lately and found it really improves the w
 
 ## Overview
 
-*Note: This tutorial assumes you're already familiar with RequireJS and its configuration options. If not, I recommend you [check out the docs](http://requirejs.org/) before proceeding*
+_Note: This tutorial assumes you're already familiar with RequireJS and its configuration options. If not, I recommend you [check out the docs](http://requirejs.org/) before proceeding_
 
 ## [Grab the Boilerplate](https://github.com/robdodson/requirejs-multipage-shim-boilerplate)
 
 When building single-page apps, many people choose to compile all of their JavaScript into one file before deploying to production. While this may make the initial download size of the page larger, the hope is that it reduces section-to-section http requests, thus making the overall experience feel snappier and more app-like.
 
-When working with a *multi-page site*, compiling everything into one file is probably not a good idea. Since you have no guarantee that the user will visit every page, you may be loading unnecessary JavaScript and slowing down the experience. Do you really need to load all of the JavaScript for the **About** page if the user is just visiting the **Contact** page?
+When working with a _multi-page site_, compiling everything into one file is probably not a good idea. Since you have no guarantee that the user will visit every page, you may be loading unnecessary JavaScript and slowing down the experience. Do you really need to load all of the JavaScript for the **About** page if the user is just visiting the **Contact** page?
 
 The ideal scenario is one in which each page has its own `main` file that contains page-specific instructions and then a separate (hopefully cached) file that contains all of the commonly used JavaScript libraries.
 
@@ -65,7 +65,7 @@ If you've worked with RequireJS on a single page site, you're probably used to d
 
 The `data-main` attribute is a convenience feature of RequireJS which sets Require's [baseUrl property.](http://requirejs.org/docs/api.html#config-baseUrl) You usually put some configuration options in the `main` file as well, for instance, if you're loading a 3rd party library you might create a [path](http://requirejs.org/docs/api.html#config-paths) so you can easily reference it. Since our boilerplate has different `main-*` files for each page, we're going to put that configuration data into our `common.js` file instead.
 
-*Hold on, I thought you said common.js was where we were going to compile all of our libraries?*
+_Hold on, I thought you said common.js was where we were going to compile all of our libraries?_
 
 Indeed, you are correct astute reader. But since `common.js` is going to be loaded before any other required modules, why not put our configuration options in it as well? Here's what the `common.js` file from our boilerplate looks like:
 
@@ -75,11 +75,11 @@ Indeed, you are correct astute reader. But since `common.js` is going to be load
 requirejs.config({
   baseUrl: './js',
   paths: {
-    'jquery': 'vendor/jquery',
-    'bootstrap': 'vendor/bootstrap'
+    jquery: 'vendor/jquery',
+    bootstrap: 'vendor/bootstrap'
   },
   shim: {
-    'bootstrap': ['jquery']
+    bootstrap: ['jquery']
   }
 });
 ```
@@ -101,11 +101,7 @@ module.exports = {
   modules: [
     {
       name: 'common',
-      include: [
-        'app/models/basicModel',
-        'jquery',
-        'bootstrap'
-      ]
+      include: ['app/models/basicModel', 'jquery', 'bootstrap']
     },
     {
       name: 'app/main-about',
@@ -160,17 +156,17 @@ If you take a look at the `common.js` file in `www-release`, it should look like
 ```html
 <script src="./js/vendor/require.js"></script>
 <script type="text/javascript">
-// Load common code that includes config,
-// then load the app logic for this page.
-require(['./js/common'], function (common) {
-  // ./js/common.js sets the baseUrl to be ./js/
-  // You can ask for 'app/main-about' here instead
-  // of './js/app/main-about'
-  require(['app/main-about']);
-});
+  // Load common code that includes config,
+  // then load the app logic for this page.
+  require(['./js/common'], function(common) {
+    // ./js/common.js sets the baseUrl to be ./js/
+    // You can ask for 'app/main-about' here instead
+    // of './js/app/main-about'
+    require(['app/main-about']);
+  });
 </script>
 ```
 
-First, we bring in RequireJS. Then we load `common.js`, and only *after*`common.js` is loaded do we request the page specific code in `main-about`. If you stick to this structure, you should be able to layer your code so it's easy to manage.
+First, we bring in RequireJS. Then we load `common.js`, and only _after_`common.js` is loaded do we request the page specific code in `main-about`. If you stick to this structure, you should be able to layer your code so it's easy to manage.
 
 **[Grab the Example Source](https://github.com/robdodson/requirejs-multipage-shim-tutorial)**

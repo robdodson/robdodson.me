@@ -6,9 +6,7 @@ tags:
   - History API
 date: 2012-05-21T14:59:00.000Z
 updated: 2014-12-30T07:45:00.000Z
----
-
-I want to talk a bit more about the Backbone Router because I think it's one of the first pieces of the framework that people run up against that deviates from the standard MVC setup.
+---I want to talk a bit more about the Backbone Router because I think it's one of the first pieces of the framework that people run up against that deviates from the standard MVC setup.
 
 If you've used Rails before you're used to the idea of `routes` which pick apart a url and figure out which controller to run. CodeIgniter uses the same paradigm but I'm not sure if they also call them routes or use a different term. Contrary to this, in Backbone the Router is like a controller for the entire application. This makes it similar to Sinatra. Creating two different routes which replace the content of the page each time would look like this:
 
@@ -16,26 +14,26 @@ If you've used Rails before you're used to the idea of `routes` which pick apart
 var Router = Backbone.Router.extend({
   routes: {
     '': 'index',
-    search: 'search',
+    search: 'search'
   },
 
-  index: function () {
+  index: function() {
     var tutorial = new Example.Views.Tutorial();
 
     // Attach the tutorial page to the DOM
-    tutorial.render(function (el) {
+    tutorial.render(function(el) {
       $('#main').html(el);
     });
   },
 
-  search: function () {
+  search: function() {
     var search = new Example.Views.Search();
 
     // Attach the search page to the DOM
-    search.render(function (el) {
+    search.render(function(el) {
       $('#main').html(el);
     });
-  },
+  }
 });
 ```
 
@@ -45,17 +43,13 @@ If you're using the Backbone Boilerplate you won't need to tell the Router to up
 // All navigation that is relative should be passed through the navigate
 // method, to be processed by the router.  If the link has a data-bypass
 // attribute, bypass the delegation completely.
-$(document).on('click', 'a:not([data-bypass])', function (evt) {
+$(document).on('click', 'a:not([data-bypass])', function(evt) {
   // Get the anchor href and protcol
   var href = $(this).attr('href');
   var protocol = this.protocol + '//';
 
   // Ensure the protocol is not part of URL, meaning its relative.
-  if (
-    href &&
-    href.slice(0, protocol.length) !== protocol &&
-    href.indexOf('javascript:') !== 0
-  ) {
+  if (href && href.slice(0, protocol.length) !== protocol && href.indexOf('javascript:') !== 0) {
     // Stop the default event to ensure the link will not cause a page
     // refresh.
     evt.preventDefault();
@@ -81,15 +75,15 @@ Example.Views.Tutorial = Backbone.View.extend({
 
   // Listen for when the user clicks our anchor tag
   events: {
-    'click .search': 'search',
+    'click .search': 'search'
   },
 
   // Note: I'm stopping the event and explicitly telling the Router to
   // update the history and trigger the corresponding search method.
-  search: function (e) {
+  search: function(e) {
     e.preventDefault();
-    namespace.app.router.navigate('search', { trigger: true });
-  },
+    namespace.app.router.navigate('search', {trigger: true});
+  }
   //...
 });
 ```
@@ -103,14 +97,14 @@ Example.Views.Tutorial = Backbone.View.extend({
   template: 'app/templates/example.html',
 
   events: {
-    'click .search': 'search',
+    'click .search': 'search'
   },
 
-  search: function (e) {
+  search: function(e) {
     e.preventDefault();
     e.stopPropagation();
     namespace.app.router.navigate('whatever');
-  },
+  }
 
   //...
 });
@@ -120,7 +114,7 @@ Something else to keep in mind is that the boilerplate comes with `History pushS
 
 ```js
 // Trigger the initial route and enable HTML5 History API support
-Backbone.history.start({ pushState: true });
+Backbone.history.start({pushState: true});
 ```
 
 This lets you create routes that look like this: `mysite.com/search/foobar` instead of using a hash `mysite.com/#search/foobar`. The only problem is that for HTML5 History pushState to work your server has to keep resolving to index.html. The boilerplate tutorial says to use `node build/server` to run your project server, even though elsewhere it says to use `bbb server`. Neither works so I've [logged an issue on Github.](https://github.com/backbone-boilerplate/grunt-bbb/issues/21) Very possible I'm doing it wrong but we'll see. For now I'm not using pushState so I changed the line in main.js to read `Backbone.history.start()` and instead I'm using the hash approach.

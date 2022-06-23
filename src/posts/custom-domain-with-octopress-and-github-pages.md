@@ -6,6 +6,7 @@ tags:
   - Chain
 date: 2012-04-30T13:52:00.000Z
 updated: 2014-12-30T06:14:12.000Z
+exclude: true
 ---
 
 _I'm going to try to write this as a bit of a lightening post to see if I can bring down the time it takes me to produce something._

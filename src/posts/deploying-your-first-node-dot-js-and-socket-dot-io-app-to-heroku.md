@@ -2,6 +2,7 @@
 title: Deploying Your First Node.js and Socket.io App to Heroku
 date: 2012-06-05T05:01:00.000Z
 updated: 2015-01-02T08:58:00.000Z
+exclude: true
 ---
 
 At my office we like to shoot each other from across the room with Nerf guns. In an effort to actually remain productive we've implemented a rule that whenever you get shot you're dead for 1 hour. But that hour can be a little tricky to keep track of between players. Who's dead and who isn't? Am I about to be shot right now??
@@ -61,7 +62,7 @@ var express = require('express'),
 
 // Configuration
 
-app.configure(function () {
+app.configure(function() {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.bodyParser());
@@ -70,18 +71,18 @@ app.configure(function () {
   app.use(express.static(__dirname + '/public'));
 });
 
-app.configure('development', function () {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+app.configure('development', function() {
+  app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 });
 
-app.configure('production', function () {
+app.configure('production', function() {
   app.use(express.errorHandler());
 });
 
 // Heroku won't actually allow us to use WebSockets
 // so we have to setup polling instead.
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
-io.configure(function () {
+io.configure(function() {
   io.set('transports', ['xhr-polling']);
   io.set('polling duration', 10);
 });
@@ -89,7 +90,7 @@ io.configure(function () {
 // Routes
 
 var port = process.env.PORT || 5000; // Use the port that Heroku provides or default to 5000
-app.listen(port, function () {
+app.listen(port, function() {
   console.log(
     'Express server listening on port %d in %s mode',
     app.address().port,
@@ -101,11 +102,11 @@ app.get('/', routes.index);
 
 var status = 'All is well.';
 
-io.sockets.on('connection', function (socket) {
-  io.sockets.emit('status', { status: status }); // note the use of io.sockets to emit but socket.on to listen
-  socket.on('reset', function (data) {
+io.sockets.on('connection', function(socket) {
+  io.sockets.emit('status', {status: status}); // note the use of io.sockets to emit but socket.on to listen
+  socket.on('reset', function(data) {
     status = 'War is imminent!';
-    io.sockets.emit('status', { status: status });
+    io.sockets.emit('status', {status: status});
   });
 });
 ```
@@ -166,11 +167,11 @@ I guess that's just a habit of using Backbone Boilerplate all the time :) Here's
 ```js
 var socket = io.connect(window.location.hostname);
 
-socket.on('status', function (data) {
+socket.on('status', function(data) {
   $('#status').html(data.status);
 });
 
-$('#reset').click(function () {
+$('#reset').click(function() {
   socket.emit('reset');
 });
 ```

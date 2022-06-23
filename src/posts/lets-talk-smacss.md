@@ -1,5 +1,5 @@
 ---
-title: Let's Talk SMACSS, Man
+title: Let's Talk SMACSS
 tags:
   - Chain
   - CSS
@@ -205,11 +205,4 @@ Likewise if you need to switch to a different font or size, here is where you wo
 
 ## Wrap it up!
 
-That does it for tonight. Hopefully you're a little more enlightened with regards to SMACSS. Definitely [checkout the SMACSS site](http://smacss.com/) and grab the book. And as always please feel free to leave comments and feedback. Thanks! - Rob
-
-You should follow me on Twitter [here.](http://twitter.com/rob_dodson)
-
-- Mood: Anxious
-- Sleep: 7
-- Hunger: 0
-- Coffee: 1
+That does it for tonight. Hopefully you're a little more enlightened with regards to SMACSS. Definitely [checkout the SMACSS site](http://smacss.com/) and grab the book. And as always please feel free to [send me feedback on Twitter](https://twitter.com/rob_dodson).

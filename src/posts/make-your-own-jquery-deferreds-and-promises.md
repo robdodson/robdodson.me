@@ -6,9 +6,7 @@ tags:
   - Promises
 date: 2012-06-04T03:33:00.000Z
 updated: 2014-12-30T23:20:41.000Z
----
-
-Last week [I did a post on how to load an Underscore template using jQuery's Deferred method](http://robdodson.me/blog/2012/05/30/using-jquery-deferred-to-load-an-underscore-template/). I got some great feedback from folks and decided I should do a follow up showing how to create your own Deferreds.
+---Last week [I did a post on how to load an Underscore template using jQuery's Deferred method](http://robdodson.me/blog/2012/05/30/using-jquery-deferred-to-load-an-underscore-template/). I got some great feedback from folks and decided I should do a follow up showing how to create your own Deferreds.
 
 ### What's a Deferred again...?
 
@@ -49,21 +47,21 @@ Take note of the fact that I've included jquery.js and main.js in the same folde
 
 ```js
 var container = {
-  initialize: function ($el) {
+  initialize: function($el) {
     // Store a reference to our element
     // on the page
     this.$el = $el;
   },
-  fadeOut: function () {
+  fadeOut: function() {
     // Create a new Deferred.
     var dfd = new $.Deferred();
 
     this.$el.animate(
       {
-        opacity: 0,
+        opacity: 0
       },
       2000,
-      function () {
+      function() {
         // When we're done animating
         // we'll resolve our Deferred.
         // This will call any done() callbacks
@@ -77,10 +75,10 @@ var container = {
     // Clients can listen for its done or fail
     // callbacks but they can't resolve it themselves
     return dfd.promise();
-  },
+  }
 };
 
-$(function () {
+$(function() {
   // Hook the container object up to the #container div
   container.initialize($('#container'));
 
@@ -91,7 +89,7 @@ $(function () {
   // Now that we have a promise we can hook a done callback
   // onto it. The done() method will fire once the promise
   // is resolved.
-  promise.done(function (message) {
+  promise.done(function(message) {
     console.log(message);
   });
 });
@@ -129,10 +127,10 @@ OK back to the animation function:
 ```js
 this.$el.animate(
   {
-    opacity: 0,
+    opacity: 0
   },
   2000,
-  function () {
+  function() {
     // When we're done animating
     // we'll resolve our Deferred.
     // This will call any done() callbacks
@@ -146,7 +144,7 @@ this.$el.animate(
 If you've used `jQuery.animate` before this should look pretty straightforward to you. At the end of our animation we pass in an anonymouse function which will be run when the animation completes. In this function we tell our `Deferred` to resolve. Resolving the `Deferred` causes any `done` callbacks to fire. In this case we're also passing along a little snippet of text. When you resolve a `Deferred` you can give it an optional payload object which will be passed to all the `done` callbacks. This is extremely useful if you're using ajax to pass along the final data value. In this case we're just going to log the message into the console:
 
 ```js
-promise.done(function (message) {
+promise.done(function(message) {
   console.log(message);
 });
 ```

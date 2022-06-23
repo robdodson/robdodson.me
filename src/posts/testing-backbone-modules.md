@@ -10,9 +10,7 @@ tags:
   - Sinon
 date: 2012-05-29T15:03:00.000Z
 updated: 2015-01-02T08:59:21.000Z
----
-
-Continuing from [yesterday's post](http://robdodson.me/blog/2012/05/28/mocking-requests-with-mocha-chai-and-sinon/) I'm going to start to incorporate Backbone into my BDD setup. I'm going to use the [Backbone Boilerplate](https://github.com/tbranyen/backbone-boilerplate) and [grunt-bbb](https://github.com/backbone-boilerplate/grunt-bbb) to setup a new project. If you're new to the boilerplate or grunt-bbb [checkout my previous post on getting started.](http://robdodson.me/blog/2012/05/17/getting-familiar-with-backbone-boilerplate/)
+---Continuing from [yesterday's post](http://robdodson.me/blog/2012/05/28/mocking-requests-with-mocha-chai-and-sinon/) I'm going to start to incorporate Backbone into my BDD setup. I'm going to use the [Backbone Boilerplate](https://github.com/tbranyen/backbone-boilerplate) and [grunt-bbb](https://github.com/backbone-boilerplate/grunt-bbb) to setup a new project. If you're new to the boilerplate or grunt-bbb [checkout my previous post on getting started.](http://robdodson.me/blog/2012/05/17/getting-familiar-with-backbone-boilerplate/)
 
 ### Shiny and new
 
@@ -25,12 +23,12 @@ define([
   'namespace',
 
   // Libs
-  'use!backbone',
+  'use!backbone'
 
   // Modules
 
   // Plugins
-], function (namespace, Backbone) {
+], function(namespace, Backbone) {
   // Create a new module
   var Example = namespace.module();
 
@@ -38,8 +36,8 @@ define([
   Example.Photo = Backbone.Model.extend({
     defaults: {
       src: '/images/placeholder.jpg',
-      caption: 'Waiting for content...',
-    },
+      caption: 'Waiting for content...'
+    }
   });
 
   Example.Collection = Backbone.Collection.extend({
@@ -53,11 +51,11 @@ define([
   Example.Views.Tutorial = Backbone.View.extend({
     template: 'app/templates/example.html',
 
-    render: function (done) {
+    render: function(done) {
       var view = this;
 
       // Fetch the template, render it to the View element and call done.
-      namespace.fetchTemplate(this.template, function (tmpl) {
+      namespace.fetchTemplate(this.template, function(tmpl) {
         view.el.innerHTML = tmpl();
 
         // If a done function is passed, call it with the element
@@ -65,7 +63,7 @@ define([
           done(view.el);
         }
       });
-    },
+    }
   });
 
   // Required, return the module for AMD compliance
@@ -111,32 +109,32 @@ require.config({
     jquery: '../assets/js/libs/jquery',
     underscore: '../assets/js/libs/underscore',
     backbone: '../assets/js/libs/backbone',
-    use: '../assets/js/plugins/use',
+    use: '../assets/js/plugins/use'
   },
   use: {
     backbone: {
       deps: ['use!underscore', 'jquery'],
-      attach: 'Backbone',
+      attach: 'Backbone'
     },
     underscore: {
-      attach: '_',
+      attach: '_'
     },
     mocha: {
-      attach: 'mocha',
-    },
+      attach: 'mocha'
+    }
   },
-  priority: ['jquery', 'underscore', 'common'],
+  priority: ['jquery', 'underscore', 'common']
 });
 
 mocha.setup({
   ui: 'bdd',
-  ignoreLeaks: true,
+  ignoreLeaks: true
 });
 
 // Protect from barfs
-console = window.console || function () {};
+console = window.console || function() {};
 
-var runMocha = function () {
+var runMocha = function() {
   mocha.run();
 };
 ```
@@ -145,7 +143,7 @@ Lots of stuff here but nothing to get alarmed about. [If you've read my previous
 
 ```js
 // Include and setup all the stuff for testing
-define(function (require) {
+define(function(require) {
   window.$ = window.jQuery = require('jquery');
   window.chai = require('chai');
   window.expect = chai.expect;
@@ -169,13 +167,13 @@ Wow! OK so hopefully you're still with me because after all of that we _still_ n
 I've created a file called `test.example.js` which will test our `Example` module.
 
 ```js
-define(function (require) {
+define(function(require) {
   var Example = require('modules/example');
 
-  describe('Example', function () {
-    describe('Photo', function () {
+  describe('Example', function() {
+    describe('Photo', function() {
       var photo = new Example.Photo();
-      it('should have proper defaults', function (done) {
+      it('should have proper defaults', function(done) {
         expect(photo.get('src')).to.equal('/images/placeholder.jpg');
         expect(photo.get('caption')).to.equal('Waiting for content...');
         done();

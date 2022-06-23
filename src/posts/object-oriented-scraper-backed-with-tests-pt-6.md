@@ -8,6 +8,7 @@ tags:
   - BDD
 date: 2012-05-13T14:52:00.000Z
 updated: 2014-12-30T07:19:31.000Z
+exclude: true
 ---
 
 Yesterday we verified that our `Crawler` was able to hit a document and, given the right selector, pull down a list of words and their frequency on the page. We also created a custom exception to be used whenever the selector fails to pull down the right content. I'm going to repeat this process today with the `get_metadata_by_selector`. If there's time we'll try to output another file with our data, otherwise that'll be tomorrow's homeworkd :D

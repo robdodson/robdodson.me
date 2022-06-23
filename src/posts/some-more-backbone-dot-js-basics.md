@@ -5,9 +5,7 @@ tags:
   - Backbone
 date: 2012-05-20T15:19:00.000Z
 updated: 2015-01-02T09:01:34.000Z
----
-
-Here are some quick Backbone snippets to help visualize concepts. I'll move around fairly quickly so if you're interested in going more in-depth then checkout the documentation.
+---Here are some quick Backbone snippets to help visualize concepts. I'll move around fairly quickly so if you're interested in going more in-depth then checkout the documentation.
 
 ### Events
 
@@ -20,16 +18,16 @@ var dispatcher = {};
 _.extend(dispatcher, Backbone.Events);
 
 var receiver = {
-  initialize: function () {
+  initialize: function() {
     // Start listening for the 'hello' event from the dispatcher.
     // When we hear the 'hello' event we'll run a function
     dispatcher.on('hello', this.sayHello, this);
   },
-  sayHello: function () {
+  sayHello: function() {
     console.log('hello!');
     // Kill the listener so we only get called once
     dispatcher.off('hello', this.sayHello, this);
-  },
+  }
 };
 
 receiver.initialize();
@@ -47,10 +45,10 @@ If your model implements an `initialize` function it will be called as soon as t
 // Define an initialize function for our book
 // Initialize will be called anytime we say new Book()
 var Book = Backbone.Model.extend({
-  initialize: function (foo, bar) {
+  initialize: function(foo, bar) {
     console.log(foo);
     console.log(bar);
-  },
+  }
 });
 
 // You can pass in a hash to set initial values on the model
@@ -59,7 +57,7 @@ var Book = Backbone.Model.extend({
 book = new Book(
   {
     author: 'Hunter S. Thompson',
-    title: 'Fear and Loating in Las Vegas',
+    title: 'Fear and Loating in Las Vegas'
   },
   'hello world!'
 );
@@ -76,13 +74,13 @@ var Book = Backbone.Model.extend({});
 
 book = new Book({
   author: 'Hunter S. Thompson',
-  title: 'Fear and Loating in Las Vegas',
+  title: 'Fear and Loating in Las Vegas'
 });
 
 // Listen for any change event coming from the model.
 // When any attribute changes we'll tell our elements to
 // automatically update.
-book.on('change', function () {
+book.on('change', function() {
   $('#author').html(book.get('author'));
   $('#title').html(book.get('title'));
 });
@@ -102,20 +100,20 @@ Backbone will decide whether a save call should perform a create with `HTTP POST
 Here's an example from the Backbone docs which overrides the sync functionality and fakes a request to a server.
 
 ```js
-Backbone.sync = function (method, model) {
+Backbone.sync = function(method, model) {
   console.log(method + ': ' + JSON.stringify(model));
   model.id = 1; // This line is crucial!
 };
 
 var book = new Backbone.Model({
   title: 'The Rough Riders',
-  author: 'Theodore Roosevelt',
+  author: 'Theodore Roosevelt'
 });
 
 book.save();
 // create: {"title":"The Rough Riders","author":"Theodore Roosevelt"}
 
-book.save({ author: 'Teddy' });
+book.save({author: 'Teddy'});
 // update: {"title":"The Rough Riders","author":"Teddy"}
 ```
 
@@ -130,17 +128,17 @@ var Book = Backbone.Model.extend({});
 
 var Books = Backbone.Collection.extend({
   model: Book,
-  localStorage: new Backbone.LocalStorage('Books'),
+  localStorage: new Backbone.LocalStorage('Books')
 });
 
 var library = new Books();
-library.on('sync', function () {
+library.on('sync', function() {
   console.log('sync succesful!');
 });
 
 var othello = library.create({
   title: 'Othello',
-  author: 'William Shakespeare',
+  author: 'William Shakespeare'
 });
 ```
 
@@ -151,7 +149,7 @@ var Book = Backbone.Model.extend({});
 
 var Books = Backbone.Collection.extend({
   model: Book,
-  localStorage: new Backbone.LocalStorage('Books'),
+  localStorage: new Backbone.LocalStorage('Books')
 });
 
 var library = new Books();
@@ -172,15 +170,15 @@ Routers are used to map URLs to actions. If you're using the Backbone Boilerplat
 var Router = Backbone.Router.extend({
   routes: {
     '': 'index',
-    ':hash': 'index',
+    ':hash': 'index'
   },
 
-  index: function (hash) {
+  index: function(hash) {
     var route = this;
     var tutorial = new Example.Views.Tutorial();
 
     // Attach the tutorial to the DOM
-    tutorial.render(function (el) {
+    tutorial.render(function(el) {
       $('#main').html(el);
 
       // Fix for hashes in pushState and hash fragment
@@ -195,7 +193,7 @@ var Router = Backbone.Router.extend({
         route._alreadyTriggered = true;
       }
     });
-  },
+  }
 });
 ```
 
@@ -228,21 +226,21 @@ var Book = Backbone.Model.extend({});
 
 var BookView = Backbone.View.extend({
   className: 'book-view',
-  initialize: function () {
+  initialize: function() {
     this.model.on('change', this.render, this);
     this.render();
   },
-  render: function () {
+  render: function() {
     this.$el.html(this.model.get('title') + ' by ' + this.model.get('author'));
-  },
+  }
 });
 
 var outliers = new Book({
   author: 'Malcolm Gladwell',
-  title: 'Outliers',
+  title: 'Outliers'
 });
 
-var bookView = new BookView({ model: outliers });
+var bookView = new BookView({model: outliers});
 
 $('body').append(bookView.el);
 

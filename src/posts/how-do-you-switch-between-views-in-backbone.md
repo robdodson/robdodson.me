@@ -5,9 +5,7 @@ tags:
   - Backbone
 date: 2012-05-23T14:56:00.000Z
 updated: 2014-12-30T07:48:03.000Z
----
-
-I'm going to try to approach some of my future articles as more of a question/answer setup so they don't turn into these sprawling tutorials. Today I want to focus on moving between views in Backbone.js. I'm starting with some very simple templates and three views: LeftView, MiddleView, RightView. To do this quickly we'll make it so each view is essentially a big button which, when clicked on, should animate to the middle of the screen.
+---I'm going to try to approach some of my future articles as more of a question/answer setup so they don't turn into these sprawling tutorials. Today I want to focus on moving between views in Backbone.js. I'm starting with some very simple templates and three views: LeftView, MiddleView, RightView. To do this quickly we'll make it so each view is essentially a big button which, when clicked on, should animate to the middle of the screen.
 
 Here's what one of my templates looks like:
 
@@ -21,7 +19,7 @@ One of the first thing I'm noticing is that all of my templates seem to be wrapp
 Example.Views.Right = Backbone.View.extend({
   tagName: 'div',
   id: 'right-container',
-  className: 'container',
+  className: 'container'
 });
 ```
 
@@ -32,9 +30,9 @@ Example.Views.Right = Backbone.View.extend({
   tagName: 'div',
   id: 'right-container',
   className: 'container',
-  initialize: function () {
+  initialize: function() {
     this.el.innerHTML = 'Hello World!';
-  },
+  }
 });
 ```
 
@@ -45,10 +43,10 @@ Here is our most basic `Router` showing how to add the views to stage. Since we 
 ```js
 var Router = Backbone.Router.extend({
   routes: {
-    '': 'index',
+    '': 'index'
   },
 
-  index: function () {
+  index: function() {
     var leftView = new Example.Views.Left();
     var middleView = new Example.Views.Middle();
     var rightView = new Example.Views.Right();
@@ -57,7 +55,7 @@ var Router = Backbone.Router.extend({
     $('#main').append(leftView.render().el);
     $('#main').append(middleView.render().el);
     $('#main').append(rightView.render().el);
-  },
+  }
 });
 ```
 
@@ -100,7 +98,7 @@ Example.Views.Sections = Backbone.View.extend({
   middleView: undefined,
   rightView: undefined,
 
-  initialize: function () {
+  initialize: function() {
     this.leftView = new Example.Views.Left();
     this.middleView = new Example.Views.Middle();
     this.rightView = new Example.Views.Right();
@@ -111,9 +109,9 @@ Example.Views.Sections = Backbone.View.extend({
   },
 
   // We should do this work with events instead of methods
-  setInitialPosition: function () {
-    this.$el.css({ left: $(window).width() / 2 - this.$el.width() / 2 });
-  },
+  setInitialPosition: function() {
+    this.$el.css({left: $(window).width() / 2 - this.$el.width() / 2});
+  }
 });
 ```
 
@@ -182,10 +180,10 @@ Example.Views.Sections = Backbone.View.extend({
   rightView: undefined,
 
   events: {
-    'click .container': 'onChildClicked',
+    'click .container': 'onChildClicked'
   },
 
-  initialize: function () {
+  initialize: function() {
     this.leftView = new Example.Views.Left();
     this.middleView = new Example.Views.Middle();
     this.rightView = new Example.Views.Right();
@@ -196,35 +194,35 @@ Example.Views.Sections = Backbone.View.extend({
   },
 
   // We should do this work with events instead of methods
-  setInitialPosition: function () {
-    this.$el.css({ left: $(window).width() / 2 - this.$el.width() / 2 });
+  setInitialPosition: function() {
+    this.$el.css({left: $(window).width() / 2 - this.$el.width() / 2});
   },
 
   // Whenever a child is clicked let's animate so it is
   // centered on screen
-  onChildClicked: function ($e) {
+  onChildClicked: function($e) {
     var $target = $($e.target);
 
     switch ($e.target.id) {
       case 'left-container':
         this.$el.animate({
-          left: $(window).width() / 2 - $target.width() / 2,
+          left: $(window).width() / 2 - $target.width() / 2
         });
         break;
 
       case 'middle-container':
         this.$el.animate({
-          left: $(window).width() / 2 - this.$el.width() / 2,
+          left: $(window).width() / 2 - this.$el.width() / 2
         });
         break;
 
       case 'right-container':
         this.$el.animate({
-          left: $(window).width() / 2 - this.$el.width() + $target.width() / 2,
+          left: $(window).width() / 2 - this.$el.width() + $target.width() / 2
         });
         break;
     }
-  },
+  }
 });
 ```
 

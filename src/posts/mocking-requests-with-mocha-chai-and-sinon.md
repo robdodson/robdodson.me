@@ -10,9 +10,7 @@ tags:
   - Sinon
 date: 2012-05-28T18:20:00.000Z
 updated: 2014-12-30T08:05:53.000Z
----
-
-[After a bit of a rocky start yesterday](http://robdodson.me/blog/2012/05/27/testing-backbone-boilerplate-with-mocha-and-chai/) I've finally got Mocha and Chai running in the browser which is great. Today I'd like to test out some of the async functionality of Mocha. This seems to be the big selling point for most people so we'll kick the tires a bit.
+---[After a bit of a rocky start yesterday](http://robdodson.me/blog/2012/05/27/testing-backbone-boilerplate-with-mocha-and-chai/) I've finally got Mocha and Chai running in the browser which is great. Today I'd like to test out some of the async functionality of Mocha. This seems to be the big selling point for most people so we'll kick the tires a bit.
 
 ### Basic Async Tests with Mocha and Chai
 
@@ -23,26 +21,26 @@ I wrote a little Node service that we'll consume for testing purposes. This is m
 
 var count = 100;
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
   res.send('Welcome to the Pickle Store!');
 });
 
-app.get('/pickles', function (req, res) {
+app.get('/pickles', function(req, res) {
   res.json({
     count: count,
-    message: 'oh boy, ' + count + ' pickles!',
+    message: 'oh boy, ' + count + ' pickles!'
   });
 });
 
-app.get('/pickles/add/:num', function (req, res) {
+app.get('/pickles/add/:num', function(req, res) {
   count += parseInt(req.params.num);
   res.json({
     add: req.params.num,
-    message: 'you added ' + req.params.num + ' pickles to the pickle barrel!',
+    message: 'you added ' + req.params.num + ' pickles to the pickle barrel!'
   });
 });
 
-app.listen(3000, function () {
+app.listen(3000, function() {
   console.log(
     'Express server listening on port %d in %s mode',
     app.address().port,
@@ -59,28 +57,28 @@ Here is our really simple Mocha spec. We're actually creating a `pickelStore` ob
 var expect = chai.expect;
 
 var pickleStore = {
-  pickles: function () {
+  pickles: function() {
     $.ajax({
       url: 'http://localhost:3000/pickles',
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         console.log(data);
-      },
+      }
     });
   },
-  add: function (num) {
+  add: function(num) {
     $.ajax({
       url: 'http://localhost:3000/pickles/add/' + num,
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         console.log(data);
-      },
+      }
     });
-  },
+  }
 };
 
-describe('Pickle Store', function () {
-  describe('#pickles', function () {
+describe('Pickle Store', function() {
+  describe('#pickles', function() {
     pickleStore.pickles();
   });
 });
@@ -117,7 +115,7 @@ I'm going to use [Sinon.js](http://sinonjs.org/) to help me mock, stub, fake, sp
     </script>
     <script src="test.pickles.js"></script>
     <script>
-      $(function () {
+      $(function() {
         mocha.run();
       });
     </script>
@@ -134,41 +132,41 @@ Now we can use Sinon in our `test.pickles.js` file to get a handled on our ajax.
 var expect = chai.expect;
 
 var pickleStore = {
-  pickles: function () {
+  pickles: function() {
     $.ajax({
       url: 'http://localhost:3000/pickles',
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         console.log(data);
-      },
+      }
     });
   },
-  add: function (num) {
+  add: function(num) {
     $.ajax({
       url: 'http://localhost:3000/pickles/add/' + num,
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         console.log(data);
-      },
+      }
     });
-  },
+  }
 };
 
-describe('Pickle Store', function () {
-  describe('#pickles', function () {
+describe('Pickle Store', function() {
+  describe('#pickles', function() {
     // Use Sinon to replace jQuery's ajax method
     // with a spy.
-    beforeEach(function () {
+    beforeEach(function() {
       sinon.spy($, 'ajax');
     });
 
     // Restor jQuery's ajax method to its
     // original state
-    afterEach(function () {
+    afterEach(function() {
       $.ajax.restore();
     });
 
-    it('should make an ajax call', function (done) {
+    it('should make an ajax call', function(done) {
       pickleStore.pickles();
       expect($.ajax.calledOnce).to.be.false; // see if the spy WASN'T called
       done(); // let Mocha know we're done async testing
@@ -185,57 +183,57 @@ Changing this line `expect($.ajax.calledOnce).to.be.false;` from `false` to `tru
 var pickleStore = {
   count: 0,
   status: '',
-  pickles: function () {
+  pickles: function() {
     var self = this;
     $.ajax({
       url: 'http://localhost:3000/pickles',
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         self.count = parseInt(data.count);
         self.status = data.status;
-      },
+      }
     });
   },
-  add: function (num) {
+  add: function(num) {
     $.ajax({
       url: 'http://localhost:3000/pickles/add/' + num,
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         console.log(data);
-      },
+      }
     });
-  },
+  }
 };
 ```
 
 Now we can test what happens after the server sends a succesful response. But how do we get that response and how do we force the success callback? For that we'll need to use Sinon's `stub.yieldsTo` method. It's mentioned in [the docs on this page](http://sinonjs.org/docs/#stubs) if you scroll down. `yieldsTo` lets us direct the path of our spy so it will not only pretend to be jQuery's `ajax` method, but it will also force itself into the `success` callback with an optional hash of parameters which simulate our service response. Sweet! We'll have to revise the `beforeEach` in our spec though otherwise Sinon will complain that we're wrapping `ajax` twice. The updated spec should look like this. Again, take note that we're going to make it fail first by expecting a count of 99 pickles instead of 100.
 
 ```js
-describe('Pickle Store', function () {
-  describe('#pickles', function () {
+describe('Pickle Store', function() {
+  describe('#pickles', function() {
     // Use Sinon to replace jQuery's ajax method
     // with a spy. This spy will also come with
     // some success data.
-    beforeEach(function () {
+    beforeEach(function() {
       sinon.stub($, 'ajax').yieldsTo('success', {
         count: '100',
-        message: 'oh boy, 100 pickles!',
+        message: 'oh boy, 100 pickles!'
       });
     });
 
     // Restor jQuery's ajax method to its
     // original state
-    afterEach(function () {
+    afterEach(function() {
       $.ajax.restore();
     });
 
-    it('should make an ajax call', function (done) {
+    it('should make an ajax call', function(done) {
       pickleStore.pickles();
       expect($.ajax.calledOnce).to.be.true;
       done();
     });
 
-    it('should update the count', function (done) {
+    it('should update the count', function(done) {
       pickleStore.pickles();
       expect(pickleStore.count).to.equal(99);
       done();
@@ -251,37 +249,37 @@ Failing as expected. Aaaaand we change the expected count to 100, voila! Passing
 I'm adding the test for the status update as well so our final `#pickles` spec should look like this:
 
 ```js
-describe('Pickle Store', function () {
-  describe('#pickles', function () {
+describe('Pickle Store', function() {
+  describe('#pickles', function() {
     // Use Sinon to replace jQuery's ajax method
     // with a spy. This spy will also come with
     // some success data.
-    beforeEach(function () {
+    beforeEach(function() {
       sinon.stub($, 'ajax').yieldsTo('success', {
         count: '100',
-        message: 'oh boy, 100 pickles!',
+        message: 'oh boy, 100 pickles!'
       });
     });
 
     // Restor jQuery's ajax method to its
     // original state
-    afterEach(function () {
+    afterEach(function() {
       $.ajax.restore();
     });
 
-    it('should make an ajax call', function (done) {
+    it('should make an ajax call', function(done) {
       pickleStore.pickles();
       expect($.ajax.calledOnce).to.be.true;
       done();
     });
 
-    it('should update the count', function (done) {
+    it('should update the count', function(done) {
       pickleStore.pickles();
       expect(pickleStore.count).to.equal(100);
       done();
     });
 
-    it('should update the status', function (done) {
+    it('should update the status', function(done) {
       pickleStore.pickles();
       expect(pickleStore.status).to.equal('oh boy, 100 pickles!');
       done();
@@ -296,52 +294,50 @@ Now let's test the `#add` method before calling it a day. This method is interes
 var pickleStore = {
   count: 0,
   status: '',
-  pickles: function () {
+  pickles: function() {
     var self = this;
     $.ajax({
       url: 'http://localhost:3000/pickles',
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         self.count = parseInt(data.count);
         self.status = data.message;
-      },
+      }
     });
   },
-  add: function (num) {
+  add: function(num) {
     var self = this;
     $.ajax({
       url: 'http://localhost:3000/pickles/add/' + num,
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         self.status = data.message; // <-- update the status message!
-      },
+      }
     });
-  },
+  }
 };
 ```
 
 Now that that's in there we'll write a failing spec.
 
 ```js
-describe('#add', function () {
+describe('#add', function() {
   var amount = 11;
 
-  beforeEach(function () {
+  beforeEach(function() {
     sinon.stub($, 'ajax').yieldsTo('success', {
       add: amount,
-      message: 'you added ' + amount + ' pickles to the pickle barrel!',
+      message: 'you added ' + amount + ' pickles to the pickle barrel!'
     });
   });
 
-  afterEach(function () {
+  afterEach(function() {
     $.ajax.restore();
   });
 
-  it('should update the status with the correct amount', function (done) {
+  it('should update the status with the correct amount', function(done) {
     pickleStore.add(amount);
-    expect(pickleStore.status).to.equal(
-      'you added ' + 99 + ' pickles to the pickle barrel!'
-    );
+    expect(pickleStore.status).to.equal('you added ' + 99 + ' pickles to the pickle barrel!');
     done();
   });
 });

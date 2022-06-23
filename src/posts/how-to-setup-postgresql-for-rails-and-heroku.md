@@ -9,6 +9,7 @@ tags:
   - Heroku
 date: 2012-04-27T14:33:00.000Z
 updated: 2014-12-30T06:18:27.000Z
+exclude: true
 ---
 
 ### Install PostgreSQL Locally

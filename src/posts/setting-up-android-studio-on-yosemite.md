@@ -6,9 +6,7 @@ tags:
   - Java
 date: 2014-12-31T06:01:12.000Z
 updated: 2015-01-24T21:02:50.000Z
----
-
-I've set out to learn some of the Android framework this quarter, which means setting up Java and the lastest version of Android Studio.
+---I've set out to learn some of the Android framework this quarter, which means setting up Java and the lastest version of Android Studio.
 
 As it happens, I formatted my laptop today and did a clean install of Yosemite so my machine is about as stock as they come. As I was setting up Android Studio, I ran into some hiccups and thought I'd document them for anyone else running into similar issues.
 

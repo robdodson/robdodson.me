@@ -4,9 +4,7 @@ tags:
   - Chain
 date: 2012-05-20T05:53:00.000Z
 updated: 2014-12-30T07:34:41.000Z
----
-
-Back in April I was reading hacker news when I came across a blog posted titled ['366 or How I Tricked Myself into Being Awesome'](http://japhr.blogspot.com/2012/04/366-or-how-i-tricked-myself-into-being.html). It was written by a fellow named Chris Strom. It was written on blogspot. It was mostly unstyled.
+---Back in April I was reading hacker news when I came across a blog posted titled ['366 or How I Tricked Myself into Being Awesome'](http://japhr.blogspot.com/2012/04/366-or-how-i-tricked-myself-into-being.html). It was written by a fellow named Chris Strom. It was written on blogspot. It was mostly unstyled.
 
 Chris wrote every single day for 366 days and in so doing self-published three books on programming languages that he knew nothing about. His post was to champion that milestone. At the time I read it and thought, "I can totally do this," meaning if I follow the steps that Chris has outlined I can potentially trick myself into becoming a blogger.
 
@@ -34,7 +32,7 @@ I tried writing in Wordpress on several different occasions. I've also tried Tum
 
 ### Don't worry when no one reads it
 
-Finally, don't get too hung up on who is (or isn't) reading your blog. I know that pretty much all of the visits I see in my google analytics are actually just me checking the site on my phone or laptop. Definitely *do* add analytics so you can see which parts are successful and which are not but don't expect to be [Daring Fireball](http://daringfireball.net/) overnight. In fact, don't ever expect to be Daring Fireball. Keep in mind that what you're doing is a personal journal. It may not seem like blogs are framed in that context but that's what they're best at. I often times find this really interesting flow where I write down what I think I should build before I build it, then I write a test, then I write the implementation. Often times I work out what I'm doing in the blog post well before I've even written the test. This is like a whole other kind of BDD, Blog Driven Development :) Use it for what it's best at and you'll find it rewarding.
+Finally, don't get too hung up on who is (or isn't) reading your blog. I know that pretty much all of the visits I see in my google analytics are actually just me checking the site on my phone or laptop. Definitely _do_ add analytics so you can see which parts are successful and which are not but don't expect to be [Daring Fireball](http://daringfireball.net/) overnight. In fact, don't ever expect to be Daring Fireball. Keep in mind that what you're doing is a personal journal. It may not seem like blogs are framed in that context but that's what they're best at. I often times find this really interesting flow where I write down what I think I should build before I build it, then I write a test, then I write the implementation. Often times I work out what I'm doing in the blog post well before I've even written the test. This is like a whole other kind of BDD, Blog Driven Development :) Use it for what it's best at and you'll find it rewarding.
 
 Ok that's it for now. Goodnight!
 

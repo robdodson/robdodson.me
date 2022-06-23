@@ -8,6 +8,7 @@ tags:
   - BDD
 date: 2012-05-16T04:33:00.000Z
 updated: 2014-12-30T07:24:17.000Z
+exclude: true
 ---
 
 During my last post I realized that including my metadata in the blog post as only a ul meant that all the words were being scraped as part of the keyword frequency search. After thinking about it for a while I think I'm going to give the keyword search method an optional value which it can use to ignore or delete certain nodes.

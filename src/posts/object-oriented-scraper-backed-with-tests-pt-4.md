@@ -8,6 +8,7 @@ tags:
   - FakeWeb
 date: 2012-05-11T14:20:00.000Z
 updated: 2014-12-30T07:10:14.000Z
+exclude: true
 ---
 
 Continuing from our [previous post](http://robdodson.me/blog/2012/05/08/object-oriented-scraper-backed-with-tests-pt-3/) we're going to keep working on our `Crawler` and our specs to see if we can start pulling real data from our site.

@@ -6,6 +6,8 @@ tags:
   - Polymer
 date: 2013-10-02T15:05:00.000Z
 updated: 2015-01-01T21:16:04.000Z
+
+exclude: true
 ---
 
 Ah Markdown... Such an amazing tool. I honestly would not be writing this blog post if Markdown did not exist. I tried many times to get in to blogging but I always found the writing experience, whether it be in a GUI or WordPress' HTML mode, too limiting. Markdown changed all of that for me and I think it's high time we make it a full fledged member of our developer toolbox.
@@ -40,13 +42,13 @@ Lastly we'll setup a test page for our element. I'm going to assume that the ele
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Markdown Polymer Element</title>
     <!-- Include webcomponents.js to polyfill web components in old browsers -->
     <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
     <!-- Import our polymer element -->
-    <link rel="import" href="elements/mark-down.html">
+    <link rel="import" href="elements/mark-down.html" />
   </head>
   <body>
     <!-- Test our awesome new tag -->
@@ -60,15 +62,13 @@ Lastly we'll setup a test page for our element. I'm going to assume that the ele
 We'll start with a very basic skeleton in our `elements/mark-down.html` file.
 
 ```html
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html" />
 <polymer-element name="mark-down">
   <template>
     <div id="markdown"></div>
   </template>
   <script>
-    Polymer({
-
-    });
+    Polymer({});
   </script>
 </polymer-element>
 ```
@@ -76,7 +76,7 @@ We'll start with a very basic skeleton in our `elements/mark-down.html` file.
 Let's walk through this a bit.
 
 ```html
-<polymer-element name="mark-down">
+<polymer-element name="mark-down"></polymer-element>
 ```
 
 This line tells Polymer that we'd like to define a new element and its tag name should be `mark-down`.
@@ -91,9 +91,7 @@ This is our template which Polymer will convert to [Shadow DOM.](/blog/2013/08/2
 
 ```html
 <script>
-  Polymer({
-
-  });
+  Polymer({});
 </script>
 ```
 
@@ -138,7 +136,7 @@ ready: function() {
 
 You might notice the funny use of `$` and think I'm doing something clever with jQuery. What's actually happening is that Polymer creates a map of any element inside of our template with an `id`. It then stores this map in a `$` property. So if you're using ids you can quickly access elements with the use of `this.$.someId`. In the Polymer docs this is referred to as [automatic node finding.](http://www.polymer-project.org/getting-started.html#automatic-node-finding)
 
-*But aren't ids an anti-pattern?*
+_But aren't ids an anti-pattern?_
 
 Although the traditional document model only allows for one id per page, the Shadow DOM creates a kind of clean slate where each element has its own id sandbox. This means we can use an id of `#markdown` in our element and not worry if the parent document also contains an element with id `#markdown`. Pretty nifty!
 
@@ -148,14 +146,8 @@ The only thing left is for us to throw some Markdown into our tag to test it out
 
 ```html
 <mark-down>
-  # This is a heading
-  ## This is a subheading
-
-  Here is **more** _Markdown!_
-
-  `This is some codez`
-
-  This [is a link](http://robdodson.me)
+  # This is a heading ## This is a subheading Here is **more** _Markdown!_ `This is some codez` This
+  [is a link](http://robdodson.me)
 </mark-down>
 ```
 

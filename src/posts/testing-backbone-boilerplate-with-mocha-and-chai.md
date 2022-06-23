@@ -7,9 +7,7 @@ tags:
   - Chai
 date: 2012-05-27T21:08:00.000Z
 updated: 2015-01-02T09:00:11.000Z
----
-
-Since I was previously doing so much RSpec I want to try to bring some of that over to my JavaScript work. Lately I've been working with the Backbone Boilerplate which is a wonderful jump-start for folks who want to get up and running with AMD and Backbone. Today I'm going to see if I can get a working BDD setup going which will run some very basic tests. In a future post I'll use this new setup to do some BDD with Backbone Boilerplate.
+---Since I was previously doing so much RSpec I want to try to bring some of that over to my JavaScript work. Lately I've been working with the Backbone Boilerplate which is a wonderful jump-start for folks who want to get up and running with AMD and Backbone. Today I'm going to see if I can get a working BDD setup going which will run some very basic tests. In a future post I'll use this new setup to do some BDD with Backbone Boilerplate.
 
 ### Setting up Mocha and Chai
 
@@ -34,7 +32,7 @@ Here's my html runner setup:
     </script>
     <script src="test.foobar.js"></script>
     <script>
-      $(function () {
+      $(function() {
         mocha.run();
       });
     </script>
@@ -48,13 +46,13 @@ Here's my html runner setup:
 And here's my first failing test:
 
 ```js
-describe('Foobar', function () {
-  describe('#sayHello()', function () {
-    it('should return some text', function () {
+describe('Foobar', function() {
+  describe('#sayHello()', function() {
+    it('should return some text', function() {
       var foobar = {
-        sayHello: function () {
+        sayHello: function() {
           return 'Hello World!';
-        },
+        }
       };
 
       assert(foobar.sayHello() === 'funky chicken');
@@ -87,7 +85,7 @@ Looking at some other Mocha examples in the github repo I noticed that they expl
     </script>
     <script src="test.foobar.js"></script>
     <script>
-      $(function () {
+      $(function() {
         mocha.run();
       });
     </script>
@@ -101,19 +99,16 @@ Looking at some other Mocha examples in the github repo I noticed that they expl
 Since our `assert` method takes a `msg` param we can add that to our test so we get some useful feedback when it fails. Here's the updated spec.
 
 ```js
-describe('Foobar', function () {
-  describe('#sayHello()', function () {
-    it('should return some text', function () {
+describe('Foobar', function() {
+  describe('#sayHello()', function() {
+    it('should return some text', function() {
       var foobar = {
-        sayHello: function () {
+        sayHello: function() {
           return 'Hello World!';
-        },
+        }
       };
 
-      assert(
-        foobar.sayHello() === 'funky chicken',
-        'Was expecting "Hello World!"'
-      );
+      assert(foobar.sayHello() === 'funky chicken', 'Was expecting "Hello World!"');
     });
   });
 });
@@ -138,7 +133,7 @@ OK, let's forge ahead and see if we can get chai working so we can use some nice
     </script>
     <script src="test.foobar.js"></script>
     <script>
-      $(function () {
+      $(function() {
         mocha.run();
       });
     </script>
@@ -157,22 +152,22 @@ var assert = chai.assert,
   should = chai.should(); // Note that should has to be executed
 
 var foobar = {
-  sayHello: function () {
+  sayHello: function() {
     return 'Hello World!';
-  },
+  }
 };
 
-describe('Foobar', function () {
-  describe('#sayHello()', function () {
-    it('should work with assert', function () {
+describe('Foobar', function() {
+  describe('#sayHello()', function() {
+    it('should work with assert', function() {
       assert.equal(foobar.sayHello(), 'funky chicken!');
     });
 
-    it('should work with expect', function () {
+    it('should work with expect', function() {
       expect(foobar.sayHello()).to.equal('funky chicken!');
     });
 
-    it('should work with should', function () {
+    it('should work with should', function() {
       foobar.sayHello().should.equal('funky chicken!');
     });
   });

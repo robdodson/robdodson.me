@@ -19,7 +19,7 @@ var doc = Documents.first();
 // This is a View object with model reference
 new DocumentRow({
   model: doc,
-  id: 'document-row-' + doc.id,
+  id: 'document-row-' + doc.id
 });
 ```
 

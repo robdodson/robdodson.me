@@ -21,15 +21,15 @@ Just to get the ball rolling I'm going to write a little code in my `app.js` fil
 
 ```js
 var countdown = 1000;
-setInterval(function () {
+setInterval(function() {
   countdown--;
-  io.sockets.emit('timer', { countdown: countdown });
+  io.sockets.emit('timer', {countdown: countdown});
 }, 1000);
 
-io.sockets.on('connection', function (socket) {
-  socket.on('reset', function (data) {
+io.sockets.on('connection', function(socket) {
+  socket.on('reset', function(data) {
     countdown = 1000;
-    io.sockets.emit('timer', { countdown: countdown });
+    io.sockets.emit('timer', {countdown: countdown});
   });
 });
 ```
@@ -39,11 +39,11 @@ Elsewhere in my client-side js I'm going to listen for the `timer` event and upd
 ```js
 var socket = io.connect(window.location.hostname);
 
-socket.on('timer', function (data) {
+socket.on('timer', function(data) {
   $('#counter').html(data.countdown);
 });
 
-$('#reset').click(function () {
+$('#reset').click(function() {
   socket.emit('reset');
 });
 ```

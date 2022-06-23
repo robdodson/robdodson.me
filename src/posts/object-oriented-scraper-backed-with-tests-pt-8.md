@@ -8,6 +8,7 @@ tags:
   - BDD
 date: 2012-05-16T14:42:00.000Z
 updated: 2014-12-30T07:25:30.000Z
+exclude: true
 ---
 
 Yesterday's I refactored my specs and crawler to support ignoring selections. While I started parsing the metadata I quickly realized that certain bits were rather specific and needed to have custom parsing methods. Today I'm going to write some format objects to help with all that.

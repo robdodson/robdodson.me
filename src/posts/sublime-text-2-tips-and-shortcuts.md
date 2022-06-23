@@ -5,9 +5,7 @@ tags:
   - Sublime
 date: 2012-06-24T05:28:00.000Z
 updated: 2014-12-31T00:17:50.000Z
----
-
-I've been using Sublime Text 2 for probably two months now and in that time I've discovered tons of useful tricks. I figured I should start writing them down for anyone who might be interested. I'll try to explain the bits that seem esoteric because there are a lot of cool commands which only work in certain contexts.
+---I've been using Sublime Text 2 for probably two months now and in that time I've discovered tons of useful tricks. I figured I should start writing them down for anyone who might be interested. I'll try to explain the bits that seem esoteric because there are a lot of cool commands which only work in certain contexts.
 
 ## Finding your preferences
 
@@ -15,7 +13,7 @@ One of the first things you want to do with Sublime is to find your User key bin
 
 Sublime Text is very DIY so there isn't a fancy GUI to help you change keyboard shortcuts. Instead you use the preference file to override the default shortcuts. Like a lot of things in Sublime, this can at first seem annoying and non-intuitive. That is, until you realize that by doing it this way Sublime has actually given you the power to make _extremely_ awesome key bindings. Take some time to look around in this file. I still only understand a fraction of what all it does but the little bits I learn here and there give me all sorts of ideas for new shortcuts. Just remember, if you want to change a keyboard shortcut you should do it in the User's key bindings and not the Default key bindings.
 
-**Pro Tip:** If you ever want to change a keyboard shortcut but can't figure out what command is currently running open up Sublime's built in terminal with ` ctrl+`` then type  `sublime.log_commands(True)`. Now when you execute your command from the menu you should see its name show up in the console. Just remember to turn logging off when you're done :)
+**Pro Tip:** If you ever want to change a keyboard shortcut but can't figure out what command is currently running open up Sublime's built in terminal with ` ctrl+`` then type `sublime.log_commands(True)`. Now when you execute your command from the menu you should see its name show up in the console. Just remember to turn logging off when you're done :)
 
 ## Sublime Package Control
 
@@ -89,9 +87,15 @@ OK with that out of the way...
 Let's say you're working on some HTML and you have a block of text that you'd like to wrap in a `p` tag. No problemo! Highlight the text and hit `ctrl+shift+w` or `Edit > Tag > Wrap Selection in Tag`. There's a more advanced versions that comes with the ZenCoding plugin which lets you do really elaborate wrappings. I believe the keyboard shortcut for that is `ctrl+alt+w`. Personally I dislike using the `ctrl` key on my Mac laptop so I changed both of those keyboard shortcuts to the following:
 
 ```json
-{ "keys": ["super+shift+r"], "command": "insert_snippet", "args": { "name": "Packages/XML/long-tag.sublime-snippet" } },
-{ "keys": ["alt+shift+r"], "command": "wrap_zen_as_you_type",
-"context": [
+({
+  "keys": ["super+shift+r"],
+  "command": "insert_snippet",
+  "args": {"name": "Packages/XML/long-tag.sublime-snippet"}
+},
+{
+  "keys": ["alt+shift+r"],
+  "command": "wrap_zen_as_you_type",
+  "context": [
     {
       "operand": "text.html, text.xml",
       "operator": "equal",
@@ -99,7 +103,7 @@ Let's say you're working on some HTML and you have a block of text that you'd li
       "key": "selector"
     }
   ]
-}
+})
 ```
 
 You'll notice that instead of just using a `wrap_in_tag` command name the first entry actually calls another command, `insert_snippet` and passes it an argument: `Packages/XML/long-tag.sublime.snippet` which is the location of a snippet file. Pretty cool trick!

@@ -6,6 +6,7 @@ tags:
   - JSON
 date: 2012-06-18T15:19:00.000Z
 updated: 2014-12-31T00:05:28.000Z
+exclude: true
 ---
 
 [Last night](http://robdodson.me/blog/2012/06/17/object-oriented-scraper-backed-with-tests-pt-dot-dot-dot-9/) I got the scraper to write an output.txt file which listed all the contents of `words_by_selector`. Today I want to make it write to JSON instead of plain text and I want to back it with some tests.

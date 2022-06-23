@@ -9,6 +9,7 @@ tags:
   - BDD
 date: 2012-05-12T14:02:00.000Z
 updated: 2014-12-30T07:18:03.000Z
+exclude: true
 ---
 
 Last night I got the `Crawler` passing its test for `#get_words_by_selector`. This morning I realize that when someone sends in a junk selector I want to raise an exception of some kind. Since I don't know much about Ruby Exceptions I'm doing a little digging...Ruby has both `throw`/`catch` and `raise`/`rescue` so what's the difference between throw/catch and raise/rescue in Ruby?

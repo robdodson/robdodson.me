@@ -6,6 +6,7 @@ tags:
   - Foundation
 date: 2012-06-11T03:24:00.000Z
 updated: 2014-12-30T23:37:32.000Z
+exclude: true
 ---
 
 Yesterday I introduced [SMACSS](http://smacss.com/) and did my best to give a high level overview of its main ideas. I'm using it on my current project and I'm really enjoying it so far. There's just something about having things codified by someone with more experience that gives me immense comfort. When I feel confused I can refer back to those docs and sort out what would be the best path. Standing on the shoulders of giants and all that jazz ;)
@@ -197,47 +198,39 @@ Let's throw in some dummy copy to make our columns expand so we can get closer t
       <div class="row">
         <div class="main eight columns">
           <p>
-            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami
-            salami boudin shankle. Short ribs pastrami pancetta bresaola
-            drumstick tail. Meatloaf turducken fatback pork loin, ribeye
-            bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa
-            jerky pastrami shank andouille leberkas drumstick. Sirloin pastrami
-            shankle cow. Kielbasa hamburger meatball shoulder jowl pork loin.
-            Short ribs bacon t-bone, chuck jerky turkey ham hock salami leberkas
-            ham speck.
+            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami salami boudin shankle.
+            Short ribs pastrami pancetta bresaola drumstick tail. Meatloaf turducken fatback pork
+            loin, ribeye bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa jerky
+            pastrami shank andouille leberkas drumstick. Sirloin pastrami shankle cow. Kielbasa
+            hamburger meatball shoulder jowl pork loin. Short ribs bacon t-bone, chuck jerky turkey
+            ham hock salami leberkas ham speck.
           </p>
 
           <p>
-            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami
-            salami boudin shankle. Short ribs pastrami pancetta bresaola
-            drumstick tail. Meatloaf turducken fatback pork loin, ribeye
-            bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa
-            jerky pastrami shank andouille leberkas drumstick. Sirloin pastrami
-            shankle cow. Kielbasa hamburger meatball shoulder jowl pork loin.
-            Short ribs bacon t-bone, chuck jerky turkey ham hock salami leberkas
-            ham speck.
+            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami salami boudin shankle.
+            Short ribs pastrami pancetta bresaola drumstick tail. Meatloaf turducken fatback pork
+            loin, ribeye bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa jerky
+            pastrami shank andouille leberkas drumstick. Sirloin pastrami shankle cow. Kielbasa
+            hamburger meatball shoulder jowl pork loin. Short ribs bacon t-bone, chuck jerky turkey
+            ham hock salami leberkas ham speck.
           </p>
 
           <p>
-            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami
-            salami boudin shankle. Short ribs pastrami pancetta bresaola
-            drumstick tail. Meatloaf turducken fatback pork loin, ribeye
-            bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa
-            jerky pastrami shank andouille leberkas drumstick. Sirloin pastrami
-            shankle cow. Kielbasa hamburger meatball shoulder jowl pork loin.
-            Short ribs bacon t-bone, chuck jerky turkey ham hock salami leberkas
-            ham speck.
+            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami salami boudin shankle.
+            Short ribs pastrami pancetta bresaola drumstick tail. Meatloaf turducken fatback pork
+            loin, ribeye bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa jerky
+            pastrami shank andouille leberkas drumstick. Sirloin pastrami shankle cow. Kielbasa
+            hamburger meatball shoulder jowl pork loin. Short ribs bacon t-bone, chuck jerky turkey
+            ham hock salami leberkas ham speck.
           </p>
 
           <p>
-            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami
-            salami boudin shankle. Short ribs pastrami pancetta bresaola
-            drumstick tail. Meatloaf turducken fatback pork loin, ribeye
-            bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa
-            jerky pastrami shank andouille leberkas drumstick. Sirloin pastrami
-            shankle cow. Kielbasa hamburger meatball shoulder jowl pork loin.
-            Short ribs bacon t-bone, chuck jerky turkey ham hock salami leberkas
-            ham speck.
+            Tri-tip prosciutto drumstick ham hock chicken t-bone, pastrami salami boudin shankle.
+            Short ribs pastrami pancetta bresaola drumstick tail. Meatloaf turducken fatback pork
+            loin, ribeye bresaola t-bone capicola tenderloin drumstick pancetta. Kielbasa jerky
+            pastrami shank andouille leberkas drumstick. Sirloin pastrami shankle cow. Kielbasa
+            hamburger meatball shoulder jowl pork loin. Short ribs bacon t-bone, chuck jerky turkey
+            ham hock salami leberkas ham speck.
           </p>
         </div>
         <aside class="four columns">

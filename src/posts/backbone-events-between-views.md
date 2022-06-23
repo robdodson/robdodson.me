@@ -44,19 +44,19 @@ require.config({
     backbone: '../assets/js/libs/backbone',
 
     // Shim Plugin
-    use: '../assets/js/plugins/use',
+    use: '../assets/js/plugins/use'
   },
 
   use: {
     backbone: {
       deps: ['use!underscore', 'jquery'],
-      attach: 'Backbone',
+      attach: 'Backbone'
     },
 
     underscore: {
-      attach: '_',
-    },
-  },
+      attach: '_'
+    }
+  }
 });
 ```
 
@@ -84,10 +84,10 @@ But we're not going to use that argument. It's just there to make sure that `jqu
 
 ```js
 $('#sections').livequery(
-  function () {
+  function() {
     console.log('sections added to DOM!');
   },
-  function () {
+  function() {
     console.log('sections removed from DOM!');
   }
 );
@@ -107,8 +107,8 @@ define([
   // Modules
 
   // Plugins
-  'plugins/jquery.livequery',
-], function (namespace, Backbone, livequery) {
+  'plugins/jquery.livequery'
+], function(namespace, Backbone, livequery) {
   // Create a new module
   var Example = namespace.module();
 
@@ -127,11 +127,11 @@ define([
   Example.Views.Tutorial = Backbone.View.extend({
     template: 'app/templates/example.html',
 
-    render: function (done) {
+    render: function(done) {
       var view = this;
 
       // Fetch the template, render it to the View element and call done.
-      namespace.fetchTemplate(this.template, function (tmpl) {
+      namespace.fetchTemplate(this.template, function(tmpl) {
         view.el.innerHTML = tmpl();
 
         // If a done function is passed, call it with the element
@@ -139,25 +139,25 @@ define([
           done(view.el);
         }
       });
-    },
+    }
   });
 
   Example.Views.Left = Backbone.View.extend({
     tagName: 'div',
     id: 'left-container',
-    className: 'container',
+    className: 'container'
   });
 
   Example.Views.Middle = Backbone.View.extend({
     tagName: 'div',
     id: 'middle-container',
-    className: 'container',
+    className: 'container'
   });
 
   Example.Views.Right = Backbone.View.extend({
     tagName: 'div',
     id: 'right-container',
-    className: 'container',
+    className: 'container'
   });
 
   Example.Views.Sections = Backbone.View.extend({
@@ -169,10 +169,10 @@ define([
     rightView: undefined,
 
     events: {
-      'click .container': 'onChildClicked',
+      'click .container': 'onChildClicked'
     },
 
-    initialize: function () {
+    initialize: function() {
       this.leftView = new Example.Views.Left();
       this.middleView = new Example.Views.Middle();
       this.rightView = new Example.Views.Right();
@@ -182,44 +182,43 @@ define([
       this.$el.append(this.rightView.render().el);
 
       $('#sections').livequery(
-        function () {
+        function() {
           console.log('sections added to DOM!');
         },
-        function () {
+        function() {
           console.log('sections removed from DOM!');
         }
       );
     },
 
     // We should do this work with events instead of methods
-    setInitialPosition: function () {
-      this.$el.css({ left: $(window).width() / 2 - this.$el.width() / 2 });
+    setInitialPosition: function() {
+      this.$el.css({left: $(window).width() / 2 - this.$el.width() / 2});
     },
 
-    onChildClicked: function ($e) {
+    onChildClicked: function($e) {
       var $target = $($e.target);
 
       switch ($e.target.id) {
         case 'left-container':
           this.$el.animate({
-            left: $(window).width() / 2 - $target.width() / 2,
+            left: $(window).width() / 2 - $target.width() / 2
           });
           break;
 
         case 'middle-container':
           this.$el.animate({
-            left: $(window).width() / 2 - this.$el.width() / 2,
+            left: $(window).width() / 2 - this.$el.width() / 2
           });
           break;
 
         case 'right-container':
           this.$el.animate({
-            left:
-              $(window).width() / 2 - this.$el.width() + $target.width() / 2,
+            left: $(window).width() / 2 - this.$el.width() + $target.width() / 2
           });
           break;
       }
-    },
+    }
   });
 
   // Required, return the module for AMD compliance

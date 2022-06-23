@@ -7,6 +7,7 @@ tags:
   - RSpec
 date: 2012-05-07T01:09:00.000Z
 updated: 2014-12-30T06:53:11.000Z
+exclude: true
 ---
 
 _I just drank a ton of coffee and I'm blasting music in my headphones so this post my bit a bit more scatter-shot than most since I can't really focus :]_

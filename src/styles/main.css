@@ -47,3 +47,9 @@ figcaption {
   max-width: 69ch;
   padding-left: 1rem;
 }
+
+iframe {
+  aspect-ratio: 16 / 9;
+  height: 100%;
+  width: 100%;
+}

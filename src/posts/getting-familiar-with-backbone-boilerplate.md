@@ -9,9 +9,7 @@ tags:
   - RequireJS
 date: 2012-05-17T14:47:00.000Z
 updated: 2014-12-30T07:29:46.000Z
----
-
-I have an upcoming project which uses [Backbone](http://documentcloud.github.com/backbone/) and [Node.js](http://nodejs.org/) so I thought it would be good to blog about the topics (particularly Backbone) for a while to make sure I'm well up to speed.
+---I have an upcoming project which uses [Backbone](http://documentcloud.github.com/backbone/) and [Node.js](http://nodejs.org/) so I thought it would be good to blog about the topics (particularly Backbone) for a while to make sure I'm well up to speed.
 
 We're using the [Backbone Boilerplate](https://github.com/tbranyen/backbone-boilerplate) to get us started since it includes a bit of file structure and a build process. As they mention in the docs you have to install [Grunt](https://github.com/cowboy/grunt) if you want to use the build process they've stubbed out. Grunt is a javascript build tool which uses Node (think Rake in JS).
 
@@ -79,19 +77,19 @@ require.config({
     backbone: '../assets/js/libs/backbone',
 
     // Shim Plugin
-    use: '../assets/js/plugins/use',
+    use: '../assets/js/plugins/use'
   },
 
   use: {
     backbone: {
       deps: ['use!underscore', 'jquery'],
-      attach: 'Backbone',
+      attach: 'Backbone'
     },
 
     underscore: {
-      attach: '_',
-    },
-  },
+      attach: '_'
+    }
+  }
 });
 ```
 
@@ -142,7 +140,7 @@ use: {
 }
 ```
 
-Let's start at the bottom so we can see that underscore is defined and mapped to "_". `attach` is going to take whatever library we're defining and attach it to `window`. So underscore will be attached as `window._`. Next we see that backbone is defined and depends on our version of underscore and jquery. Since jquery is AMD compliant we don't need the call to `use!`but we will need it for underscore. Finally backbone is attached to the window as`window.Backbone`.
+Let's start at the bottom so we can see that underscore is defined and mapped to "_". `attach` is going to take whatever library we're defining and attach it to `window`. So underscore will be attached as `window._`. Next we see that backbone is defined and depends on our version of underscore and jquery. Since jquery is AMD compliant we don't need the call to`use!`but we will need it for underscore. Finally backbone is attached to the window as`window.Backbone`.
 
 That covers the configuration file. I'll move on to main.js in the next post.
 

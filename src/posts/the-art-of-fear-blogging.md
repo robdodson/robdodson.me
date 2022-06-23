@@ -2,9 +2,10 @@
 title: The Art of Fear Blogging
 date: 2013-09-16T19:51:00.000Z
 updated: 2015-01-01T21:04:56.000Z
+exclude: true
 ---
 
-Years ago [I heard a radio story about a woman hopelessly addicted to cigarettes.](http://www.radiolab.org/2011/mar/08/you-v-you/) Although she tried numerous times to quit, the temptation always won out. So she devised a plan. She told her best friend that if she ever caught her smoking again, she would have to send $5,000 to the Ku Klux Klan. Her best friend, acting as the enforcer, would hold her to it.
+Years ago [I heard a radio story about a woman hopelessly addicted to cigarettes.](http://www.radiolab.org/2011/mar/08/you-v-you/) Although she tried numerous times to quit, the temptation always won out. So she devised a plan. She told her best friend that if she ever caught her smoking again, she would have to send \$5,000 to the Ku Klux Klan. Her best friend, acting as the enforcer, would hold her to it.
 
 There's a name for this. It's called a [Ulysses pact.](http://en.wikipedia.org/wiki/Ulysses_pact)
 
@@ -18,7 +19,7 @@ I wanted to elevate my career and push myself to be a better developer. I knew t
 
 **It's very easy to get bogged down and to not do it consistently. But consistency is key to forming any good habit.**
 
-To overcome these obstacles I made a deal. I publicly announced that I would give $500 to a politician I was not fond of unless I published a blog post every day for 60 days. I've come to refer to this as **Fear Blogging.**
+To overcome these obstacles I made a deal. I publicly announced that I would give \$500 to a politician I was not fond of unless I published a blog post every day for 60 days. I've come to refer to this as **Fear Blogging.**
 
 **I made a decision in the present which (figuratively) bound my future self.**
 

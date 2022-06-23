@@ -6,6 +6,7 @@ tags:
   - Nokogiri
 date: 2012-06-23T08:08:00.000Z
 updated: 2014-12-31T00:14:41.000Z
+exclude: true
 ---
 
 I'm just getting my ass kicked by Ruby tonight so I don't have much to show. Trying to just get my metadata scraping to output something currently looks like this:
@@ -228,23 +229,11 @@ I had to comment out the `Tentacles::SelectionError` because it was throwing and
   "posts": [
     {
       "date": "2012-06-22T00:31:00-07:00",
-      "stats": [
-        "Time: 12:31 am",
-        "Mood: Tired",
-        "Sleep: 6",
-        "Hunger: 0",
-        "Coffee: 1"
-      ]
+      "stats": ["Time: 12:31 am", "Mood: Tired", "Sleep: 6", "Hunger: 0", "Coffee: 1"]
     },
     {
       "date": "2012-06-21T01:27:00-07:00",
-      "stats": [
-        "Time: 1:28 am",
-        "Mood: Tired, Annoyed",
-        "Sleep: 6",
-        "Hunger: 0",
-        "Coffee: 1"
-      ]
+      "stats": ["Time: 1:28 am", "Mood: Tired, Annoyed", "Sleep: 6", "Hunger: 0", "Coffee: 1"]
     },
     {
       "date": "2012-06-20T00:09:00-07:00",

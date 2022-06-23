@@ -31,7 +31,7 @@ function Stopwatch() {
   events.EventEmitter.call(this);
 
   var self = this;
-  setInterval(function () {
+  setInterval(function() {
     self.emit('tick');
   }, 1000);
 }
@@ -75,7 +75,7 @@ function Stopwatch() {
   events.EventEmitter.call(this);
 }
 
-Stopwatch.prototype.foobar = function () {
+Stopwatch.prototype.foobar = function() {
   console.log('foobar!');
 };
 
@@ -107,7 +107,7 @@ function Stopwatch() {
 
 util.inherits(Stopwatch, events.EventEmitter);
 
-Stopwatch.prototype.foobar = function () {
+Stopwatch.prototype.foobar = function() {
   console.log('foobar!');
 };
 
@@ -152,7 +152,7 @@ util.inherits(Stopwatch, events.EventEmitter);
 // ---------------------------------------------
 // Methods
 // ---------------------------------------------
-Stopwatch.prototype.start = function () {
+Stopwatch.prototype.start = function() {
   console.log('Starting Stopwatch!');
   // note the use of _.bindAll in the constructor
   // with bindAll we can pass one of our methods to
@@ -161,7 +161,7 @@ Stopwatch.prototype.start = function () {
   this.emit('start');
 };
 
-Stopwatch.prototype.stop = function () {
+Stopwatch.prototype.stop = function() {
   console.log('Stopping Stopwatch!');
   if (this.interval) {
     clearInterval(this.interval);
@@ -169,13 +169,13 @@ Stopwatch.prototype.stop = function () {
   }
 };
 
-Stopwatch.prototype.reset = function () {
+Stopwatch.prototype.reset = function() {
   console.log('Resetting Stopwatch!');
   this.time = this.hour;
   this.emit('reset');
 };
 
-Stopwatch.prototype.onTick = function () {
+Stopwatch.prototype.onTick = function() {
   var remainder = this.time,
     numHours,
     numMinutes,
@@ -195,7 +195,7 @@ Stopwatch.prototype.onTick = function () {
 
   numSeconds = String(parseInt(remainder / this.second, 10));
 
-  output = _.map([numHours, numMinutes, numSeconds], function (str) {
+  output = _.map([numHours, numMinutes, numSeconds], function(str) {
     if (str.length === 1) {
       str = '0' + str;
     }

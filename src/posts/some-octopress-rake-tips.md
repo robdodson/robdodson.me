@@ -6,6 +6,7 @@ tags:
   - Rake
 date: 2012-06-12T02:04:00.000Z
 updated: 2014-12-30T23:43:39.000Z
+exclude: true
 ---
 
 This is a quick post just to scratch one of my own itches. I've been using Octopress every single day for around two months now and the generation time for my blog is slowly starting to creep up. I'd heard that you could isolate a post and just preview/generate it instead of doing the whole blog every time but it wasn't until today that I finally decided to look into it.

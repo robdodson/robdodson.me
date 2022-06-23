@@ -53,7 +53,7 @@ util.inherits(Stopwatch, events.EventEmitter);
 // ---------------------------------------------
 // Methods
 // ---------------------------------------------
-Stopwatch.prototype.start = function () {
+Stopwatch.prototype.start = function() {
   if (this.interval) {
     return;
   }
@@ -66,7 +66,7 @@ Stopwatch.prototype.start = function () {
   this.emit('start:stopwatch');
 };
 
-Stopwatch.prototype.stop = function () {
+Stopwatch.prototype.stop = function() {
   console.log('Stopping Stopwatch!');
   if (this.interval) {
     clearInterval(this.interval);
@@ -75,13 +75,13 @@ Stopwatch.prototype.stop = function () {
   }
 };
 
-Stopwatch.prototype.reset = function () {
+Stopwatch.prototype.reset = function() {
   console.log('Resetting Stopwatch!');
   this.time = this.hour;
   this.emit('reset:stopwatch', this.formatTime(this.time));
 };
 
-Stopwatch.prototype.onTick = function () {
+Stopwatch.prototype.onTick = function() {
   this.time -= this.second;
 
   var formattedTime = this.formatTime(this.time);
@@ -92,7 +92,7 @@ Stopwatch.prototype.onTick = function () {
   }
 };
 
-Stopwatch.prototype.formatTime = function (time) {
+Stopwatch.prototype.formatTime = function(time) {
   var remainder = time,
     numHours,
     numMinutes,
@@ -107,7 +107,7 @@ Stopwatch.prototype.formatTime = function (time) {
 
   numSeconds = String(parseInt(remainder / this.second, 10));
 
-  output = _.map([numHours, numMinutes, numSeconds], function (str) {
+  output = _.map([numHours, numMinutes, numSeconds], function(str) {
     if (str.length === 1) {
       str = '0' + str;
     }
@@ -117,7 +117,7 @@ Stopwatch.prototype.formatTime = function (time) {
   return output;
 };
 
-Stopwatch.prototype.getTime = function () {
+Stopwatch.prototype.getTime = function() {
   return this.formatTime(this.time);
 };
 
@@ -135,28 +135,28 @@ These changes to `Stopwatch` also require us to update the `app.js` that uses it
 
 ```js
 var stopwatch = new Stopwatch();
-stopwatch.on('tick:stopwatch', function (time) {
-  io.sockets.emit('time', { time: time });
+stopwatch.on('tick:stopwatch', function(time) {
+  io.sockets.emit('time', {time: time});
 });
 
-stopwatch.on('reset:stopwatch', function (time) {
-  io.sockets.emit('time', { time: time });
+stopwatch.on('reset:stopwatch', function(time) {
+  io.sockets.emit('time', {time: time});
 });
 
 stopwatch.start();
 
-io.sockets.on('connection', function (socket) {
-  io.sockets.emit('time', { time: stopwatch.getTime() });
+io.sockets.on('connection', function(socket) {
+  io.sockets.emit('time', {time: stopwatch.getTime()});
 
-  socket.on('click:start', function () {
+  socket.on('click:start', function() {
     stopwatch.start();
   });
 
-  socket.on('click:stop', function () {
+  socket.on('click:stop', function() {
     stopwatch.stop();
   });
 
-  socket.on('click:reset', function () {
+  socket.on('click:reset', function() {
     stopwatch.reset();
   });
 });
@@ -180,19 +180,19 @@ Lastly I've updated the view by adding some more buttons to correspond to the st
 ```js
 var socket = io.connect(window.location.hostname);
 
-socket.on('time', function (data) {
+socket.on('time', function(data) {
   $('#countdown').html(data.time);
 });
 
-$('#start').click(function () {
+$('#start').click(function() {
   socket.emit('click:start');
 });
 
-$('#stop').click(function () {
+$('#stop').click(function() {
   socket.emit('click:stop');
 });
 
-$('#reset').click(function () {
+$('#reset').click(function() {
   socket.emit('click:reset');
 });
 ```
@@ -252,42 +252,16 @@ button.thoughtbot {
     #b51700 50%,
     #891100 100%
   );
-  background-image: -moz-linear-gradient(
-    top,
-    #ee432e 0%,
-    #c63929 50%,
-    #b51700 50%,
-    #891100 100%
-  );
-  background-image: -ms-linear-gradient(
-    top,
-    #ee432e 0%,
-    #c63929 50%,
-    #b51700 50%,
-    #891100 100%
-  );
-  background-image: -o-linear-gradient(
-    top,
-    #ee432e 0%,
-    #c63929 50%,
-    #b51700 50%,
-    #891100 100%
-  );
-  background-image: linear-gradient(
-    top,
-    #ee432e 0%,
-    #c63929 50%,
-    #b51700 50%,
-    #891100 100%
-  );
+  background-image: -moz-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  background-image: -ms-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  background-image: -o-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  background-image: linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
   border: 1px solid #951100;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px
-      #333333;
-  -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px
-      #333333;
+  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+  -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
   color: #fff;
   font: bold 20px 'helvetica neue', helvetica, arial, sans-serif;
@@ -316,34 +290,10 @@ button.thoughtbot:hover {
     #cb0500 50%,
     #a20601 100%
   );
-  background-image: -moz-linear-gradient(
-    top,
-    #f37873 0%,
-    #db504d 50%,
-    #cb0500 50%,
-    #a20601 100%
-  );
-  background-image: -ms-linear-gradient(
-    top,
-    #f37873 0%,
-    #db504d 50%,
-    #cb0500 50%,
-    #a20601 100%
-  );
-  background-image: -o-linear-gradient(
-    top,
-    #f37873 0%,
-    #db504d 50%,
-    #cb0500 50%,
-    #a20601 100%
-  );
-  background-image: linear-gradient(
-    top,
-    #f37873 0%,
-    #db504d 50%,
-    #cb0500 50%,
-    #a20601 100%
-  );
+  background-image: -moz-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+  background-image: -ms-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+  background-image: -o-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+  background-image: linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
   cursor: pointer;
 }
 
@@ -365,34 +315,10 @@ button.thoughtbot:active {
     #9c1500 50%,
     #700d00 100%
   );
-  background-image: -moz-linear-gradient(
-    top,
-    #d43c28 0%,
-    #ad3224 50%,
-    #9c1500 50%,
-    #700d00 100%
-  );
-  background-image: -ms-linear-gradient(
-    top,
-    #d43c28 0%,
-    #ad3224 50%,
-    #9c1500 50%,
-    #700d00 100%
-  );
-  background-image: -o-linear-gradient(
-    top,
-    #d43c28 0%,
-    #ad3224 50%,
-    #9c1500 50%,
-    #700d00 100%
-  );
-  background-image: linear-gradient(
-    top,
-    #d43c28 0%,
-    #ad3224 50%,
-    #9c1500 50%,
-    #700d00 100%
-  );
+  background-image: -moz-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+  background-image: -ms-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+  background-image: -o-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+  background-image: linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
   -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
   -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
   box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);

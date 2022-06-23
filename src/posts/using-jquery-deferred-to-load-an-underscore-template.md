@@ -7,9 +7,7 @@ tags:
   - Underscore
 date: 2012-05-30T15:53:00.000Z
 updated: 2014-12-30T08:09:30.000Z
----
-
-Today's post is meant to scratch an itch I had the other day regarding templates. My friend wanted to load an underscore template along with some JSON data but wasn't sure what the best approach would be.
+---Today's post is meant to scratch an itch I had the other day regarding templates. My friend wanted to load an underscore template along with some JSON data but wasn't sure what the best approach would be.
 
 Since I'm using Backbone Boilerplate I've gotten used to having my template loading method already stubbed out for me. Here's the one they use:
 
@@ -96,7 +94,7 @@ This is a much nicer approach than passing in a callback that your service will 
 
 ### But I digress...
 
-We were _trying_ to load some JSON and a template, so let's get back to the task at hand. Since we know that we have two ajax calls, one for the JSON and one for the template, and we know that we don't really want to do anything till both of these calls have completed we've got a perfect use case for [$.when](http://api.jquery.com/jQuery.when/). `when` accepts a list of deferreds/promises and acts as one big deferred, waiting for all of its children to resolve before it resolves. This is a nice way to build a sequencer. In our case we're going to take two ajax calls and toss them into `$.when`. When it resolves we'll use `$.then` to tell it what our success and failure callbacks should be.
+We were _trying_ to load some JSON and a template, so let's get back to the task at hand. Since we know that we have two ajax calls, one for the JSON and one for the template, and we know that we don't really want to do anything till both of these calls have completed we've got a perfect use case for [\$.when](http://api.jquery.com/jQuery.when/). `when` accepts a list of deferreds/promises and acts as one big deferred, waiting for all of its children to resolve before it resolves. This is a nice way to build a sequencer. In our case we're going to take two ajax calls and toss them into `$.when`. When it resolves we'll use `$.then` to tell it what our success and failure callbacks should be.
 
 ```html
 <!DOCTYPE html>
@@ -111,7 +109,7 @@ We were _trying_ to load some JSON and a template, so let's get back to the task
     <div id="main"></div>
 
     <script>
-      $(function () {
+      $(function() {
         function successFunc(jsonRes, templateRes) {
           var json = _.first(jsonRes);
           var template = _.first(templateRes);
@@ -153,12 +151,15 @@ function failureFunc() {
 }
 
 var service = {
-  getJSON: function () {
+  getJSON: function() {
     return $.ajax('person.json');
-  },
+  }
 };
 
-service.getJSON().done(successFunc).fail(failureFunc);
+service
+  .getJSON()
+  .done(successFunc)
+  .fail(failureFunc);
 ```
 
 `always()` fires its callbacks regardless of whether the deferred was `resolved` or `rejected`. This might be a good place to put any cleanup code. `progress()` is fired during any progress events that the process might emit. Finally there's `then()` which is what we're using in our template example. `then()` is essentially shorthand for `done()` and `fail()` so you can pass it two callbacks or two arrays of success/fail callbacks.

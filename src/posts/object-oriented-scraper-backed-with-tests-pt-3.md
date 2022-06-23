@@ -8,6 +8,7 @@ tags:
   - FakeWeb
 date: 2012-05-09T04:03:00.000Z
 updated: 2014-12-30T06:59:53.000Z
+exclude: true
 ---
 
 I did some cleanup this morning on the `Options` class and the `options_spec`, mainly to remove items that seemed like they shouldn't be tested. Here's where I'm currently at:

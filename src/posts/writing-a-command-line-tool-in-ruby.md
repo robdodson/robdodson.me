@@ -5,9 +5,7 @@ tags:
   - Chain
 date: 2012-06-13T14:29:00.000Z
 updated: 2014-12-30T23:47:54.000Z
----
-
-Yesterday I tried to do a post on creating your first Ruby Gem as a command line tool. [It didn't go very well.](http://robdodson.me/blog/2012/06/12/messing-around-with-gems/) In an effort to better understand what goes on with command line tools I'm going to start from the most basic, a ruby script that is in our `PATH`.
+---Yesterday I tried to do a post on creating your first Ruby Gem as a command line tool. [It didn't go very well.](http://robdodson.me/blog/2012/06/12/messing-around-with-gems/) In an effort to better understand what goes on with command line tools I'm going to start from the most basic, a ruby script that is in our `PATH`.
 
 I've previously added the folder `~/bin` to my PATH so I know that if I drop an executable script in there I should be able to run it by just typing its name. Let's give that a shot. First we'll make a new file just called `sherp` without any file extension. Make sure to `chmod 755 sherpa` so that it's executable. Then we'll add the following:
 

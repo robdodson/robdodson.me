@@ -5,6 +5,7 @@ tags:
   - Design Patterns
 date: 2012-05-11T02:08:00.000Z
 updated: 2014-12-30T07:05:34.000Z
+exclude: true
 ---
 
 ### What is design by configuration?
@@ -59,7 +60,7 @@ makeWidget({
   classes: 'widget-container grey-background rounded-corners',
   title: 'Hello World!',
   data: 'ribeye',
-  paragraph: 'Neato paragraph!',
+  paragraph: 'Neato paragraph!'
 });
 ```
 
@@ -103,7 +104,7 @@ makeWidget({
   classes: 'widget-container grey-background rounded-corners',
   title: 'Hello World!',
   data: 'ribeye',
-  paragraph: 'Neato paragraph!',
+  paragraph: 'Neato paragraph!'
 });
 ```
 
