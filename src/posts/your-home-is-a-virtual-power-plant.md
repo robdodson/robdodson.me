@@ -10,6 +10,7 @@ tags:
   - smart home
   - virtual power plant
   - ohmconnect
+  - voltus
 ---
 
 On September 9th 2020, I woke up to find that the sky outside of my window looked like this:
