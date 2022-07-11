@@ -2,6 +2,8 @@
 title: Joining Voltus to work on climate!
 date: 2022-07-10
 description: I'm joining the team at Voltus to help make the grid smarter and more resilient.
+socialImage: /images/earth-from-space.jpg
+socialImageAlt: A nightime photo of Earth taken from space. It shows the lights of the electrical grid across a network of cities.
 tags:
   - climate
   - voltus
@@ -13,7 +15,7 @@ When I left Google back in October of 2021, I did so because I wanted to find a 
 
 ## What does Voltus do?
 
-Voltus offers a number of programs to its customers, but it's most well known for its demand response programs. Demand response is a clever grid balancing technique that's especially important as grids transition to renewable resources.
+Voltus offers a number of programs to its customers, but it's primarily known for its demand response programs. Demand response is a clever grid balancing technique that's especially important as we transition to renewable energy.
 
 You can think of it like this: When there is more demand (i.e. people using power) than there is supply (power being generated) then a grid operator has two choices—either generate more supply, or reduce demand.
 
