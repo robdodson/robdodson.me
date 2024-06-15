@@ -5,7 +5,9 @@ tags:
   - Sublime
 date: 2012-06-25T05:48:00.000Z
 updated: 2014-12-31T00:21:39.000Z
----[Yesterday I covered some tips and tricks](http://robdodson.me/blog/2012/06/23/sublime-text-2-tips-and-shortcuts/) I've learned over the past few months of using Sublime. Something I didn't touch on is Sublime's Snippet architecture.
+---
+
+[Yesterday I covered some tips and tricks](http://robdodson.me/blog/2012/06/23/sublime-text-2-tips-and-shortcuts/) I've learned over the past few months of using Sublime. Something I didn't touch on is Sublime's Snippet architecture.
 
 Essentially a snippet is a little piece of code that gets executed when you type some characters and hit the `tab` key. For instance I have a snippet that spits out `console.log()` whenever I type `lg` and press `tab`. One clever feature of snippets is that they can be bound to a keyboard shortcut if the key binding calls the `insert_snippet` command and passes the path to the snippet file as an argument. For example:
 
@@ -29,7 +31,7 @@ The previously mentioned snippet is great for wrapping an item in HTML/XML tags 
 
 We're going to copy the file located at `/Library/Application\ Support/Sublime\ Text\ 2/Packages/XML` and move it into our `/Packages/User` directory. I chose to rename the file to `wrap-anything.sublime-snippet`. The original snippet looks like this:
 
-```xml
+```
 <snippet>
     <content><![CDATA[<${1:p}>${2:$SELECTION}</${1/([^ ]+).*/$1/}>]]></content>
     <tabTrigger>&lt;</tabTrigger>
@@ -54,7 +56,7 @@ The third part contains a block of regex which, I think, just matches whatever t
 
 OK let's make our own simplified snippet:
 
-```xml
+```
     <snippet>
         <content><![CDATA[${1:`}${2:$SELECTION}${1}]]></content>
         <tabTrigger></tabTrigger>
@@ -73,7 +75,7 @@ Now when we hit `cmd+r` it will let us wrap our current selection in whatever we
 
 For good measure here's a really useful console.log snippet that's triggered by typing `lg` and then pressing `tab`.
 
-```xml
+```
 <snippet>
     <content><![CDATA[console.log(${1});]]></content>
     <tabTrigger>lg</tabTrigger>
