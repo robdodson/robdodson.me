@@ -29,12 +29,12 @@
   <meta property="og:description" content="{{ pageDesc }}" />
 {% endif %}
 
-{% if socialImage %}
-  <meta property="og:image" content="{{ socialImage }}">
-  <meta property="og:image:alt" content="{{ socialImageAlt }}">
-  <meta property="og:image:width" content="{{ socialImageWidth }}">
-  <meta property="og:image:height" content="{{ socialImageHeight }}">
+{% if site.socialImage %}
+  <meta property="og:image" content="{{ site.socialImage }}">
+  <meta property="og:image:alt" content="{{ site.socialImageAlt }}">
+  <meta property="og:image:width" content="{{ site.socialImageWidth }}">
+  <meta property="og:image:height" content="{{ site.socialImageHeight }}">
   <meta content="summary_large_image" name="twitter:card">
-  <meta name="twitter:image" content="{{ socialImage }}" />
-  <meta name="twitter:image:alt" content="{{ socialImageAlt }}" />
+  <meta name="twitter:image" content="{{ site.socialImage }}" />
+  <meta name="twitter:image:alt" content="{{ site.socialImageAlt }}" />
 {% endif %}

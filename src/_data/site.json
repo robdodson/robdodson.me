@@ -4,7 +4,7 @@
   "url": "https://robdodson.me",
   "authorHandle": "@rob_dodson",
   "authorName": "Rob Dodson",
-  "socialImage": "/images/profile.jpg",
+  "socialImage": "https://robdodson.me/images/profile.jpg",
   "socialImageAlt": "A profile photo of Rob Dodson",
   "socialImageWidth": "400",
   "socialImageHeight": "400",
