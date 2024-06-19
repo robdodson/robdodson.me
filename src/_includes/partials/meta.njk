@@ -30,6 +30,7 @@
 {% endif %}
 
 {% if socialImage %}
+  {% set socialImage = site.url + socialImage %}
   <meta property="og:image" content="{{ socialImage }}">
   <meta property="og:image:alt" content="{{ socialImageAlt }}">
   <meta content="summary_large_image" name="twitter:card">
