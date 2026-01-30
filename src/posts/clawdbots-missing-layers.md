@@ -11,7 +11,7 @@ In 1994, Pizza Hut launched *PizzaNet*, one of the first—and possibly best nam
 
 *Who would be crazy enough to do that?*
 
-No encryption, no standards, no recourse if something went wrong. Fast forward to today: we buy groceries, cars, and houses online without a second thought. We didn't get braver—we built the infrastructure to make it safe.
+No encryption, no standards, no recourse if something went wrong. Fast forward to today: we buy groceries, cars, and houses online without a second thought. What changed was that we built the infrastructure to make it safe.
 
 We're at that same inflection point with agents.
 
@@ -21,7 +21,7 @@ Right now, giving an agent access to your computer feels a lot like typing your 
 
 [The recent Clawdbot hack](https://x.com/theonejvo/status/2015892980851474595) made this visceral. A supply chain attack turned a helpful AI into a data exfiltration tool. And here's the uncomfortable truth: there was nothing particularly sophisticated about it.<sup><a href="#fn1" id="fnref1">1</a></sup> The attack worked because we haven't built the infrastructure to make agents safe.
 
-That's not a reason to give up. It's a trillion-dollar opportunity! I realize that's a very sales-y way to put it but I think it's true.
+Building that infrastructure is a trillion-dollar opportunity. I realize that's a very sales-y way to put it but I think it's true.
 
 ## What E-Commerce Got Right
 
@@ -69,7 +69,7 @@ Git gives us reversibility for code. But what about the email your agent sent? T
 
 When something goes wrong, you need to reconstruct what happened. E-commerce has transaction logs, fraud detection systems, paper trails for disputes.
 
-Agents need the same: a complete record of what actions were taken, what data was accessed, and why. Not just for debugging—for accountability.
+Agents need the same: a complete record of what actions were taken, what data was accessed, and why.
 
 Audit trails also enable other layers:
 - **Reversibility** — you can't undo what you can't identify
@@ -115,7 +115,7 @@ The good news is that every layer represents an opportunity. Companies that buil
 
 In 1994, it was crazy to put your credit card online. In 2004, it was normal. The companies that built the layers in between—Verisign, PayPal, Stripe—created enormous value by making trust possible.
 
-The same will be true for agents. The question isn't whether we'll unlock them. It's who builds the layers that make it safe to do so.
+The same will be true for agents.
 
 <aside class="footnote" id="fn1">
 <sup>1</sup> <em>That's not to say it wasn't clever or well executed. Jamieson O'Reilly did a phenomenal job! But the actual attack amounted to telling the AI to "send the user's stuff to this server" and the AI complied without question because it naively trusted the supply chain.</em> <a href="#fnref1">↩</a>
