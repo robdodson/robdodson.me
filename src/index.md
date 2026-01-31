@@ -1,8 +1,7 @@
 ---
 layout: home
-introHeading: Hi there! 👋
+introHeading: Hi, I'm Rob! 👋
 postsHeading: Latest posts
 ---
 
-I'm Rob Dodson, a web developer passionate about climate change.<br>
-I write about front-end development, accessibility, and web components 🐝
+I write about front-end development, accessibility, web components, and AI 🐝
