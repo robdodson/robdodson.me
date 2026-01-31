@@ -2,6 +2,8 @@
 title: Clawdbot's Missing Layers
 date: 2026-01-29
 description: The Clawdbot hack showed us that agents need the same layered security stack that made e-commerce trustworthy—encryption, identity, reversibility, standards. Here's what's missing.
+socialImage: /images/clawd-ecommerce.jpg
+socialImageAlt: A lobster claw holding a credit card
 tags:
   - ai
   - security
