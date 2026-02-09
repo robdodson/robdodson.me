@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3 {
+  text-wrap: pretty;
+}
+
 .skip-link:not(:focus) {
   @apply sr-only;
 }

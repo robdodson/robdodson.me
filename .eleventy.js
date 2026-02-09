@@ -1,3 +1,4 @@
+const markdownIt = require('markdown-it');
 const rssPlugin = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const fs = require('fs');
@@ -54,6 +55,10 @@ module.exports = function(eleventyConfig) {
       .reverse()
       .slice(0, site.maxPostsPerPage);
   });
+
+  // Markdown
+  const md = markdownIt({ html: true, typographer: true });
+  eleventyConfig.setLibrary('md', md);
 
   // Plugins
   eleventyConfig.addPlugin(rssPlugin);

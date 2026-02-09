@@ -10,11 +10,13 @@ tags:
   - obsidian
 ---
 
-![A brain made of stacked collaged paper. Colorful paper plants sprout from the folds in the brain.](/images/brain-garden.jpg)
+<figure>
+  <img src="/images/brain-garden.jpg" alt="A brain made of stacked collaged paper. Colorful paper plants sprout from the folds in the brain.">
+</figure>
 
 I always wanted a second brain.
 
-The thought of it *seems* so alluring: organize all of your thoughts, make connections, discover new ideas, build ✨ your personal knowledge graph! ✨ But I could never seem to get the promise of the second brain to materialize because of the maintenance work.
+The thought of it *seems* so alluring: organize all of your thoughts, make connections, discover new ideas, build your personal knowledge graph! But I could never seem to get the promise of the second brain to materialize because of the maintenance work.
 
 If you follow productivity gurus on YouTube they all recommend the same strategy:
 
@@ -30,7 +32,7 @@ Then it occurred to me that Claude Code is really good at reading markdown. As I
 
 ## My Gardener: Claude 🌱
 
-For me, the key insight — one I first encountered in [Alex Komoroske's Bits and Bobs](https://komoroske.com/bits-and-bobs) — is that I want Claude to do cognitive *labor*, not cognitive *thinking*. I don't want it to generate ideas. I want it to take my rough, unstructured thoughts and giving them shape — add tags, create links, break a rambling paragraph into an organized note.
+For me, the key insight — one I first encountered in [Alex Komoroske's Bits and Bobs](https://komoroske.com/bits-and-bobs) — is that I want Claude to do cognitive *labor*, not *thinking*. I don't want it to generate ideas. I want it to take my rough, unstructured thoughts and giving them shape — add tags, create links, break a rambling paragraph into an organized note.
 
 This matters because the value of a second brain was never supposed to be in the filing! It was in the connections. The problem was always that you had to do a bunch of boring filing work before you could get to the interesting part. Claude eliminates that bottleneck.
 
