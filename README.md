@@ -1,5 +1,7 @@
 # My site
 
+Copyright 2026 Rob Dodson
+
 ## Installation
 
 Start a local dev server
