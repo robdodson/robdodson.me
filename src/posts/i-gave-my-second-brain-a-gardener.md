@@ -32,9 +32,9 @@ Then it occurred to me that Claude Code is really good at reading markdown. As I
 
 ## My Gardener: Claude 🌱
 
-For me, the key insight — one I first encountered in [Alex Komoroske's Bits and Bobs](https://komoroske.com/bits-and-bobs) — is that I want Claude to do cognitive *labor*, not *thinking*. I don't want it to generate ideas. I want it to take my rough, unstructured thoughts and giving them shape — add tags, create links, break a rambling paragraph into an organized note.
+For me, the key insight — one I first encountered in [Alex Komoroske's Bits and Bobs](https://komoroske.com/bits-and-bobs) — is that I want Claude to do cognitive *labor*, not *thinking*. I don't want it to generate ideas. I want it to take my rough, unstructured thoughts and give them shape — add tags, create links, break a rambling paragraph into an organized note.
 
-This matters because the value of a second brain was never supposed to be in the filing! It was in the connections. The problem was always that you had to do a bunch of boring filing work before you could get to the interesting part. Claude eliminates that bottleneck.
+This matters because the value of a second brain was never supposed to be in the filing! It was in the connections. The problem was that you had to do a bunch of boring filing work before you could get to the interesting part. Claude eliminates that bottleneck.
 
 The first thing I asked Claude to do was to read my entire vault and look up some common Obsidian organization strategies, and try to organize the vault for me. It came back with a number of questions, starting from pretty broad and slowly working down to specifics as we hashed out how I wanted to work.
 
