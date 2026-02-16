@@ -13,7 +13,7 @@ class ThemeToggle extends HTMLElement {
   }
 
   getCurrentSetting() {
-    return localStorage.getItem(this.STORAGE_KEY) ?? 'light';
+    return localStorage.getItem(this.STORAGE_KEY) ?? 'dark';
   }
 
   applySetting(passedSetting) {
