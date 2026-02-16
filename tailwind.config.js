@@ -8,7 +8,7 @@ module.exports = {
       sans: ['Lora', 'Georgia', 'serif'],
     },
     colors: {
-      white: '#f9f9f9',
+      white: '#f6f7f4',
       black: '#000',
       'dark-bg': '#1e1a1f',
       'dark-text': '#f5ebe0',
@@ -23,7 +23,11 @@ module.exports = {
             },
             'code::after': {
               content: '""'
-            }
+            },
+            color: '#1a2e1a',
+            '--tw-prose-headings': '#1a2e1a',
+            '--tw-prose-bold': '#1a2e1a',
+            '--tw-prose-links': '#2d5a3d',
           }
         },
         invert: {
