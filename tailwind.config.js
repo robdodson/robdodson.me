@@ -9,7 +9,9 @@ module.exports = {
     },
     colors: {
       white: '#f9f9f9',
-      black: '#000'
+      black: '#000',
+      'dark-bg': '#1e1a1f',
+      'dark-text': '#f5ebe0',
     },
     extend: {
       typography: {
@@ -22,6 +24,14 @@ module.exports = {
             'code::after': {
               content: '""'
             }
+          }
+        },
+        invert: {
+          css: {
+            color: '#f5ebe0',
+            '--tw-prose-headings': '#f5ebe0',
+            '--tw-prose-bold': '#f5ebe0',
+            '--tw-prose-links': '#ebbcba',
           }
         },
         '2xl': {
