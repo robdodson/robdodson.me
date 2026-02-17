@@ -43,6 +43,7 @@ figure {
 }
 
 figure > img {
+  border-radius: 0.75rem;
   box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
   position: relative;
   z-index: 1;
