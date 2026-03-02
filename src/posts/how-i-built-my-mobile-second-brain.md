@@ -16,9 +16,9 @@ tags:
 
 In my last post, [My Second Brain Never Worked. Then I Gave It a Gardener](https://robdodson.me/posts/i-gave-my-second-brain-a-gardener/), I mentioned that putting my Obsidian vault on a VPS with Claude Code permanently running on it, and being able to access it from my phone, was the real "ah ha" moment for me. A few people asked how I set that up, so here's the full walkthrough.
 
-The idea is simple: rent a cheap DigitalOcean droplet, run Obsidian on it so your vault stays synced, install Claude Code so it can read and write your notes, and use [Happy](https://happy.engineering/) to control the whole thing from your phone. Total cost is about $24/month.
+The idea is simple: rent a cheap DigitalOcean droplet, sync your vault using `obsidian-headless` (a lightweight CLI — no Electron needed), install Claude Code so it can read and write your notes, and use [Happy](https://happy.engineering/) to control the whole thing from your phone. Total cost is about $24/month.
 
-A big disclaimer up front: I pay for [Obsidian Sync](https://obsidian.md/sync) which means I have to run the actual Obsidian Electron app on my VPS. It adds a lot of complexity to this setup. If you're using something like the [Obsidian Git plugin](https://github.com/Vinzent03/obsidian-git) you can skip all of Phase 2 (and the Xvfb/VNC/Electron dependencies in Step 6), just `git clone` your vault, and get away with a much smaller VPS.
+**Update (March 2026):** This post originally required running the full Obsidian Electron app headlessly via Xvfb — a real pain to set up. Obsidian has since released [`obsidian-headless`](https://www.npmjs.com/package/obsidian-headless), an official lightweight CLI that handles [Obsidian Sync](https://obsidian.md/sync) without the desktop app. It uses ~35MB of RAM instead of ~400MB+, and eliminates the need for Xvfb, VNC, a window manager, and all the Electron library dependencies. I've updated this guide accordingly — Phase 2 is now much simpler.
 
 With all that out of the way, here is essentially the plan I followed with Claude Code.
 Before starting, I'd recommend firing up your own Claude Code instance and pointing it at this post so it can help you out if you hit any snags!
@@ -37,7 +37,7 @@ Go to [https://cloud.digitalocean.com](https://cloud.digitalocean.com) — creat
 2. **Region:** Choose the closest to you (reduces latency for Happy sessions)
 3. **Image:** Ubuntu 24.04 (LTS) x64
 4. **Size:** Regular (shared CPU) → **$24/mo (4GB RAM, 2 vCPUs, 80GB SSD)**
-   - Don't try to squeeze into the $12/2GB tier — Obsidian + Claude Code will OOM.
+   - The 2GB tier might work now that we use `obsidian-headless` (~35MB) instead of Electron (~400MB+), but 4GB gives comfortable headroom for Claude Code sessions
 1. **Authentication:** Choose **SSH Keys** (recommended)
    - If you don't have one: on your Mac, run `cat ~/.ssh/id_ed25519.pub` (or `id_rsa.pub`)
    - Copy the output and paste it into DigitalOcean's "New SSH Key" dialog
@@ -103,169 +103,91 @@ sudo apt update && sudo apt upgrade -y
 ### Step 6: Install Core Dependencies
 
 ```bash
-# Virtual framebuffer + lightweight window manager (for headless Obsidian)
-sudo apt install -y xvfb openbox
-
 # Misc tools
 sudo apt install -y git curl tmux htop wget
 
 # Fix for Ghostty terminal users — tmux won't work without this
 echo 'export TERM=xterm-256color' >> ~/.bashrc
 source ~/.bashrc
-
-# VNC server (for one-time Obsidian Sync login)
-# You need both packages — scraping-server provides the x0vncserver binary
-sudo apt install -y tigervnc-standalone-server tigervnc-scraping-server
-
-# Libraries Obsidian (Electron) needs on a headless server
-sudo apt install -y libgtk-3-0 libnotify4 libnss3 libxss1 \
-  libxtst6 xdg-utils libatspi2.0-0 libdrm2 libgbm1 \
-  libsecret-1-0 libasound2t64
 ```
 
-### Step 7: Install Node.js
+### Step 7: Install Node.js via nvm
 
-Claude Code and Happy CLI both need Node.js.
+Claude Code and Happy CLI both need Node.js. Use nvm so you control the version.
 
 ```bash
-# Install Node.js 24 (LTS)
-curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-sudo apt install -y nodejs
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+# Load nvm into current session
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Install Node.js 22 (LTS)
+nvm install 22
+nvm use 22
+nvm alias default 22
 
 # Verify
-node --version  # should show v24.x.x
+node --version  # should show v22.x.x
 npm --version
 ```
 
 ---
 
-## Phase 2: Install Obsidian
+## Phase 2: Install Obsidian Headless Sync
 
-### Step 8: Download and Install Obsidian
+Obsidian offers an official lightweight CLI (`obsidian-headless`) that syncs vaults without the desktop Electron app. It uses ~35MB of RAM instead of ~400MB+, and you don't need Xvfb, a window manager, VNC, or any Electron library dependencies.
 
-On a DO droplet (x86_64), we use the .deb package directly instead of Flatpak:
-
-```bash
-# Download the latest Obsidian .deb (check https://obsidian.md/download for latest version)
-cd /tmp
-wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.11.7/obsidian_1.11.7_amd64.deb
-
-# Install it
-sudo dpkg -i obsidian_1.11.7_amd64.deb
-
-# Fix any dependency issues
-sudo apt install -f -y
-```
-
-> **Note:** The version number (1.11.7) may be outdated by the time you read this. Check https://github.com/obsidianmd/obsidian-releases/releases for the latest release and adjust the URL accordingly.
-
-### Step 9: Set Up the Virtual Display
-
-Create a startup script:
+### Step 8: Install obsidian-headless
 
 ```bash
-mkdir -p ~/scripts
-cat > ~/scripts/start-obsidian-headless.sh << 'EOF'
-#!/bin/bash
-# Start Xvfb (virtual display) on display :99
-export DISPLAY=:99
-Xvfb :99 -screen 0 1024x768x24 &
-XVFB_PID=$!
-sleep 2
+sudo npm install -g obsidian-headless
 
-# Start a minimal window manager (Obsidian needs one)
-openbox &
-sleep 1
-
-# Start Obsidian
-# --no-sandbox is needed for running on a server
-obsidian --no-sandbox &
-OBSIDIAN_PID=$!
-
-echo "Xvfb PID: $XVFB_PID"
-echo "Obsidian PID: $OBSIDIAN_PID"
-
-# Wait for Obsidian to exit
-wait $OBSIDIAN_PID
-kill $XVFB_PID
-EOF
-
-chmod +x ~/scripts/start-obsidian-headless.sh
+# Verify
+ob --version
 ```
 
-### Step 10: First-Time Obsidian Setup (Requires VNC — One Time Only)
-
-You need to see Obsidian's UI once to:
-1. Open/create a vault
-2. Log into Obsidian Sync
-3. Connect the vault to your remote vault
-
-**Start a VNC session:**
+### Step 9: Authenticate and Set Up Sync
 
 ```bash
-# Start the virtual display + window manager
-export DISPLAY=:99
-Xvfb :99 -screen 0 1024x768x24 &
-openbox &
+# Log in to your Obsidian account
+ob login
+# Enter your email, password, and MFA code when prompted
 
-# Set a VNC password (one-time — pick anything simple, this is temporary)
-vncpasswd
-# Enter and confirm a password, say "n" to view-only
+# List your remote vaults
+ob sync-list-remote
+# Note the vault name you want to sync
 
-# Start a VNC server attached to that display
-x0vncserver -display :99 -rfbport 5900 -PasswordFile ~/.vnc/passwd &
+# Create the local vault directory
+mkdir -p ~/obsidian-vault
 
-# Launch Obsidian
-obsidian --no-sandbox &
+# Link the local directory to your remote vault
+ob sync-setup --vault "YOUR_VAULT_NAME" --path ~/obsidian-vault --device-name "vps-headless"
+# Enter your end-to-end encryption password when prompted
+
+# Do an initial sync to pull down all files
+ob sync --path ~/obsidian-vault
+# Wait for it to finish
 ```
 
-> **Note:** You'll see a wall of warnings about EGL, xkbcomp, GPU errors, etc. These are all harmless on a headless server — ignore them. Obsidian is running fine.
+### Step 10: Create the Obsidian systemd Service
 
-**Connect from your Mac:**
-
-You need to SSH tunnel the VNC port (don't expose VNC to the internet!):
-
-```bash
-# In a NEW terminal on your Mac (not the SSH session):
-ssh -L 5900:localhost:5900 YOUR_USER@YOUR_DROPLET_IP
-```
-
-Now connect your VNC client to `localhost:5900`:
-- macOS: Finder → Go → Connect to Server → `vnc://localhost:5900`
-- Enter the VNC password you just set (not your Mac password)
-
-You should see Obsidian's UI. Now:
-
-1. **Create or open a vault** — point it to `~/obsidian-vault/`
-2. **Go to Settings → Core Plugins → Sync → turn it on**
-3. **Log in** with your Obsidian account
-4. **Connect to your existing remote vault** — choose the same one your phone/desktop uses
-5. Wait for the initial sync to complete (watch the sync icon in the bottom-left)
-6. **Close the VNC session** — you won't need it again
-
-Clean up the VNC setup:
-
-```bash
-# Kill everything from the test session
-killall x0vncserver obsidian openbox Xvfb 2>/dev/null
-```
-
-### Step 11: Create the Obsidian systemd Service
-
-This makes headless Obsidian start automatically on boot.
+This makes headless sync start automatically on boot.
 
 ```bash
 mkdir -p ~/.config/systemd/user
 
 cat > ~/.config/systemd/user/obsidian-headless.service << EOF
 [Unit]
-Description=Headless Obsidian with Xvfb
+Description=Obsidian Headless Sync
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=%h/scripts/start-obsidian-headless.sh
+WorkingDirectory=%h/obsidian-vault
+ExecStart=/usr/bin/ob sync --continuous --path %h/obsidian-vault
 Restart=on-failure
 RestartSec=10
 Environment=HOME=%h
@@ -286,22 +208,22 @@ systemctl --user start obsidian-headless.service
 systemctl --user status obsidian-headless.service
 ```
 
-**Verify Obsidian is actually running:**
+**Verify sync is working:**
 
 ```bash
-ps aux | grep -i obsidian
-# You should see the Obsidian process
+# Check the service — should show a single node process (~35MB)
+systemctl --user status obsidian-headless.service
 
 # Check memory usage
 free -h
-# With Obsidian + Xvfb + Openbox running, expect ~1-1.5GB used
+# Without the Electron app, expect much lower memory usage
 ```
 
 ---
 
 ## Phase 3: Install Claude Code
 
-### Step 12: Install Claude Code
+### Step 11: Install Claude Code
 
 ```bash
 # Native installer
@@ -311,7 +233,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 claude --version
 ```
 
-### Step 13: Authenticate Claude Code
+### Step 12: Authenticate Claude Code
 
 ```bash
 claude
@@ -334,7 +256,7 @@ Exit with `/exit` or Ctrl+C.
 
 ## Phase 4: Install Happy CLI
 
-### Step 14: Install Happy
+### Step 13: Install Happy
 
 ```bash
 npm install -g happy-coder
@@ -343,7 +265,7 @@ npm install -g happy-coder
 happy --version
 ```
 
-### Step 15: Connect Your Phone
+### Step 14: Connect Your Phone
 
 ```bash
 happy --auth
@@ -354,7 +276,7 @@ happy --auth
 2. **Scan the QR code** with the Happy app
 3. You're paired. The connection is end-to-end encrypted.
 
-### Step 16: Test Happy
+### Step 15: Test Happy
 
 ```bash
 cd ~/obsidian-vault
@@ -372,9 +294,14 @@ Now open the Happy app on your phone — you should see the Claude Code session.
 
 You want `happy` (wrapping Claude Code) to be running whenever you want to connect from your phone. Happy needs a real terminal (TTY) to work, so running it as a plain systemd service fails. The solution: systemd launches a tmux session with Happy inside it — auto-starts on boot, survives SSH disconnects, and gives Happy the terminal it needs.
 
-### Step 17: Create the Happy systemd Service
+### Step 16: Create the Happy systemd Service
 
 ```bash
+# First, find your happy path (we need the full path for systemd)
+which happy
+# Example output: /home/YOUR_USER/.nvm/versions/node/v22.x.x/bin/happy
+# Use YOUR path in the ExecStart line below
+
 cat > ~/.config/systemd/user/happy-claude.service << 'EOF'
 [Unit]
 Description=Happy CLI (Claude Code mobile access)
@@ -385,10 +312,10 @@ Wants=network-online.target
 Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=%h/obsidian-vault
-ExecStart=/usr/bin/tmux new-session -d -s claude /usr/bin/happy
+ExecStart=/usr/bin/tmux new-session -d -s claude %h/.nvm/versions/node/v22.14.0/bin/happy
 ExecStop=/usr/bin/tmux kill-session -t claude
 Environment=HOME=%h
-Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PATH=%h/.nvm/versions/node/v22.14.0/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
 
 [Install]
 WantedBy=default.target
@@ -398,6 +325,8 @@ systemctl --user daemon-reload
 systemctl --user enable happy-claude.service
 systemctl --user start happy-claude.service
 ```
+
+> **Note:** Adjust the node version path (`v22.14.0`) to match your actual install. Check with `which happy`.
 
 ### Verify It's Running
 
@@ -428,31 +357,34 @@ systemctl --user restart happy-claude.service
 ### Checklist
 
 ```bash
-# 1. Obsidian is running headless
+# 1. Obsidian headless sync is running
 systemctl --user status obsidian-headless.service
-# Should show "active (running)"
+# Should show "active (running)" with a single node process
 
-# 2. Vault files are present and syncing
+# 2. Sync is connected
+ob sync-status --path ~/obsidian-vault
+
+# 3. Vault files are present and syncing
 ls ~/obsidian-vault/
 # Should show your vault's files/folders
 
-# 3. Claude Code can access the vault
+# 4. Claude Code can access the vault
 cd ~/obsidian-vault && claude "what markdown files are in this vault?"
 
-# 4. Happy is running in tmux via systemd
+# 5. Happy is running in tmux via systemd
 systemctl --user status happy-claude.service
 # Should show "active (exited)"
 tmux list-sessions
 # Should show "claude" session
 
-# 5. Happy works from phone
+# 6. Happy works from phone
 # Open Happy app on phone, verify connection
 
-# 6. Memory looks healthy
+# 7. Memory looks healthy
 free -h
-# Should show ~2-2.5GB used out of 4GB — comfortable
+# Should show well under 2GB used — headless sync uses ~35MB vs ~400MB+ for Electron
 
-# 7. After a reboot, everything restarts automatically
+# 8. After a reboot, everything restarts automatically
 sudo reboot
 # Wait 30 seconds, SSH back in
 systemctl --user status obsidian-headless.service
@@ -473,8 +405,8 @@ tmux list-sessions
 # Ubuntu
 sudo apt update && sudo apt upgrade -y
 
-# Obsidian — download new .deb from GitHub releases and install:
-# sudo dpkg -i obsidian_X.Y.Z_amd64.deb
+# obsidian-headless
+sudo npm update -g obsidian-headless
 
 # Claude Code (auto-updates, but to force)
 claude update
@@ -483,30 +415,18 @@ claude update
 npm update -g happy-coder
 
 # Node.js
-sudo apt update && sudo apt install -y nodejs
+nvm install 22  # installs latest 22.x
 ```
 
 ### Common Issues
 
 **Obsidian Sync stops working:**
 ```bash
-# Restart the headless Obsidian service
+# Restart the headless sync service
 systemctl --user restart obsidian-headless.service
-```
 
-**Obsidian crashes with GPU errors:**
-```bash
-# Edit the startup script to add --disable-gpu flag:
-# Change the obsidian line to:
-# obsidian --no-sandbox --disable-gpu &
-```
-
-**Droplet feels sluggish / high memory:**
-```bash
-htop
-# Check what's eating memory. Obsidian (Electron) is the biggest consumer.
-# If it's over 2GB, restart it:
-systemctl --user restart obsidian-headless.service
+# Check sync status
+ob sync-status --path ~/obsidian-vault
 ```
 
 **Can't connect to Happy from phone:**
@@ -564,14 +484,15 @@ crontab -e
 | What | Command |
 |------|---------|
 | SSH into droplet | `ssh YOUR_USER@YOUR_DROPLET_IP` |
-| Check Obsidian | `systemctl --user status obsidian-headless.service` |
-| Restart Obsidian | `systemctl --user restart obsidian-headless.service` |
+| Check Obsidian sync | `systemctl --user status obsidian-headless.service` |
+| Restart Obsidian sync | `systemctl --user restart obsidian-headless.service` |
+| Check sync status | `ob sync-status --path ~/obsidian-vault` |
 | Check Happy | `systemctl --user status happy-claude.service` |
 | Restart Happy | `systemctl --user restart happy-claude.service` |
 | Peek at Happy session | `tmux attach -t claude` (detach: Ctrl+B then D) |
 | Check memory | `free -h` |
 | Check running processes | `htop` |
-| Update everything | `sudo apt update && sudo apt upgrade -y && claude update && npm update -g happy-coder` |
+| Update everything | `sudo apt update && sudo apt upgrade -y && claude update && sudo npm update -g obsidian-headless && npm update -g happy-coder` |
 
 ---
 
@@ -582,6 +503,4 @@ I was initially debating between setting this up on DigitalOcean or buying a Ras
 If you find yourself using this daily and the $24/mo feels wasteful, that's a
 good signal to switch. A Pi 5 8GB (~$180) pays for itself in ~8 months vs the
 droplet. The setup process is nearly identical — same systemd services, same
-tools, just on local hardware. The only real difference is that you'll need to
-install Obsidian via Flatpak instead of the .deb package, since the Pi runs on
-ARM64.
+tools, just on local hardware. You can reuse this guide almost verbatim.
